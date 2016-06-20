@@ -1,6 +1,6 @@
-class CreateBudgets < ActiveRecord::Migration
+class CreateBudget < ActiveRecord::Migration
   def change
-    create_table :budgets do |t|
+    create_table :budget do |t|
       t.string :budgetrange
 
       t.timestamps null: false
