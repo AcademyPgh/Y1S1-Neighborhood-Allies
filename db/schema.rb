@@ -38,7 +38,10 @@ ActiveRecord::Schema.define(version: 20160621042538) do
   end
 
   create_table "logos", force: :cascade do |t|
-    t.binary   "image"
+    t.binary   "data",       null: false
+    t.string   "name",       null: false
+    t.string   "filename"
+    t.string   "mime_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
