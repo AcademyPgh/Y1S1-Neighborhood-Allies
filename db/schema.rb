@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160621040204) do
+ActiveRecord::Schema.define(version: 20160621042538) do
 
   create_table "budgets", force: :cascade do |t|
     t.string   "budgetrange"
@@ -48,6 +48,35 @@ ActiveRecord::Schema.define(version: 20160621040204) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "org_web_urls", force: :cascade do |t|
+    t.string   "type"
+    t.string   "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "descrip"
+    t.text     "mission"
+    t.text     "address"
+    t.integer  "logo_id"
+    t.integer  "paos_id"
+    t.integer  "budget_id"
+    t.integer  "funder_id"
+    t.integer  "staffsize_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "organizations", ["budget_id"], name: "index_organizations_on_budget_id"
+  add_index "organizations", ["funder_id"], name: "index_organizations_on_funder_id"
+  add_index "organizations", ["logo_id"], name: "index_organizations_on_logo_id"
+  add_index "organizations", ["paos_id"], name: "index_organizations_on_paos_id"
+  add_index "organizations", ["staffsize_id"], name: "index_organizations_on_staffsize_id"
 
   create_table "p_ao_s", force: :cascade do |t|
     t.string   "area"
