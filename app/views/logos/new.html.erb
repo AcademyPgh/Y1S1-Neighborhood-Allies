@@ -1,2 +1,15 @@
-<h1>Logoscontroller#new</h1>
-<p>Find me in app/views/logoscontroller/new.html.erb</p>
+#app/views/logos/new.html.erb
+
+<%= form_for(@logo, :html => {:multipart => true}) do |f| %>
+    <div class="field">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </div>
+    <div class="field">
+        <%= f.label :data %>
+        <%= f.file_field :data %>
+    </div>
+    <div class="actions">
+        <%= f.submit "Upload" %>
+    </div>
+<% end %>
