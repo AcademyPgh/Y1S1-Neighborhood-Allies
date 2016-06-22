@@ -11,22 +11,29 @@
 </head>
 
 <body>
+	
+<role="form"> 
 
-	
-	<form action="URL" method="post">
-		  Entry 1:
-		  <br>
-		  <input type="text" name="firstname" value="">
-		  <br>
-		  <br>
-		  Entry 2:
-		  <br>
-		  <input type="text" name="lastname" value="">
-		  <br>
-		  <br>
-		  <input type="submit" value="Submit">
-	</form> 
-	
+<!--I'm not completely sure if I need action URL and method post parts, but I think I do. Beginning of form might be: 
+<form action="URL" method="post"> 
+and at end of form:
+<button type="submit" class="btn btn-default">Submit</button>
+</form>
+also, a useful link:
+http://www.w3schools.com/bootstrap/bootstrap_forms.asp
+-->
+	  <div class="form-group">
+		<label for="email">Email address:</label>
+		<input type="email" class="form-control" id="email">
+	  </div>
+	  <div class="form-group">
+		<label for="pwd">Password:</label>
+		<input type="password" class="form-control" id="pwd">
+	  </div>
+	  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+	<br>
+	<br>
 	<div class="btn-group" role="group" aria-label="...">
 	  <button type="button" class="btn btn-default">Edit Account</button>
 	  <button type="button" class="btn btn-default">Suspend Account</button>
