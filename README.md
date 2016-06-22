@@ -1,7 +1,5 @@
-##Neighborhood Allies - Web App
+## Neighborhood Allies - Web App
 
-
-
-##Notes
---Commit Often! and Early!  No more big migrations
---Fork this and then make a pull request
+### Notes
+ * Commit Often! and Early!  No more big migrations
+ * Fork this and then make a pull request
