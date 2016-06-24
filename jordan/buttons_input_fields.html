@@ -7,7 +7,7 @@
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 	
-	<link rel="stylesheet" href="port2_style.css">
+	<link rel="stylesheet" href="login_style.css">
 </head>
 
 <body>
@@ -39,5 +39,17 @@ http://www.w3schools.com/bootstrap/bootstrap_forms.asp
 	  <button type="button" class="btn btn-default">Suspend Account</button>
 	  <button type="button" class="btn btn-default">View as User</button>
 	</div>
+	
+	<p>This is where our landing page will be.  <a href = "javascript:void(0)" onclick= "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">LOGIN</a></p>
+		<div id="light" class="white_content">
+			<div>
+				<h3 id = "login">LOGIN</h3>
+				<input type="text" id="vname" name="name" placeholder="Organization Name">
+				<input type="text" id="vname" name="name" placeholder="Password">
+				
+				<a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">CONFIRM</a>
+			</div>
+		</div>
+		<div id="fade" class="black_overlay"></div>
 
 </body>
