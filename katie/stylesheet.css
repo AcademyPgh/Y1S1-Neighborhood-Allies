@@ -1,0 +1,102 @@
+body
+{	min-height:100%;
+	height:100%;
+	background-color: grey;
+}
+
+html
+{
+	height: 100%;
+}
+
+header
+{
+	height: 15%;
+	background-color: rgb(154, 201, 59);
+	/*border: solid black 1px;*/
+	
+}
+
+/*footer
+{
+	height: 10%;
+	background-color: rgb(154, 201, 59);
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	border: solid black 1px;
+	
+}*/
+.container
+{
+	
+	height: 100%;
+	background-color: yellow;
+	padding-left:0px;
+	padding-right:0px;
+}
+
+.actions
+{
+	background-color: #fff;
+	height: 85%;
+	/*border: solid black 1px;*/
+	padding: 0px;
+	
+}
+
+.map
+{
+	background-color: #fff;
+	height: 85%;
+	/*border: solid black 1px;*/
+	padding: 0px;
+}
+
+.logoplace
+{
+	height: 100%;
+	padding: 0px;
+	background-color: rgb(154, 201, 59);
+	text-align: center;
+	
+	
+}
+
+.key
+{
+	height: 30%;
+	border: solid #f2f3f4;
+	margin: 0px !important;
+	background-color: #fff;
+	
+}
+
+.selections
+{
+	position: absolute;
+	top: 20px;
+	left: 15%;
+}
+
+.organizations
+{
+	position: absolute;
+	top: 20px;
+	left: 15%;
+}
+.orglist
+{
+	height: 70%;
+	
+	margin: 0px !important;
+	overflow-y: scroll;
+	
+	
+}
+
+#map{
+	height: 100%;
+	
+}
+
