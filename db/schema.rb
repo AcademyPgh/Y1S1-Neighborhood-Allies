@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160621042538) do
+ActiveRecord::Schema.define(version: 20160627194229) do
 
   create_table "budgets", force: :cascade do |t|
     t.string   "budgetrange"
@@ -32,25 +32,19 @@ ActiveRecord::Schema.define(version: 20160621042538) do
   end
 
   create_table "funders", force: :cascade do |t|
-    t.string   "name",          null: false
-    t.integer  "fund_cat_a_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
-
-  add_index "funders", ["fund_cat_a_id"], name: "index_funders_on_fund_cat_a_id"
 
   create_table "logos", force: :cascade do |t|
-    t.binary   "data",            null: false
-    t.string   "name",            null: false
+    t.binary   "data",       null: false
+    t.string   "name",       null: false
     t.string   "filename"
     t.string   "mime_type"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.integer  "organization_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
-
-  add_index "logos", ["organization_id"], name: "index_logos_on_organization_id"
 
   create_table "org_statuses", force: :cascade do |t|
     t.string   "orgStatus"
@@ -61,14 +55,9 @@ ActiveRecord::Schema.define(version: 20160621042538) do
   create_table "org_web_urls", force: :cascade do |t|
     t.string   "type"
     t.string   "url"
-    t.integer  "organization_id"
-    t.integer  "social_type_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
-
-  add_index "org_web_urls", ["organization_id"], name: "index_org_web_urls_on_organization_id"
-  add_index "org_web_urls", ["social_type_id"], name: "index_org_web_urls_on_social_type_id"
 
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
@@ -109,5 +98,23 @@ ActiveRecord::Schema.define(version: 20160621042538) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end
