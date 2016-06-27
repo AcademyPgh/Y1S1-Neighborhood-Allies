@@ -21,24 +21,27 @@ ActiveRecord::Schema.define(version: 20160621042538) do
 
   create_table "fund_cat_as", force: :cascade do |t|
     t.string   "name"
+    t.integer  "funder_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "fund_cat_as", ["funder_id"], name: "index_fund_cat_as_on_funder_id"
 
   create_table "fund_cat_bs", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "funders", force: :cascade do |t|
-    t.string   "name",          null: false
     t.integer  "fund_cat_a_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
-  add_index "funders", ["fund_cat_a_id"], name: "index_funders_on_fund_cat_a_id"
+  add_index "fund_cat_bs", ["fund_cat_a_id"], name: "index_fund_cat_bs_on_fund_cat_a_id"
+
+  create_table "funders", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "logos", force: :cascade do |t|
     t.binary   "data",            null: false
@@ -80,15 +83,15 @@ ActiveRecord::Schema.define(version: 20160621042538) do
     t.integer  "logo_id"
     t.integer  "paos_id"
     t.integer  "budget_id"
-    t.integer  "funder_id"
     t.integer  "staffsize_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "org_status_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "organizations", ["budget_id"], name: "index_organizations_on_budget_id"
-  add_index "organizations", ["funder_id"], name: "index_organizations_on_funder_id"
   add_index "organizations", ["logo_id"], name: "index_organizations_on_logo_id"
+  add_index "organizations", ["org_status_id"], name: "index_organizations_on_org_status_id"
   add_index "organizations", ["paos_id"], name: "index_organizations_on_paos_id"
   add_index "organizations", ["staffsize_id"], name: "index_organizations_on_staffsize_id"
 
