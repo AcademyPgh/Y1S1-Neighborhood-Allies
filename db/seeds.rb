@@ -77,3 +77,25 @@ FundCatA.create(name: "Education", funder_id: f.id)
 FundCatA.create(name: "Youth Development", funder_id: f.id)
 FundCatA.create(name: "Human Services", funder_id: f.id)
 FundCatA.create(name: "Economic and Community Development", funder_id: f.id)
+
+
+SocialType.create(socType: "Twitter")
+SocialType.create(socType: "Facebook")
+SocialType.create(socType: "Instagram")
+
+OrgStatus.create(orgStatus: "501(C)3")
+OrgStatus.create(orgStatus: "B-Corp")
+OrgStatus.create(orgStatus: "For Profit")
+OrgStatus.create(orgStatus: "Other")
+
+PAoS.create(area: "Hilltop - Allentown")
+PAoS.create(area: "Hilltop - Beltzhoover")
+PAoS.create(area: "Hilltop - Knoxville")
+PAoS.create(area: "Hill District")
+PAoS.create(area: "Homewood")
+PAoS.create(area: "Larimer")
+PAoS.create(area: "Hilltop - Allentown")
+PAoS.create(area: "Millvale")
+PAoS.create(area: "Wilkinsburg")
+PAoS.create(area: "Other")
+

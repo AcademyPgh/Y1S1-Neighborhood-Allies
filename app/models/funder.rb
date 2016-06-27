@@ -1,4 +1,4 @@
-class Funder < ActiveRecord::Base
-    belongs_to_many :organizations
+class Funder < ActiveRecord::Base    
+    has_many :organization
     has_many :fund_cat_as
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160621042538) do
+ActiveRecord::Schema.define(version: 20160627202218) do
 
   create_table "budgets", force: :cascade do |t|
     t.string   "budgetrange"
@@ -54,6 +54,13 @@ ActiveRecord::Schema.define(version: 20160621042538) do
   end
 
   add_index "logos", ["organization_id"], name: "index_logos_on_organization_id"
+
+  create_table "org_status_others", force: :cascade do |t|
+    t.text     "description"
+    t.integer  "organization_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "org_statuses", force: :cascade do |t|
     t.string   "orgStatus"
@@ -99,6 +106,13 @@ ActiveRecord::Schema.define(version: 20160621042538) do
     t.string   "area"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "p_ao_s_others", force: :cascade do |t|
+    t.text     "description"
+    t.integer  "organization_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "social_types", force: :cascade do |t|
