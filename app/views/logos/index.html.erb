@@ -2,6 +2,6 @@
 <p>Find me in app/views/logoscontroller/index.html.erb</p>
 <p>Hello World!</p>
 <%= @logos.count %>
-<%= @logos.each do |logo| %>
+<% @logos.each do |logo| %>
 <p><%= logo.name %><%= image_tag serve_logo_path(logo) %></p>
 <% end %>

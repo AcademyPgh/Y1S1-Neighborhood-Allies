@@ -6,6 +6,7 @@ class CreateLogos < ActiveRecord::Migration
       t.string :filename
       t.string :mime_type
       t.timestamps null: false
+      t.references :organization, index: true, foreign_key: true
     end
   end
   
