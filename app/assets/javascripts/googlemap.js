@@ -16,13 +16,19 @@ function initialize() {
 	var directionsService = new google.maps.DirectionsService();
 	var directionsDisplay = new google.maps.DirectionsRenderer();
 	pittsburgh = new google.maps.LatLng(40.421796, -79.994485);
-	mapOptions = { zoom:11, mapTypeId: google.maps.MapTypeId.ROADMAP, center: pittsburgh }
+	mapOptions = { zoom:10, mapTypeId: google.maps.MapTypeId.ROADMAP, center: pittsburgh }
 	map = new google.maps.Map(document.getElementById("map"), mapOptions);
 	directionsDisplay.setMap(map);
+
+	if (document.getElementById("searchAddressField")) {
+		var input = document.getElementById('searchAddressField');
+		var options = {componentRestrictions: {country: 'us'}};
+
+		new google.maps.places.Autocomplete(input, options);
+	}
 }
 
 function markerlocation(address, companyname) {
-
 	$.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+address+'&compnay='+companyname+'&sensor=false', null, function (data) {
 		var addresslocation = data.results[0].geometry.location
 		var latlng = new google.maps.LatLng(addresslocation.lat, addresslocation.lng);
