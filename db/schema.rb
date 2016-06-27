@@ -32,10 +32,13 @@ ActiveRecord::Schema.define(version: 20160621042538) do
   end
 
   create_table "funders", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",          null: false
+    t.integer  "fund_cat_a_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
+
+  add_index "funders", ["fund_cat_a_id"], name: "index_funders_on_fund_cat_a_id"
 
   create_table "logos", force: :cascade do |t|
     t.binary   "data",            null: false
