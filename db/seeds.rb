@@ -39,3 +39,5 @@ Funder.create(name: "RK Mellon Foundation")
 Funder.create(name: "McCune Foundation")
 Funder.create(name: "Pittsburgh Foundation")
 Funder.create(name: "Buhl Foundation")
+
+FundCatA.create(name: "MyFund")
