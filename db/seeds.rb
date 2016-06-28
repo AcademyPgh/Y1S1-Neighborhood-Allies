@@ -99,3 +99,5 @@ PAoS.create(area: "Millvale")
 PAoS.create(area: "Wilkinsburg")
 PAoS.create(area: "Other")
 
+FundingType.create(fundtype: "In Kind")
+FundingType.create(fundtype: "Cash")
