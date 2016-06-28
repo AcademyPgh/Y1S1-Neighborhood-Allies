@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160628144442) do
+ActiveRecord::Schema.define(version: 20160628145611) do
 
   create_table "budgets", force: :cascade do |t|
     t.string   "budgetrange"
@@ -41,6 +41,14 @@ ActiveRecord::Schema.define(version: 20160628144442) do
     t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "funding_sents", force: :cascade do |t|
+    t.integer  "organization_id_sent"
+    t.integer  "organization_id_received"
+    t.integer  "funding_type_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "funding_types", force: :cascade do |t|
