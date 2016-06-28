@@ -1,1 +1,35 @@
-kelauni was here
+html,body {
+    height:100%;
+}
+
+
+
+
+h4 {
+	
+	font-weight: bolder;
+	
+}
+
+.columns {
+	
+	
+	 background-color: #7CBC1C;
+	 height: 100%;
+}
+
+img {
+	
+	margin: 0 auto;
+	width: 35%;
+	/* box-shadow: 20px 25px 80px 2px grey; */
+	   	
+}
+
+.center-logo {
+
+	
+}
+	
+	
+
