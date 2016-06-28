@@ -117,6 +117,7 @@ header
 	width: 100%
 }
 
+/*
 .hamburger
 {
 	
@@ -147,9 +148,9 @@ header
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4569b2', endColorstr='#4062a5',GradientType=0 );
 }
  
-/*
+
 The white stripes in the hamburger button
-*/
+
 #hamburger div {
     background-color: #fff;
     border: 1px solid #eee;
@@ -157,7 +158,7 @@ The white stripes in the hamburger button
     height: 2px;
     margin-top: 3px;
     width: 90%;
-}
+}*/
 
 .buttons
 {	
@@ -194,7 +195,16 @@ The white stripes in the hamburger button
 	width: 20%;
 }	
 
-.modal-backdrop
+/*.modal-backdrop
 {
 	opacity: 0 !important;
+}*/
+
+#fpop
+{
+	padding-top: 3px;
+	padding-bottom: 3px;
+	margin: 0px;
+	background: #0c7d8b; 
+	color:#fff;
 }
