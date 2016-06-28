@@ -72,12 +72,19 @@ header
 
 }
 
-#hamburger{
+.glyphicon-menu-hamburger{
 	
+	font-size: 200%;
 	float: right;
-	height: 100%;
-	padding: 0px;
+	
 }
+
+.glyphicon-menu-hamburger:hover{
+	background-color: white;
+}
+	
+	/*transform: scale(2);
+	animation: scale 3s infinite;*/
 
 .key
 {
