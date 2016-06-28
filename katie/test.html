@@ -134,52 +134,18 @@
 			
 				<div class="map col-sm-9 col-xs-12">
 					<div class="maptoolbar visible-xs-block">
-						<div class="btn-group-lg buttons" data-toggle="buttons">
-							<label class="btn btn-default active financial" data-toggle="modal" data-target="#financialmodal" > 
-								<input type="checkbox" autocomplete="off"  ><span class="glyphicon glyphicon-usd" style="width:20px;height:20px; color: black;"></span></button>
-							</label>
-							<label class="btn btn-default active kind" data-toggle="modal" data-target="#inkindmodal"> 	
-								<input type="checkbox" autocomplete="off" ><img src="kind.png" style="width:20px;height:20px;"></button>
-							</label>	
-							<label class="btn btn-default active network" data-toggle="modal" data-target="#networkmodal">
-								<input type="checkbox" autocomplete="off" ><img src="network.png" style="width:20px;height:20px;"></button>
-							</label>
-							<label class="btn btn-default active all" data-toggle="modal" data-target="#allmodal">					
-								<input type="checkbox" autocomplete="off" ><img src="all.png" style="width:20px;height:20px;"></button>
-							</label>	
-						</div>
+					<div class="btn-group" data-toggle="buttons">
+					  <label class="btn btn-primary active">
+						<input type="checkbox" name="options" id="option1" autocomplete="off" checked> Radio 1 (preselected)
+					  </label>
+					  <label class="btn btn-primary">
+						<input type="checkbox" name="options" id="option2" autocomplete="off"> Radio 2
+					  </label>
+					  <label class="btn btn-primary">
+						<input type="checkbox" name="options" id="option3" autocomplete="off"> Radio 3
+					  </label>
 					</div>
-					
-						<div id="financialmodal" class="modal fade " role="dialog" >
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<p>showing all financial contributions<button type="button" class="close" data-dismiss="modal" >&times;</button></p>
-								</div>
-							</div>
-						</div>
-						<div id="inkindmodal" class="modal fade " role="dialog">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<p>showing all in kind contributions<button type="button" class="close" data-dismiss="modal" >&times;</button></p>
-								</div>
-							</div>
-						</div>
-						<div id="networkmodal" class="modal fade " role="dialog">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<p>showing organizations extended network<button type="button" class="close" data-dismiss="modal" >&times;</button></p>
-								</div>
-							</div>
-						</div>
-						<div id="allmodal" class="modal fade " role="dialog">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<p>showing all organizations available<button type="button" class="close" data-dismiss="modal" >&times;</button></p>
-								</div>
-							</div>
-						</div>
-						
-						
+					</div>
 					<div id="map" >
 					</div>
 				</div>
