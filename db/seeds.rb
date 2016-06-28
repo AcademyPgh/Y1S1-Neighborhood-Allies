@@ -101,3 +101,8 @@ PAoS.create(area: "Other")
 
 FundingType.create(fundtype: "In Kind")
 FundingType.create(fundtype: "Cash")
+
+FundingSent.create(organization_id_sent: 1, organization_id_received: 2, funding_type_id: 1)
+FundingSent.create(organization_id_sent: 2, organization_id_received: 1, funding_type_id: 2)
+FundingSent.create(organization_id_sent: 2, organization_id_received: 3, funding_type_id: 1)
+FundingSent.create(organization_id_sent: 2, organization_id_received: 4, funding_type_id: 1)
