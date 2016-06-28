@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang=en>
+	<head>
+		<meta charset="UTF-8">
+		<title>Landing</title>
+		
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+		
+		<link rel="stylesheet" href="stylesheet.css">
+		<link href='https://fonts.googleapis.com/css?family=Hind:400,600' rel='stylesheet' type='text/css'>
+		
+		<script type="text/javascript" src="googlemap.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initialize"
+            async defer>
+		</script>
+	</head>
+	<body>
+		
+			<div class="container col-xs-12">
+				<header>
+					<div class="col-sm-3 col-xs-9 logoplace"><img src="logo.png"></div>
+					<!--<div class="hamburger visible-xs-block col-xs-3">
+					<div id="hamburger">
+						<div></div>
+						<div></div>
+						<div></div>
+					</div></div>-->
+				</header>
+				
+				<div class="actions visible-lg-block visible-md-block visible-sm-block col-sm-3">	
+					
+					<div class="checkbox key">
+							<div class="selections">
+							<div>
+							  <label><input type="checkbox" value="" name="fsupport">Finanical Support</label>
+							</div>  
+							<div>
+							  <label><input type="checkbox" value="" name="ksupport">In Kind Support</label>
+							</div>
+							<div>
+							  <label><input type="checkbox" value="" name="network">Extended Network</label>
+							</div>
+							<div>
+							  <label><input type="checkbox" value="" name="viewall">Show All Pins</label>
+							</div> 
+							</div>
+					</div>
+					
+					<div class="radio orglist">
+						<div class="organizations">
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 1</label>
+								</div>  
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 2</label>
+								</div>
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 3</label>
+								</div>
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 4</label>
+								</div> 
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 5</label>
+								</div> 
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 6</label>
+								</div> 
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 7</label>
+								</div> 
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 1</label>
+								</div>  
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 2</label>
+								</div>
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 3</label>
+								</div>
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 4</label>
+								</div> 
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 5</label>
+								</div> 
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 6</label>
+								</div> 
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 7</label>
+								</div> 
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 1</label>
+								</div>  
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 2</label>
+								</div>
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 2</label>
+								</div>
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 3</label>
+								</div>
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 4</label>
+								</div> 
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 5</label>
+								</div> 
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 6</label>
+								</div> 
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 7</label>
+								</div> 
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 1</label>
+								</div>  
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 2</label>
+								</div>
+								
+						</div>
+					
+					</div>		
+				</div>
+				
+				
+			
+				<div class="map col-sm-9 col-xs-12">
+					<div class="maptoolbar visible-xs-block">
+						<div class="btn-group-lg buttons" data-toggle="buttons" >
+							<label class="btn btn-default active financial" id="button1" > 
+								<input type="checkbox" autocomplete="off"  ><span class="glyphicon glyphicon-usd" style="width:20px;height:20px; color: black;"></span></button>
+							</label>
+							<label class="btn btn-default active kind" > 	
+								<input type="checkbox" autocomplete="off" ><img src="kind.png" style="width:20px;height:20px;"></button>
+							</label>	
+							<label class="btn btn-default active network" >
+								<input type="checkbox" autocomplete="off" ><img src="network.png" style="width:20px;height:20px;"></button>
+							</label>
+							<label class="btn btn-default active all" >					
+								<input type="checkbox" autocomplete="off" ><img src="all.png" style="width:20px;height:20px;"></button>
+							</label>	
+						</div>
+					</div>
+					
+						<!--<div id="financialmodal" class="modal fade " role="dialog" >
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<p>showing all financial contributions<button type="button" class="close" data-dismiss="modal" >&times;</button></p>
+								</div>
+							</div>
+						</div>
+						<div id="inkindmodal" class="modal fade " role="dialog">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<p>showing all in kind contributions<button type="button" class="close" data-dismiss="modal" >&times;</button></p>
+								</div>
+							</div>
+						</div>
+						<div id="networkmodal" class="modal fade " role="dialog">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<p>showing organizations extended network<button type="button" class="close" data-dismiss="modal" >&times;</button></p>
+								</div>
+							</div>
+						</div>
+						<div id="allmodal" class="modal fade " role="dialog">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<p>showing all organizations available<button type="button" class="close" data-dismiss="modal" >&times;</button></p>
+								</div>
+							</div>
+						</div>-->
+						
+						<div class="alert alert-warning alert-dismissible visible-xs-block" id="fpop" role="alert">
+						  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						  Showing all financial contrubutions connections
+						</div>
+						
+						
+					<div id="map" >
+					</div>
+				</div>
+				
+				<!--<footer></footer>-->
+			</div>
+
+		
+	
+	
+	
+	
+	
+	
+	
+	
+		
+		<!-- add jquery here -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		
+	</body>
+</html>
+<script>
+
+	$(document).ready(function ()
+	{
+		$('#button1').click(finpop())
+	});
+
+	
+	function finpop (){
+		document.getElementById('fpop').style.display= 'block';
+	
+	}
+
+
+
+
+
+
+
+</script>
