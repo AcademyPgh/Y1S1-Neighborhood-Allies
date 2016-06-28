@@ -135,53 +135,41 @@
 				<div class="map col-sm-9 col-xs-12">
 					<div class="maptoolbar visible-xs-block">
 						<div class="btn-group-lg buttons" data-toggle="buttons" >
-							<label class="btn btn-default active financial" id="button1" > 
-								<input type="checkbox" autocomplete="off"  ><span class="glyphicon glyphicon-usd" style="width:20px;height:20px; color: black;"></span></button>
+							<label class="btn btn-default financial"  > 
+								<input type="checkbox" autocomplete="off" id="button1" onchange="popupfinancial()" ><span class="glyphicon glyphicon-usd" style="width:20px;height:20px; color: black;"></span></button>
 							</label>
-							<label class="btn btn-default active kind" > 	
-								<input type="checkbox" autocomplete="off" ><img src="kind.png" style="width:20px;height:20px;"></button>
+							<label class="btn btn-default kind" > 	
+								<input type="checkbox" autocomplete="off" id="button2" onchange="popupkind()"><img src="kind.png" style="width:20px;height:20px;"></button>
 							</label>	
-							<label class="btn btn-default active network" >
-								<input type="checkbox" autocomplete="off" ><img src="network.png" style="width:20px;height:20px;"></button>
+							<label class="btn btn-default network" >
+								<input type="checkbox" autocomplete="off" id="button3" onchange="popupnetwork()"><img src="network.png" style="width:20px;height:20px;"></button>
 							</label>
-							<label class="btn btn-default active all" >					
-								<input type="checkbox" autocomplete="off" ><img src="all.png" style="width:20px;height:20px;"></button>
+							<label class="btn btn-default all" >					
+								<input type="checkbox" autocomplete="off" id="button4" onchange="popupall()"><img src="all.png" style="width:20px;height:20px;"></button>
 							</label>	
 						</div>
 					</div>
 					
-						<!--<div id="financialmodal" class="modal fade " role="dialog" >
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<p>showing all financial contributions<button type="button" class="close" data-dismiss="modal" >&times;</button></p>
-								</div>
-							</div>
-						</div>
-						<div id="inkindmodal" class="modal fade " role="dialog">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<p>showing all in kind contributions<button type="button" class="close" data-dismiss="modal" >&times;</button></p>
-								</div>
-							</div>
-						</div>
-						<div id="networkmodal" class="modal fade " role="dialog">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<p>showing organizations extended network<button type="button" class="close" data-dismiss="modal" >&times;</button></p>
-								</div>
-							</div>
-						</div>
-						<div id="allmodal" class="modal fade " role="dialog">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<p>showing all organizations available<button type="button" class="close" data-dismiss="modal" >&times;</button></p>
-								</div>
-							</div>
-						</div>-->
 						
-						<div class="alert alert-warning alert-dismissible visible-xs-block" id="fpop" role="alert">
+						
+						<div class="alert alert-warning alert-dismissible" id="fpop" role="alert">
 						  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						  Showing all financial contrubutions connections
+						</div>
+						
+						<div class="alert alert-warning alert-dismissible" id="kpop" role="alert">
+						  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						  Showing all in kind contrubutions connections
+						</div>
+						
+						<div class="alert alert-warning alert-dismissible" id="npop" role="alert">
+						  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						  Showing all extended network connections
+						</div>
+						
+						<div class="alert alert-warning alert-dismissible" id="apop" role="alert">
+						  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						  Showing all organizations available for search
 						</div>
 						
 						
@@ -192,16 +180,7 @@
 				<!--<footer></footer>-->
 			</div>
 
-		
-	
-	
-	
-	
-	
-	
-	
-	
-		
+				
 		<!-- add jquery here -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 		<!-- Latest compiled and minified JavaScript -->
@@ -211,21 +190,65 @@
 </html>
 <script>
 
-	$(document).ready(function ()
-	{
-		$('#button1').click(finpop())
-	});
+	$('#fpop').hide();
 
-	
-	function finpop (){
-		document.getElementById('fpop').style.display= 'block';
-	
+	function popupfinancial (){
+		console.log("test");
+		//console.log($('#button1').checked);
+		if ($('#button1').is(':checked'))
+		{
+			$('#fpop').show();
+		}
+		else 
+		{
+			$('#fpop').hide();
+		}
 	}
+	
+	$('#kpop').hide();
 
+	function popupkind (){
+		console.log("test");
+		//console.log($('#button1').checked);
+		if ($('#button2').is(':checked'))
+		{
+			$('#kpop').show();
+		}
+		else 
+		{
+			$('#kpop').hide();
+		}
+	}
+	
+	$('#npop').hide();
 
+	function popupnetwork (){
+		console.log("test");
+		//console.log($('#button1').checked);
+		if ($('#button3').is(':checked'))
+		{
+			$('#npop').show();
+		}
+		else 
+		{
+			$('#npop').hide();
+		}
+	}
+	
+	$('#apop').hide();
 
-
-
-
-
+	function popupall (){
+		console.log("test");
+		//console.log($('#button1').checked);
+		if ($('#button4').is(':checked'))
+		{
+			$('#apop').show();
+		}
+		else 
+		{
+			$('#apop').hide();
+		}
+	}
+	
+	
 </script>

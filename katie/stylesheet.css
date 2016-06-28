@@ -172,39 +172,90 @@ The white stripes in the hamburger button
 
 
 
-.kind, .kind:hover, .kind:active {
-    background: #cda6dd;
+
+
+.financial.active, .financial.active:hover
+{
+	background: #b7b8b0;
+		width: 20%;
+}
+
+.financial, .financial:hover
+{
+    background: #fff;
+	width: 20%;
+}
+
+.kind.active, .kind.active:hover
+{
+	background: #5c6f99;
+		width: 20%;
+}	
+
+.kind, .kind:hover
+
+{
+    background: #fff;
 	width: 20%;
 }	
 
-.financial, .financial:hover, .financial:active
+.network.active, .network.active:hover
 {
-    background: #0c7d8b;
+	background: #e7b744;
+		width: 20%;
+}	
+
+.network, .network:hover
+{
+    background: #fff;
 	width: 20%;
 }	
 
-.network, .network:hover, .network:active
+.all.active, .all.active:hover
 {
-    background: #f2f3f4;
+	background: #e76544;
+		width: 20%;
+}	
+
+.all, .all:hover
+{
+    background: #fff;
 	width: 20%;
 }	
 
-.all, .all:hover, .all:active
-{
-    background: #ff6600;
-	width: 20%;
-}	
-
-/*.modal-backdrop
-{
-	opacity: 0 !important;
-}*/
 
 #fpop
 {
 	padding-top: 3px;
 	padding-bottom: 3px;
 	margin: 0px;
-	background: #0c7d8b; 
+	background: #b7b8b0; 
+	color:#fff;
+}
+
+#kpop
+{
+	padding-top: 3px;
+	padding-bottom: 3px;
+	margin: 0px;
+	background: #5c6f99; 
+	color:#fff;
+}
+
+#npop
+{
+	padding-top: 3px;
+	padding-bottom: 3px;
+	margin: 0px;
+	background: #e7b744; 
+	color:#fff;
+}
+
+#apop
+{
+	padding-top: 3px;
+	padding-bottom: 3px;
+	margin: 0px;
+	background: #e76544; 
 	color:#fff;
 }
