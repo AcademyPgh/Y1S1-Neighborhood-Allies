@@ -1,14 +1,9 @@
 Rails.application.routes.draw do
 
-  get 'organization/index'
+ 
 
-  get 'organization/show'
-
-  get 'organization/edit'
-
-  get 'organization/update'
-
-  get 'organization/destroy'
+#  get 'organizations/show'
+resources :organizations
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
