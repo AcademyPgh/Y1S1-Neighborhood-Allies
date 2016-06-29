@@ -1,0 +1,24 @@
+<script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initialize"
+            async defer>
+</script>
+
+
+<h1>Organizations#index</h1>
+<p>Listing of Every Organization</p>
+
+<% @organizations.each do |organization| %>
+<%= organization.name %> <%= link_to "about", organization_path(organization) %> <br />
+<% end %>
+
+<div id="nav">
+  <%= link_to 'Add Organization', new_organization_path %><br><br>
+</div>
+
+<div id="map">
+</div>
+
+<% @organizations.each do |organization| %>
+  <script>
+     markerlocation('<%= organization.address %>', '<%= organization.name %> <br/> <%= organization.email %> <br /> <%=link_to "About", organization_path(organization)%>' );
+  </script>
+<% end %>
