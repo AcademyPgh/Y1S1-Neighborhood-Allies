@@ -21,18 +21,24 @@ ActiveRecord::Schema.define(version: 20160629020848) do
 
   create_table "fund_cat_as", force: :cascade do |t|
     t.string   "name"
+    t.integer  "funder_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "fund_cat_as", ["funder_id"], name: "index_fund_cat_as_on_funder_id"
 
   create_table "fund_cat_bs", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "fund_cat_a_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
+  add_index "fund_cat_bs", ["fund_cat_a_id"], name: "index_fund_cat_bs_on_fund_cat_a_id"
+
   create_table "funders", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -60,13 +66,16 @@ ActiveRecord::Schema.define(version: 20160629020848) do
   end
 
   create_table "logos", force: :cascade do |t|
-    t.binary   "data",       null: false
-    t.string   "name",       null: false
+    t.binary   "data",            null: false
+    t.string   "name",            null: false
     t.string   "filename"
     t.string   "mime_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "organization_id"
   end
+
+  add_index "logos", ["organization_id"], name: "index_logos_on_organization_id"
 
   create_table "org_status_others", force: :cascade do |t|
     t.text     "description"
@@ -84,9 +93,14 @@ ActiveRecord::Schema.define(version: 20160629020848) do
   create_table "org_web_urls", force: :cascade do |t|
     t.string   "type"
     t.string   "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "organization_id"
+    t.integer  "social_type_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
+
+  add_index "org_web_urls", ["organization_id"], name: "index_org_web_urls_on_organization_id"
+  add_index "org_web_urls", ["social_type_id"], name: "index_org_web_urls_on_social_type_id"
 
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
@@ -95,20 +109,21 @@ ActiveRecord::Schema.define(version: 20160629020848) do
     t.string   "descrip"
     t.text     "mission"
     t.text     "address"
-    t.integer  "logo_id"
-    t.integer  "paos_id"
-    t.integer  "budget_id"
     t.integer  "funder_id"
+    t.integer  "logo_id"
+    t.integer  "p_ao_s_id"
+    t.integer  "budget_id"
     t.integer  "staffsize_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.boolean  "is_visible",   default: false
+    t.integer  "org_status_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "is_visible",    default: false
   end
 
   add_index "organizations", ["budget_id"], name: "index_organizations_on_budget_id"
-  add_index "organizations", ["funder_id"], name: "index_organizations_on_funder_id"
   add_index "organizations", ["logo_id"], name: "index_organizations_on_logo_id"
-  add_index "organizations", ["paos_id"], name: "index_organizations_on_paos_id"
+  add_index "organizations", ["org_status_id"], name: "index_organizations_on_org_status_id"
+  add_index "organizations", ["p_ao_s_id"], name: "index_organizations_on_p_ao_s_id"
   add_index "organizations", ["staffsize_id"], name: "index_organizations_on_staffsize_id"
 
   create_table "p_ao_s", force: :cascade do |t|
