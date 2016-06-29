@@ -1,0 +1,51 @@
+
+.navbar-fixed-top {
+	
+	height: 13%; 	
+		
+	
+}
+
+.navbar-inverse {
+	
+	background-color: #666565;
+	 #FFFFF;
+}
+
+
+#about-tag {
+    color: white;
+	font-family: Arial,serif;
+	font-size: 1.5em;
+	
+}
+
+#location {
+	position: absolute;
+	bottom: 0;
+	left: 20%;
+	
+	
+}
+
+
+#right-items {
+	
+	color: white;
+	
+}
+
+
+#logo {
+	
+	height: 4em;
+	width: 100%;
+}
+
+a:hover {
+	
+	color: #6CB91A;	
+	
+	
+}		
+	

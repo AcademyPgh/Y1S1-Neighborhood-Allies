@@ -6,4 +6,13 @@ class Organization < ActiveRecord::Base
   has_one :budget
   has_one :staff_size
   has_one :org_status
+  
+  def as_json(option={})
+    super(:only => [:name, :phone, :email, :descrip, :mission, :address,],
+          :include => {
+            :funders =>{:only => [:name]
+            }
+          }
+      )
+  end
 end
