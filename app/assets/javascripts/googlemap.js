@@ -29,7 +29,7 @@ function initialize() {
 }
 
 function markerlocation(address, companyname) {
-	$.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+address+'&compnay='+companyname+'&sensor=false', null, function (data) {
+	$.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+address+'&company='+companyname+'&sensor=false', null, function (data) {
 		var addresslocation = data.results[0].geometry.location
 		var latlng = new google.maps.LatLng(addresslocation.lat, addresslocation.lng);
 		var marker = new google.maps.Marker({
