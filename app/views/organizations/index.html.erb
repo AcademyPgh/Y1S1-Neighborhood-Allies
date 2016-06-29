@@ -49,9 +49,9 @@ Also, make it so that a organization that is deactivated will be greyed out (exc
 			<p data-cloud9-id='24' class="list-group-item-text">Admin: Josh Lucas</p> 
 		</div>
 		<span data-cloud9-id='25' class="pull-right">  
-			<%= link_to 'Witness Me',organization_path(organization), class: 'btn btn-info' %> 
-			<button data-cloud9-id='27' type="button" class="btn btn-warning">Edit</button>
-			<button data-cloud9-id='28' type="button" class="btn btn-danger">Suspend</button>	  
+			<%= link_to 'View',organization_path(organization), class: 'btn btn-info' %> 
+			<%= link_to 'Edit', "#", class:"btn btn-warning" %>
+			<%= link_to 'Suspend', "#", class:"btn btn-danger" %>
 		</span>
 		</a>
 	</li>
