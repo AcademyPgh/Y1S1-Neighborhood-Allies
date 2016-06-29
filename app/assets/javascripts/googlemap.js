@@ -31,26 +31,26 @@ function initialize() {
 	}
 }
 
-function markerlocation(address, companyname) {
-	$.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+address+'&company='+companyname+'&sensor=false', null, function (data) {
-		var addresslocation = data.results[0].geometry.location
-		var latlng = new google.maps.LatLng(addresslocation.lat, addresslocation.lng);
+function markerlocation(address, organization, organizationabout) {
+	$.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+address+'&organization='+organization+'&organizationabout='+organization+'&sensor=false', null, function (data) {
+		addresslocation = data.results[0].geometry.location
+		latlng = new google.maps.LatLng(addresslocation.lat, addresslocation.lng);
 		marker = new google.maps.Marker({
 	    	position: latlng, //it will place marker based on the addresses, which they will be translated as geolocations.
 	    	map: map,
-	    	title:address,
+	    	title: organization,
 	    	animation: google.maps.Animation.DROP
 		});
 
 		markers.push(marker);
 
 		marker.addListener('click', function() {
-		    map.setZoom(15);
+		    //map.setZoom(15);
 		    map.setCenter(marker.getPosition());
 		});
 
 		marker.infowindow = new google.maps.InfoWindow({
-			content: '<b>' + companyname + '</b>'
+			content: '<b>' + organizationabout + '</b>'
     });
 
 		google.maps.event.addListener(marker, 'click', function() {
@@ -58,11 +58,11 @@ function markerlocation(address, companyname) {
 		});
 
 		var latlngbounds = new google.maps.LatLngBounds();
- 		for (var i = 0; i < markers.length; i++) {
-			//latlngbounds.extend(addresslocation);
+		for (var i = 0; i < markers.length; i++) {
 			latlngbounds.extend(markers[i].getPosition());
- 		}
+		}
 		map.fitBounds(latlngbounds);
 
+		return marker;
 	});
 }
