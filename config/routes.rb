@@ -13,7 +13,7 @@ resources :logos do
 end
 
   # You can have the root of your site routed with "root"
-  root 'logos#index'
+  root 'organizations#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -23,6 +23,8 @@ end
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
+  resources :organizations
+
 
   # Example resource route with options:
   #   resources :products do
