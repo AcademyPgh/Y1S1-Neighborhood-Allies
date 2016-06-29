@@ -1,3 +1,7 @@
+<script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initialize"
+            async defer>
+</script>
+
 
 <h1>Organizations#index</h1>
 <p>Listing of Every Organization</p>
@@ -5,9 +9,6 @@
 <% @organizations.each do |organization| %>
 <%= organization.name %> <%= link_to "about", organization_path(organization) %> <br />
 <% end %>
-<script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initialize"
-            async defer>
-</script>
 
 <div id="nav">
   <%= link_to 'Add Organization', new_organization_path %><br><br>
@@ -20,5 +21,4 @@
   <script>
      markerlocation('<%= organization.address %>', '<%= organization.name %>');
   </script>
-
 <% end %>
