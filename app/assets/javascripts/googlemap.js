@@ -12,6 +12,9 @@
 // <div id="map">
 // </div>
 
+var markers = [];
+var marker;
+
 function initialize() {
 	var directionsService = new google.maps.DirectionsService();
 	var directionsDisplay = new google.maps.DirectionsRenderer();
@@ -32,12 +35,14 @@ function markerlocation(address, companyname) {
 	$.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+address+'&company='+companyname+'&sensor=false', null, function (data) {
 		var addresslocation = data.results[0].geometry.location
 		var latlng = new google.maps.LatLng(addresslocation.lat, addresslocation.lng);
-		var marker = new google.maps.Marker({
+		marker = new google.maps.Marker({
 	    	position: latlng, //it will place marker based on the addresses, which they will be translated as geolocations.
 	    	map: map,
 	    	title:address,
 	    	animation: google.maps.Animation.DROP
 		});
+
+		markers.push(marker);
 
 		marker.addListener('click', function() {
 		    map.setZoom(15);
@@ -46,10 +51,18 @@ function markerlocation(address, companyname) {
 
 		marker.infowindow = new google.maps.InfoWindow({
 			content: '<b>' + companyname + '</b>'
-        });
+    });
 
 		google.maps.event.addListener(marker, 'click', function() {
 	    marker.infowindow.open(map,marker);
 		});
+
+		var latlngbounds = new google.maps.LatLngBounds();
+ 		for (var i = 0; i < markers.length; i++) {
+			//latlngbounds.extend(addresslocation);
+			latlngbounds.extend(markers[i].getPosition());
+ 		}
+		map.fitBounds(latlngbounds);
+
 	});
 }
