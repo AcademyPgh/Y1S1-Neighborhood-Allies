@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
 #  get 'organizations/show'
 resources :organizations
-
+get 'organizations/:id/about' => 'organizations#about'
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

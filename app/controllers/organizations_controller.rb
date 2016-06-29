@@ -7,5 +7,10 @@ class OrganizationsController < ApplicationController
   def index
     @organizations = Organization.all
   end
+  
+  def about
+    @org = Organization.find(params[:id])
+    render :json =>@org.as_json
+  end
 
 end
