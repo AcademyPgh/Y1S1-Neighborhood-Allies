@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160629010139) do
+ActiveRecord::Schema.define(version: 20160629020848) do
 
   create_table "budgets", force: :cascade do |t|
     t.string   "budgetrange"
@@ -115,8 +115,9 @@ ActiveRecord::Schema.define(version: 20160629010139) do
     t.integer  "budget_id"
     t.integer  "staffsize_id"
     t.integer  "org_status_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "is_visible",    default: false
   end
 
   add_index "organizations", ["budget_id"], name: "index_organizations_on_budget_id"
