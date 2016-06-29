@@ -2,5 +2,5 @@
 <p>Listing of Every Organization</p>
 
 <% @orgs.each do |organization| %>
-<%= organization.name %> <%= link_to "Visit", organization_path(organization) %> <br />
+<%= organization.name %> <%= link_to "about", organization_path(organization) %> <br />
 <% end %>

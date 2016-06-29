@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160628145611) do
+ActiveRecord::Schema.define(version: 20160629010139) do
 
   create_table "budgets", force: :cascade do |t|
     t.string   "budgetrange"
@@ -42,6 +42,14 @@ ActiveRecord::Schema.define(version: 20160628145611) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "funders_organizations", force: :cascade do |t|
+    t.integer "funder_id"
+    t.integer "organization_id"
+  end
+
+  add_index "funders_organizations", ["funder_id"], name: "index_funders_organizations_on_funder_id"
+  add_index "funders_organizations", ["organization_id"], name: "index_funders_organizations_on_organization_id"
 
   create_table "funding_sents", force: :cascade do |t|
     t.integer  "organization_id_sent"
@@ -101,8 +109,9 @@ ActiveRecord::Schema.define(version: 20160628145611) do
     t.string   "descrip"
     t.text     "mission"
     t.text     "address"
+    t.integer  "funder_id"
     t.integer  "logo_id"
-    t.integer  "paos_id"
+    t.integer  "p_ao_s_id"
     t.integer  "budget_id"
     t.integer  "staffsize_id"
     t.integer  "org_status_id"
@@ -113,7 +122,7 @@ ActiveRecord::Schema.define(version: 20160628145611) do
   add_index "organizations", ["budget_id"], name: "index_organizations_on_budget_id"
   add_index "organizations", ["logo_id"], name: "index_organizations_on_logo_id"
   add_index "organizations", ["org_status_id"], name: "index_organizations_on_org_status_id"
-  add_index "organizations", ["paos_id"], name: "index_organizations_on_paos_id"
+  add_index "organizations", ["p_ao_s_id"], name: "index_organizations_on_p_ao_s_id"
   add_index "organizations", ["staffsize_id"], name: "index_organizations_on_staffsize_id"
 
   create_table "p_ao_s", force: :cascade do |t|
