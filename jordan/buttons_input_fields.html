@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="login_style.css">
+</head>
+
+<body>
+	
+<role="form"> 
+
+<!--I'm not completely sure if I need action URL and method post parts, but I think I do. Beginning of form might be: 
+<form action="URL" method="post"> 
+and at end of form:
+<button type="submit" class="btn btn-default">Submit</button>
+</form>
+also, a useful link:
+http://www.w3schools.com/bootstrap/bootstrap_forms.asp
+-->
+	  <div class="form-group">
+		<label for="email">Email address:</label>
+		<input type="email" class="form-control" id="email">
+	  </div>
+	  <div class="form-group">
+		<label for="pwd">Password:</label>
+		<input type="password" class="form-control" id="pwd">
+	  </div>
+	  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+	<br>
+	<br>
+	<div class="btn-group" role="group" aria-label="...">
+	  <button type="button" class="btn btn-default">Edit Account</button>
+	  <button type="button" class="btn btn-default">Suspend Account</button>
+	  <button type="button" class="btn btn-default">View as User</button>
+	</div>
+	
+	<p>This is where our landing page will be.  <a href = "javascript:void(0)" onclick= "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">LOGIN</a></p>
+		<div id="light" class="white_content">
+			<div>
+				<h3 id = "login">LOGIN</h3>
+				<input type="text" id="vname" name="name" placeholder="Organization Name">
+				<input type="text" id="vname" name="name" placeholder="Password">
+				
+				<a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">CONFIRM</a>
+			</div>
+		</div>
+		<div id="fade" class="black_overlay"></div>
+
+</body>
