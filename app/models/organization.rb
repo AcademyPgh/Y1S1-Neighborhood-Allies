@@ -1,5 +1,5 @@
 class Organization < ActiveRecord::Base
-  has_many :funders
+  has_and_belongs_to_many :funders
   has_many :org_web_urls
   has_one :logo
   has_one :p_ao_s
