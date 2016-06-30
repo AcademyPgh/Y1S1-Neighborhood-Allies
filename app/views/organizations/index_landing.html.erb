@@ -332,6 +332,12 @@
 	  </div>
 	</div>
 
+  <% @organizations.each do |organization| %>
+    <script>
+       markerlocation('<%= organization.address %>', '<%= organization.name %>', '<%= organization.name %> <br/> <%= organization.email %> <br /> <%=link_to "About", organization_path(organization)%>' );
+    </script>
+  <% end %>
+
 <script>
   /* Set the width of the side navigation to 250px */
   function openNav() {
