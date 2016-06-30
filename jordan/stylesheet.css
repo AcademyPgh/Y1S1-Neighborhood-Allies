@@ -81,6 +81,7 @@ img{
 	height: 100%;
 	padding: 0px;
 	width: 10%;
+	
 
 }
 
@@ -88,6 +89,7 @@ img{
 	
 	font-size: 200%;
 	float: right;
+	overflow: auto;
 	
 }
 
@@ -146,7 +148,6 @@ img{
 }
 
 
-
 /*styling for slide out mobile menu follows*/
 .sidemenu {
 height: 100%;
@@ -200,7 +201,6 @@ float right;
 height: 20px;
 }
 
-
 .buttons
 {	
 	width:100%;
@@ -251,90 +251,30 @@ height: 20px;
 		border-radius: 5px;
 		}
 
-
-
-.financial.active, .financial.active:hover
-{
-	background: #b7b8b0;
-		width: 20%;
-}
-
-.financial, .financial:hover
-{
-    background: #fff;
-	width: 20%;
-}
-
-.kind.active, .kind.active:hover
-{
-	background: #5c6f99;
-		width: 20%;
-}	
-
-.kind, .kind:hover
-
-{
-    background: #fff;
+.kind, .kind:hover, .kind:active {
+    background: #cda6dd;
 	width: 20%;
 }	
 
-.network.active, .network.active:hover
+.financial, .financial:hover, .financial:active
 {
-	background: #e7b744;
-		width: 20%;
-}	
-
-.network, .network:hover
-{
-    background: #fff;
+    background: #0c7d8b;
 	width: 20%;
 }	
 
-.all.active, .all.active:hover
+.network, .network:hover, .network:active
 {
-	background: #e76544;
-		width: 20%;
-}	
-
-.all, .all:hover
-{
-    background: #fff;
+    background: #f2f3f4;
 	width: 20%;
 }	
 
-
-#fpop
+.all, .all:hover, .all:active
 {
-	padding-top: 3px;
-	padding-bottom: 3px;
-	margin: 0px;
-	background: #b7b8b0; 
-	color:#fff;
-}
+    background: #ff6600;
+	width: 20%;
+}	
 
-#kpop
+.modal-backdrop
 {
-	padding-top: 3px;
-	padding-bottom: 3px;
-	margin: 0px;
-	background: #5c6f99; 
-	color:#fff;
-}
-
-#npop
-{
-	padding-top: 3px;
-	padding-bottom: 3px;
-	margin: 0px;
-	background: #e7b744; 
-	color:#fff;
-}
-
-#apop
-{
-	padding-top: 3px;
-	padding-bottom: 3px;
-	margin: 0px;
-	background: #e76544; 
-	color:#fff;
+	opacity: 0 !important;
 }
