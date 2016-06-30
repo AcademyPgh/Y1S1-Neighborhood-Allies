@@ -81,6 +81,7 @@ img{
 	height: 100%;
 	padding: 0px;
 	width: 10%;
+	
 
 }
 
@@ -88,6 +89,7 @@ img{
 	
 	font-size: 200%;
 	float: right;
+	overflow: auto;
 	
 }
 
