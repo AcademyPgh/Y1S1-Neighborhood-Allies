@@ -141,7 +141,8 @@ img{
 {
 	background-color: rgb(154, 201, 59);
 	height: 11%;
-	width: 100%
+	width: 100%;
+	display: inline-block;
 }
 
 
