@@ -15,11 +15,12 @@
 var markers = [];
 var active_markers = [];
 var marker;
-var pittsburgh = new google.maps.LatLng(40.421796, -79.994485);
+
 
 function initialize() {
 	var directionsService = new google.maps.DirectionsService();
 	var directionsDisplay = new google.maps.DirectionsRenderer();
+	var pittsburgh = new google.maps.LatLng(40.421796, -79.994485);
 	mapOptions = { zoom:10, mapTypeId: google.maps.MapTypeId.ROADMAP, center: pittsburgh }
 	map = new google.maps.Map(document.getElementById("map"), mapOptions);
 	directionsDisplay.setMap(map);

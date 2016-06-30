@@ -1,6 +1,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initialize"
             async defer>
 </script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
 <div class="container col-xs-12">
 				<header>
@@ -72,13 +73,13 @@
 								<input type="checkbox" autocomplete="off" id="button1" onchange="popupfinancial()" ><span class="glyphicon glyphicon-usd" style="width:20px;height:20px; color: black;"></span></button>
 							</label>
 							<label class="btn btn-default kind" >
-								<input type="checkbox" autocomplete="off" id="button2" onchange="popupkind()"><img src="kind.png" style="width:20px;height:20px;"></button>
+								<input type="checkbox" autocomplete="off" id="button2" onchange="popupkind()"><%= image_tag('all.png', :style=>'width:20px;height:20px;') %></button>
 							</label>
 							<label class="btn btn-default network" >
-								<input type="checkbox" autocomplete="off" id="button3" onchange="popupnetwork()"><img src="network.png" style="width:20px;height:20px;"></button>
+								<input type="checkbox" autocomplete="off" id="button3" onchange="popupnetwork()"><%= image_tag('network.png', :style=>'width:20px;height:20px;') %></button>
 							</label>
 							<label class="btn btn-default all" >
-								<input type="checkbox" autocomplete="off" id="button4" onchange="popupall()"><img src="all.png" style="width:20px;height:20px;"></button>
+								<input type="checkbox" autocomplete="off" id="button4" onchange="popupall()"><%= image_tag('all.png', :style=>'width:20px;height:20px;') %></button>
 							</label>
 						</div>
 					</div>
