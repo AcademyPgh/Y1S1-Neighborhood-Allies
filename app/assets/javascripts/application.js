@@ -15,3 +15,4 @@
 //= require turbolinks
 //= require_tree .
 //= googlemap
+//= landing_page
