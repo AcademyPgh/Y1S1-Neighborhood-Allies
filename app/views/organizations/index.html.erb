@@ -2,15 +2,14 @@
             async defer>
 </script>
 
-
 <h1>Organizations#index</h1>
 <p>Listing of Every Organization</p>
 
 <% @organizations.each do |organization| %>
   <%= organization.name %> <%= link_to "about", organization_path(organization) %> <br />
-  <% organization.funding_sents.each do |org| %>
-    
-  <% end %>
+  <!-- <% organization.funding_sents.each do |org| %>
+    <%= org.organization_id_sent %>  <%= org.organization_id_received %> <br />
+  <% end %> -->
 <% end %>
 
 <div id="nav">
