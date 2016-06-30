@@ -14,11 +14,11 @@
 
 var markers = [];
 var marker;
+var pittsburgh = new google.maps.LatLng(40.421796, -79.994485);
 
 function initialize() {
 	var directionsService = new google.maps.DirectionsService();
 	var directionsDisplay = new google.maps.DirectionsRenderer();
-	pittsburgh = new google.maps.LatLng(40.421796, -79.994485);
 	mapOptions = { zoom:10, mapTypeId: google.maps.MapTypeId.ROADMAP, center: pittsburgh }
 	map = new google.maps.Map(document.getElementById("map"), mapOptions);
 	directionsDisplay.setMap(map);
@@ -33,9 +33,9 @@ function initialize() {
 
 function markerlocation(address, organization, organizationabout) {
 	$.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+address+'&organization='+organization+'&organizationabout='+organization+'&sensor=false', null, function (data) {
-		addresslocation = data.results[0].geometry.location
-		latlng = new google.maps.LatLng(addresslocation.lat, addresslocation.lng);
-		marker = new google.maps.Marker({
+		var addresslocation = data.results[0].geometry.location
+		var latlng = new google.maps.LatLng(addresslocation.lat, addresslocation.lng);
+		var marker = new google.maps.Marker({
 	    	position: latlng, //it will place marker based on the addresses, which they will be translated as geolocations.
 	    	map: map,
 	    	title: organization,
@@ -55,6 +55,7 @@ function markerlocation(address, organization, organizationabout) {
 
 		google.maps.event.addListener(marker, 'click', function() {
 	    marker.infowindow.open(map,marker);
+			markerremoval(marker);
 		});
 
 		var latlngbounds = new google.maps.LatLngBounds();
@@ -65,4 +66,15 @@ function markerlocation(address, organization, organizationabout) {
 
 		return marker;
 	});
+}
+
+function markerremoval(marker) {
+	for (var i = 0; i < markers.length; i++) {
+		if (markers[i] != marker) {
+			markers[i].setMap(null);
+		}
+	}
+	var latlngbounds = new google.maps.LatLngBounds();
+	latlngbounds.extend(marker.getPosition());
+	map.fitBounds(latlngbounds);
 }
