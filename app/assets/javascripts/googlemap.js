@@ -13,6 +13,7 @@
 // </div>
 
 var markers = [];
+var active_markers = [];
 var marker;
 var pittsburgh = new google.maps.LatLng(40.421796, -79.994485);
 

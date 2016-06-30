@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
- 
+
 
 #  get 'organizations/show'
 resources :organizations
@@ -13,7 +13,7 @@ resources :logos do
 end
 
   # You can have the root of your site routed with "root"
-  root 'organizations#index'
+  root 'organizations#index_landing'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
