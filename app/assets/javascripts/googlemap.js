@@ -31,6 +31,8 @@ function initialize() {
 	}
 }
 
+
+//Handles marker placement, dynamic zoom, and on click functionality.
 function markerlocation(address, organization, organizationabout) {
 	$.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+address+'&organization='+organization+'&organizationabout='+organization+'&sensor=false', null, function (data) {
 		var addresslocation = data.results[0].geometry.location
@@ -68,6 +70,8 @@ function markerlocation(address, organization, organizationabout) {
 	});
 }
 
+
+//Handles marker hiding and dynamically sets the zoom based on the marker selected.
 function markerremoval(marker) {
 	for (var i = 0; i < markers.length; i++) {
 		if (markers[i] != marker) {
