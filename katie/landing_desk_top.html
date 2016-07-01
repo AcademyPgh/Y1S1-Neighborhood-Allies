@@ -19,7 +19,7 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 		
 		<script type="text/javascript" src="googlemap.js"></script>
-		<script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initialize"
+		<script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initMap"
             async defer>
 		</script>
 		
@@ -34,25 +34,84 @@
 				<header>
 
 					<div class="col-xs-12 logoplace">
-						<div class="col-sm-3 col-xs-11 logoplace"><img src="logo.png">
-							
-							<div class="loginDiv">
-								<a href="#loginModal" data-toggle="modal" data-target="#loginModal">Login</a>
-							</div>
-							
+						<div class="col-sm-3 col-xs-11 logoplace"><img class="logo" src="logo.png">
 						</div>
-							<div class="hamburger visible-xs-block col-xs-1">
-								<div id="mySidenav" class="sidemenu">
-								  <a href="javascript:void(0)" class="closebutton" onclick="closeNav()";>&times;</a>
-								  <br>
-								  <a href="#">About</a>
-								  <a href="#">organization2</a>
-								  <a href="#">organization3</a>
-								  <a href="#">organization4</a>
+						<div class="loginDiv visible-lg-block visible-md-block visible-sm-block col-sm-1">
+								<a href="#loginModal" data-toggle="modal" data-target="#loginModal">Login</a>
+						</div>
+						<div class="hamburger visible-xs-block col-xs-1">
+							<div id="mySidenav" class="sidemenu">
+							  <a href="javascript:void(0)" class="closebutton" onclick="closeNav()";>&times;</a>
+							  <br>
+		
+							<div class="panel-group" id="accordion">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+									  <p class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href="#AboutProject">
+											About 
+										</a>
+									  </p>
+									</div>
+									<div id="AboutProject" class="panel-collapse collapse">
+									  <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+									  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+									  minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+									  commodo consequat.</div>
+									</div>
 								</div>
-								<!--<div id="hamburger">-->
-								<button type="button" class="btn btn-default" onclick="openNav()"><span class="glyphicon glyphicon-menu-hamburger"></span></button>
+								<div class="panel panel-default">
+									<div class="panel-heading">
+									  <p class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href="#Organization2">
+											Organization2 
+										</a>
+									  </p>
+									</div>
+									<div id="Organization2" class="panel-collapse collapse">
+									  <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+									  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+									  minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+									  commodo consequat.</div>
+									</div>
+								</div>
+								<div class="panel panel-default">
+									<div class="panel-heading">
+									  <p class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href="#Organization3">
+											Organization3 
+										</a>
+									  </p>
+									</div>
+									<div id="Organization3" class="panel-collapse collapse">
+									  <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+									  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+									  minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+									  commodo consequat.</div>
+									</div>
+								</div>
+								<div class="panel panel-default">
+									<div class="panel-heading">
+									  <p class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href="#Organization4">
+											Organization4 
+										</a>
+									  </p>
+									</div>
+									<div id="Organization4" class="panel-collapse collapse">
+									  <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+									  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+									  minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+									  commodo consequat.</div>
+									</div>
+								</div>
+								
 							</div>
+							  
+							</div>
+							<!--<div id="hamburger">-->
+							<button type="button" class="btn btn-default" onclick="openNav()"><span class="glyphicon glyphicon-menu-hamburger"></span></button>
+						</div>
 					</div>
 								
 							
@@ -62,18 +121,18 @@
 					
 					<div class="checkbox key">
 							<div class="selections">
-							<div>
-							  <label><input type="checkbox" value="" name="fsupport">Finanical Support</label>
-							</div>  
-							<div>
-							  <label><input type="checkbox" value="" name="ksupport">In Kind Support</label>
-							</div>
-							<div>
-							  <label><input type="checkbox" value="" name="network">Extended Network</label>
-							</div>
-							<div>
-							  <label><input type="checkbox" value="" name="viewall">Show All Pins</label>
-							</div> 
+								<div>
+								  <label><input type="checkbox" value="" name="fsupport">Finanical Support</label>
+								</div>  
+								<div>
+								  <label><input type="checkbox" value="" name="ksupport">In Kind Support</label>
+								</div>
+								<div>
+								  <label><input type="checkbox" value="" name="network">Extended Network</label>
+								</div>
+								<div>
+								  <label><input type="checkbox" value="" name="viewall">Show All Pins</label>
+								</div> 
 							</div>
 					</div>
 					
@@ -161,18 +220,18 @@
 			
 				<div class="map col-sm-9 col-xs-12">
 					<div class="maptoolbar visible-xs-block">
-						<div class="btn-group-lg buttons" data-toggle="buttons" >
-							<label class="btn btn-default financial"  > 
-								<input type="checkbox" autocomplete="off" id="button1" onchange="popupfinancial()" ><span class="glyphicon glyphicon-usd" style="width:20px;height:20px; color: black;"></span></button>
+						<div class="btn-group-lg buttons">
+							<label class="btn btn-default financial" id="button1-label" > 
+								<input type="checkbox" autocomplete="off" id="button1" onchange=popupfinancial() class="hidden"><span class="glyphicon glyphicon-usd" style="width:20px;height:20px; color: black;"></span></button>
 							</label>
-							<label class="btn btn-default kind" > 	
-								<input type="checkbox" autocomplete="off" id="button2" onchange="popupkind()"><img src="kind.png" style="width:20px;height:20px;"></button>
+							<label class="btn btn-default kind" id="button2-label"> 	
+								<input type="checkbox" autocomplete="off" id="button2" onchange=popupkind() class="hidden"><img src="kind.png" style="width:20px;height:20px;"></button>
 							</label>	
-							<label class="btn btn-default network" >
-								<input type="checkbox" autocomplete="off" id="button3" onchange="popupnetwork()"><img src="network.png" style="width:20px;height:20px;"></button>
+							<label class="btn btn-default network" id="button3-label">
+								<input type="checkbox" autocomplete="off" id="button3" onchange=popupnetwork() class="hidden"><img src="network.png" style="width:20px;height:20px;"></button>
 							</label>
-							<label class="btn btn-default all" >					
-								<input type="checkbox" autocomplete="off" id="button4" onchange="popupall()"><img src="all.png" style="width:20px;height:20px;"></button>
+							<label class="btn btn-default all" id="button4-label">					
+								<input type="checkbox" autocomplete="off" id="button4" onchange=popupall() class="hidden"><img src="all.png" style="width:20px;height:20px;"></button>
 							</label>	
 						</div>
 					</div>
@@ -181,12 +240,12 @@
 						
 						<div class="alert alert-warning alert-dismissible" id="fpop" role="alert">
 						  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						  Showing all financial contrubutions connections
+						  Showing all financial contributions connections
 						</div>
 						
 						<div class="alert alert-warning alert-dismissible" id="kpop" role="alert">
 						  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						  Showing all in kind contrubutions connections
+						  Showing all in kind contributions connections
 						</div>
 						
 						<div class="alert alert-warning alert-dismissible" id="npop" role="alert">
@@ -208,10 +267,10 @@
 			</div>
 
 				
-		<!-- add jquery here -->
+		 
+		<!--pretty sure that these are copies of links in head, but I'm just going to comment them out for now.
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>-->
 	
 	<!-- login modal-->
 	<div id="loginModal" class="modal fade" role="dialog">
@@ -222,7 +281,7 @@
 			<button type="button" class="close" data-dismiss="modal">&times;</button>
 		  </div>
 		  <div class="modal-body">
-			<role="form"> 
+			<form role="form"> 
 				<div class="form-group">
 					<label for="email">Email address:</label>
 					<input type="email" class="form-control" id="email">
@@ -438,9 +497,9 @@
 
 <script>
 
-	/* Set the width of the side navigation to 250px */
+	/* Set the width of the side navigation */
 	function openNav() {
-		document.getElementById("mySidenav").style.width = "200px";
+		document.getElementById("mySidenav").style.width = "90%";
 	}
 
 /* Set the width of the side navigation to 0 */
@@ -509,13 +568,15 @@
 
 	function popupfinancial (){
 		console.log("test");
-		//console.log($('#button1').checked);
+		//console.log($('#button1').is(':checked'));
 		if ($('#button1').is(':checked'))
 		{
+			$('#button1-label').addClass("active");
 			$('#fpop').show();
 		}
 		else 
 		{
+			$('#button1-label').removeClass("active");
 			$('#fpop').hide();
 		}
 	}
@@ -527,10 +588,12 @@
 		//console.log($('#button1').checked);
 		if ($('#button2').is(':checked'))
 		{
+			$('#button2-label').addClass("active");
 			$('#kpop').show();
 		}
 		else 
 		{
+			$('#button2-label').addClass("active");
 			$('#kpop').hide();
 		}
 	}
@@ -542,10 +605,12 @@
 		//console.log($('#button1').checked);
 		if ($('#button3').is(':checked'))
 		{
+			$('#button3-label').addClass("active");
 			$('#npop').show();
 		}
 		else 
 		{
+			$('#button3-label').addClass("active");
 			$('#npop').hide();
 		}
 	}
@@ -557,6 +622,7 @@
 		//console.log($('#button1').checked);
 		if ($('#button4').is(':checked'))
 		{
+			$('#button4-label').addClass("active");
 			$('#apop').show();
 		}
 		else 
