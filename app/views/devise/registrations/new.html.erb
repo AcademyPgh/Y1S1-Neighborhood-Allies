@@ -1,77 +1,35 @@
 <h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<%= form_for :user, :as => :user,
+                     :url => registration_path(:user) ,
+                     :html => {:id => "sign_up_user"},
+                     :format => :json,
+                     :remote => true do |f| %>
 
   <div class="modal-body">
       <form role="form">
           <div class="form-group">
             <%= f.label :email %><br />
             <%= f.email_field :email, autofocus: true %>
-            <!--
-  				      <%= label for="email">Email address:</label %>
-  							<%= input type="email" class="form-control" id="email" %>
-            -->
+
   				</div>
-          <!--
-  				<div class="form-group">
-  							<%= label for="name">Organization:</label %>
-  							<%= input type="name" class="form-control" id="name" %>
-  				</div>
-          -->
+
   				<div class="form-group">
             <%= f.label :password %>
             <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %> characters minimum)</em>
             <% end %><br />
             <%= f.password_field :password, autocomplete: "off" %>
-          <!--
-  							<%= label for="pwd">Password:</label %>
-  							<%= input type="password" class="form-control" id="pwd" %>
-              -->
   				</div>
+
   				<div class="form-group">
             <%= f.label :password_confirmation %><br />
             <%= f.password_field :password_confirmation, autocomplete: "off" %>
-          <!--
-  							<%= label for="pwd">Confirm Password:</label %>
-  							<%= input type="password" class="form-control" id="pwd" %>
-              -->
   				</div>
       </form>
   </div>
   <div class="modal-footer">
     <%= f.submit "Sign up" %>
-      <!--
-      <%= button type="button" class="btn btn-default" onclick="showConfirmation();" >Continue</button %>
-      -->
   </div>
-
-
-<!--
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
--->
-
 
 <% end %>
 
