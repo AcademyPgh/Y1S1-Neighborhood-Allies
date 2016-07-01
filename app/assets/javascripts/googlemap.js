@@ -53,8 +53,21 @@ function markerlocation(address, organization, organizationabout) {
 		    map.setCenter(marker.getPosition());
 		});
 
+		var contentString = '<div class="top col-sm-3 col-xs-3">'+
+           '<div class="bottom">'+
+           '<span class="glyphicon glyphicon-triangle-bottom " aria-hidden="true" >'+
+           '</span>'+
+           '</div>'+
+           '<div class="logoholder"><img src="academylogo.png" style="max-width: 100%; max-height: 100%;">' +
+           '</div>'+
+           '<div class="infoholder">'+
+           '<div class="titlefield"><a href="http://www.academypgh.com/"><p id="orgtitle">'+organization+'</p></a></div>'+
+           '<div class="orgdetails"><p>'+organizationabout+'</p></div>'+
+           '</div>'+
+           '</div>';
+
 		marker.infowindow = new google.maps.InfoWindow({
-			content: '<b>' + organizationabout + '</b>'
+			content: contentString
     });
 
 		google.maps.event.addListener(marker, 'click', function() {
