@@ -34,7 +34,7 @@
 				<header>
 
 					<div class="col-xs-12 logoplace">
-						<div class="col-sm-3 col-xs-11 logoplace"><img src="logo.png">
+						<div class="col-sm-3 col-xs-11 logoplace"><img class="logo" src="logo.png">
 						</div>
 						<div class="loginDiv visible-lg-block visible-md-block visible-sm-block col-sm-1">
 								<a href="#loginModal" data-toggle="modal" data-target="#loginModal">Login</a>
@@ -43,10 +43,71 @@
 							<div id="mySidenav" class="sidemenu">
 							  <a href="javascript:void(0)" class="closebutton" onclick="closeNav()";>&times;</a>
 							  <br>
-							  <a href="#">About</a>
-							  <a href="#">organization2</a>
-							  <a href="#">organization3</a>
-							  <a href="#">organization4</a>
+		
+							<div class="panel-group" id="accordion">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+									  <p class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href="#AboutProject">
+											About 
+										</a>
+									  </p>
+									</div>
+									<div id="AboutProject" class="panel-collapse collapse">
+									  <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+									  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+									  minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+									  commodo consequat.</div>
+									</div>
+								</div>
+								<div class="panel panel-default">
+									<div class="panel-heading">
+									  <p class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href="#Organization2">
+											Organization2 
+										</a>
+									  </p>
+									</div>
+									<div id="Organization2" class="panel-collapse collapse">
+									  <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+									  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+									  minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+									  commodo consequat.</div>
+									</div>
+								</div>
+								<div class="panel panel-default">
+									<div class="panel-heading">
+									  <p class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href="#Organization3">
+											Organization3 
+										</a>
+									  </p>
+									</div>
+									<div id="Organization3" class="panel-collapse collapse">
+									  <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+									  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+									  minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+									  commodo consequat.</div>
+									</div>
+								</div>
+								<div class="panel panel-default">
+									<div class="panel-heading">
+									  <p class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href="#Organization4">
+											Organization4 
+										</a>
+									  </p>
+									</div>
+									<div id="Organization4" class="panel-collapse collapse">
+									  <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+									  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+									  minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+									  commodo consequat.</div>
+									</div>
+								</div>
+								
+							</div>
+							  
 							</div>
 							<!--<div id="hamburger">-->
 							<button type="button" class="btn btn-default" onclick="openNav()"><span class="glyphicon glyphicon-menu-hamburger"></span></button>
@@ -206,10 +267,10 @@
 			</div>
 
 				
-		<!-- add jquery here -->
+		 
+		<!--pretty sure that these are copies of links in head, but I'm just going to comment them out for now.
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>-->
 	
 	<!-- login modal-->
 	<div id="loginModal" class="modal fade" role="dialog">
@@ -220,7 +281,7 @@
 			<button type="button" class="close" data-dismiss="modal">&times;</button>
 		  </div>
 		  <div class="modal-body">
-			<role="form"> 
+			<form role="form"> 
 				<div class="form-group">
 					<label for="email">Email address:</label>
 					<input type="email" class="form-control" id="email">
@@ -436,9 +497,9 @@
 
 <script>
 
-	/* Set the width of the side navigation to 250px */
+	/* Set the width of the side navigation */
 	function openNav() {
-		document.getElementById("mySidenav").style.width = "200px";
+		document.getElementById("mySidenav").style.width = "90%";
 	}
 
 /* Set the width of the side navigation to 0 */
