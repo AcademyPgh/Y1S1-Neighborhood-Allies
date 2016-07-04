@@ -7,6 +7,8 @@ class OrganizationsController < ApplicationController
 
   def index
     @organizations = Organization.all
+    @cities = City.where("country_id = ?", Country.first.id)
+    @funding_types = funding_sents.where("organization_id_sent = ?", Oganization.id)
   end
 
   def index_landing

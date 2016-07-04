@@ -35,7 +35,7 @@ function initialize() {
 
 
 //Handles marker placement, dynamic zoom, and on click functionality.
-function markerlocation(address, organization, orgimage, organizationabout) {
+function markerlocation(address, organization, organizationabout) {
 	$.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+address+'&organization='+organization+'&organizationabout='+organization+'&sensor=false', null, function (data) {
 		var addresslocation = data.results[0].geometry.location
 		var latlng = new google.maps.LatLng(addresslocation.lat, addresslocation.lng);
@@ -58,7 +58,7 @@ function markerlocation(address, organization, orgimage, organizationabout) {
            '<span class="glyphicon glyphicon-triangle-bottom " aria-hidden="true" >'+
            '</span>'+
            '</div>'+
-           '<div class="logoholder"><img src="'+orgimage+'" style="max-width: 100%; max-height: 100%;">' +
+           '<div class="logoholder">image goes here' +
            '</div>'+
            '<div class="infoholder">'+
            '<div class="titlefield"><a href="http://www.academypgh.com/"><p id="orgtitle">'+organization+'</p></a></div>'+
