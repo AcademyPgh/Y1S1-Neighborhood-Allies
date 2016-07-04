@@ -58,7 +58,7 @@ function markerlocation(address, organization, orgimage, organizationabout) {
            '<span class="glyphicon glyphicon-triangle-bottom " aria-hidden="true" >'+
            '</span>'+
            '</div>'+
-           '<div class="logoholder">'+orgimage+
+           '<div class="logoholder"><img src="'+orgimage+'" style="max-width: 100%; max-height: 100%;">' +
            '</div>'+
            '<div class="infoholder">'+
            '<div class="titlefield"><a href="http://www.academypgh.com/"><p id="orgtitle">'+organization+'</p></a></div>'+
