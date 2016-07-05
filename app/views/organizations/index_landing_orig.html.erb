@@ -9,9 +9,10 @@
 
 <% @organizations.each do |organization| %>
   <%= organization.name %> <%= link_to "about", organization_path(organization) %> <br />
-  <!-- <% organization.funding_sents.each do |org| %>
+
+  <% organization.funding_sents.each do |org| %>
     <%= org.organization_id_sent %>  <%= org.organization_id_received %> <br />
-  <% end %> -->
+  <% end %>
 <% end %>
 
 <div id="nav">

@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
+post 'organizations/:id/showvectors/' => 'organizations#showvectors'
 
-
-#  get 'organizations/show'
+# this line will need to be removed
+get 'organizations/:id/showvectors/' => 'organizations#showvectors'
 resources :organizations
 get 'organizations/:id/about' => 'organizations#about'
   devise_for :users

@@ -35,7 +35,7 @@ function initialize() {
 
 
 //Handles marker placement, dynamic zoom, and on click functionality.
-function markerlocation(address, organization, organizationabout) {
+function markerlocation(organizationid, address, organization, organizationabout) {
 	$.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+address+'&organization='+organization+'&organizationabout='+organization+'&sensor=false', null, function (data) {
 		var addresslocation = data.results[0].geometry.location
 		var latlng = new google.maps.LatLng(addresslocation.lat, addresslocation.lng);
@@ -45,6 +45,8 @@ function markerlocation(address, organization, organizationabout) {
 	    	title: organization,
 	    	animation: google.maps.Animation.DROP
 		});
+
+		marker.set("id", organizationid);
 
 		markers.push(marker);
 
@@ -73,6 +75,7 @@ function markerlocation(address, organization, organizationabout) {
 		google.maps.event.addListener(marker, 'click', function() {
 	    marker.infowindow.open(map,marker);
 			markerremoval(marker);
+			markerpolyline(organizationid)
 		});
 
 		var latlngbounds = new google.maps.LatLngBounds();
@@ -84,6 +87,35 @@ function markerlocation(address, organization, organizationabout) {
 		return marker;
 	});
 }
+
+function markerpolyline(organizationid) {
+ 	$.post("organizations/"+organizationid+"/showvectors", function(data)
+ 	{
+			$( ".result" ).html( data );
+ 	})
+ }
+
+// function polyline() {
+// 	jquery.post
+//
+// 	var lineSymbol = {
+//           path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+//         };
+//
+// 	var linepath = new google.maps.Polyline({
+//           path: linemapping,
+//           geodesic: true,
+//           strokeColor: '#FF0000',
+//           strokeOpacity: 1.0,
+//           strokeWeight: 2,
+// 		  icons: [{
+//             icon: lineSymbol,
+//             offset: '100%'
+//           }]
+//         });
+//
+// 	linepath.setMap(map);
+// }
 
 
 //Handles marker hiding and dynamically sets the zoom based on the marker selected.

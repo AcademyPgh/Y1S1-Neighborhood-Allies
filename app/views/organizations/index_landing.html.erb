@@ -334,7 +334,7 @@
 
   <% @organizations.each do |organization| %>
     <script>
-      markerlocation('<%= organization.address %>', '<%= organization.name %>', '<%= organization.name %> <br/> <%= organization.email %> <br /> <%=link_to "About", organization_path(organization)%>' );
+      markerlocation('<%= organization.id %>','<%= organization.address %>', '<%= organization.name %>', '<%= organization.name %> <br/> <%= organization.email %> <br /> <%=link_to "About", organization_path(organization)%>' );
     </script>
   <% end %>
 
