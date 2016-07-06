@@ -18,16 +18,16 @@ class OrganizationsController < ApplicationController
   end
 
   def showvectors
-    f1 = FundingSent.where("organization_id_received = ?", params[:id])
-    f2 = FundingSent.where("organization_id_sent = ?", params[:id])
+    f1 = FundingSent.select('"funding_sents".*, "orgrcvd".address AS addressrcvd, "orgsent".address addresssent').from('"funding_sents" INNER JOIN "organizations" "orgrcvd" ON "orgrcvd"."id" = "funding_sents"."organization_id_received" INNER JOIN "organizations" "orgsent" ON "orgsent"."id" = "funding_sents"."organization_id_sent"').where("funding_sents.organization_id_received = ?", params[:id])
+    f2 = FundingSent.select('"funding_sents".*, "orgrcvd".address AS addressrcvd, "orgsent".address addresssent').from('"funding_sents" INNER JOIN "organizations" "orgrcvd" ON "orgrcvd"."id" = "funding_sents"."organization_id_received" INNER JOIN "organizations" "orgsent" ON "orgsent"."id" = "funding_sents"."organization_id_sent"').where("funding_sents.organization_id_sent = ?", params[:id])
 
     results=[]
     f1.each do |funding_received|
-      results.push([funding_received.organization_id_sent, funding_received.organization_id_received]);
+      results.push([funding_received.addresssent, funding_received.addressrcvd]);
     end
 
     f2.each do |funding_sent|
-      results.push([funding_sent.organization_id_sent, funding_sent.organization_id_received]);
+      results.push([funding_sent.addresssent, funding_sent.addressrcvd]);
     end
 
     render :json => results

@@ -15,6 +15,8 @@
 var markers = [];
 var active_markers = [];
 var marker;
+var latlngsent;
+var latlngrcvd;
 
 
 function initialize() {
@@ -43,10 +45,9 @@ function markerlocation(organizationid, address, organization, organizationabout
 	    	position: latlng, //it will place marker based on the addresses, which they will be translated as geolocations.
 	    	map: map,
 	    	title: organization,
-	    	animation: google.maps.Animation.DROP
+	    	animation: google.maps.Animation.DROP,
+				id: organizationid
 		});
-
-		marker.set("id", organizationid);
 
 		markers.push(marker);
 
@@ -74,8 +75,8 @@ function markerlocation(organizationid, address, organization, organizationabout
 
 		google.maps.event.addListener(marker, 'click', function() {
 	    marker.infowindow.open(map,marker);
+			markerpolyline(organizationid);
 			markerremoval(marker);
-			markerpolyline(organizationid)
 		});
 
 		var latlngbounds = new google.maps.LatLngBounds();
@@ -92,30 +93,57 @@ function markerpolyline(organizationid) {
  	$.post("organizations/"+organizationid+"/showvectors", function(data)
  	{
 			$( ".result" ).html( data );
- 	})
+			addpolyline(data);
+ 	});
  }
 
-// function polyline() {
-// 	jquery.post
-//
-// 	var lineSymbol = {
-//           path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
-//         };
-//
-// 	var linepath = new google.maps.Polyline({
-//           path: linemapping,
-//           geodesic: true,
-//           strokeColor: '#FF0000',
-//           strokeOpacity: 1.0,
-//           strokeWeight: 2,
-// 		  icons: [{
-//             icon: lineSymbol,
-//             offset: '100%'
-//           }]
-//         });
-//
-// 	linepath.setMap(map);
-// }
+function addpolyline(datas) {
+	for (var i = 0; i < datas.length; i++) {
+		var data = datas[i];
+		for (var j = 0; j < data.length; j++) {
+			console.log("data[" + i + "][" + j + "] = " + data[j]);
+			$.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+data[j]+'&sensor=false', null, function (i, j) {
+				return function (data) {
+
+				var addresslocation = data.results[0].geometry.location
+				console.log(addresslocation);
+				if (j==0) {
+					latlngsent = addresslocation;
+					console.log("sent");
+				} else {
+					latlngrcvd = addresslocation;
+
+					var linemapping = [
+		          latlngsent,
+		          latlngrcvd
+		    	];
+
+					console.log(linemapping);
+
+					var lineSymbol = {
+				    path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+				  };
+
+					var linepath = new google.maps.Polyline({
+		        path: linemapping,
+		        geodesic: true,
+		        strokeColor: '#FF0000',
+		        strokeOpacity: 1.0,
+		        strokeWeight: 2,
+			  		icons: [{
+		          icon: lineSymbol,
+		          offset: '100%'
+		        }]
+					});
+
+					linepath.setMap(map);
+				}
+			}}(i,j));
+
+
+		}
+	}
+}
 
 
 //Handles marker hiding and dynamically sets the zoom based on the marker selected.
@@ -124,6 +152,15 @@ function markerremoval(marker) {
 		if (markers[i] != marker) {
 			markers[i].setMap(null);
 		}
+	}
+	var latlngbounds = new google.maps.LatLngBounds();
+	latlngbounds.extend(marker.getPosition());
+	map.fitBounds(latlngbounds);
+}
+
+function markershowall(marker) {
+	for (var i = 0; i < markers.length; i++) {
+		markers[i].setMap(map);
 	}
 	var latlngbounds = new google.maps.LatLngBounds();
 	latlngbounds.extend(marker.getPosition());
