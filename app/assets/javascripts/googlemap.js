@@ -52,7 +52,6 @@ function markerlocation(organizationid, address, organization, organizationabout
 		markers.push(marker);
 
 		marker.addListener('click', function() {
-		    //map.setZoom(15);
 		    map.setCenter(marker.getPosition());
 		});
 
@@ -75,8 +74,8 @@ function markerlocation(organizationid, address, organization, organizationabout
 
 		google.maps.event.addListener(marker, 'click', function() {
 	    marker.infowindow.open(map,marker);
-			markerpolyline(organizationid);
-			markerremoval(marker);
+			markerpolyline(organizationid, marker);
+			// markerremoval(marker);
 		});
 
 		var latlngbounds = new google.maps.LatLngBounds();
@@ -89,36 +88,32 @@ function markerlocation(organizationid, address, organization, organizationabout
 	});
 }
 
-function markerpolyline(organizationid) {
+function markerpolyline(organizationid, marker) {
  	$.post("organizations/"+organizationid+"/showvectors", function(data)
  	{
 			$( ".result" ).html( data );
-			addpolyline(data);
+			addpolyline(data, marker);
  	});
  }
 
-function addpolyline(datas) {
-	for (var i = 0; i < datas.length; i++) {
-		var data = datas[i];
-		for (var j = 0; j < data.length; j++) {
-			console.log("data[" + i + "][" + j + "] = " + data[j]);
-			$.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+data[j]+'&sensor=false', null, function (i, j) {
+function addpolyline(data, marker) {
+	var sendrcvds = data
+	markerremoveall(marker);
+	for (var i = 0; i < sendrcvds.length; i++) {
+		var sendrcvd = sendrcvds[i];
+		for (var j = 0; j < sendrcvd.length; j++) {
+			$.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+sendrcvd[j]+'&sensor=false', null, function (i, j) {
 				return function (data) {
 
 				var addresslocation = data.results[0].geometry.location
-				console.log(addresslocation);
 				if (j==0) {
 					latlngsent = addresslocation;
-					console.log("sent");
 				} else {
 					latlngrcvd = addresslocation;
-
 					var linemapping = [
 		          latlngsent,
 		          latlngrcvd
 		    	];
-
-					console.log(linemapping);
 
 					var lineSymbol = {
 				    path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
@@ -137,25 +132,34 @@ function addpolyline(datas) {
 					});
 
 					linepath.setMap(map);
+					markershow(latlngsent, latlngrcvd);
 				}
 			}}(i,j));
-
-
 		}
 	}
 }
 
 
 //Handles marker hiding and dynamically sets the zoom based on the marker selected.
-function markerremoval(marker) {
+function markershow(latlngsent, latlngrcvd) {
+	var latlngbounds = new google.maps.LatLngBounds();
+	for (var i = 0; i < markers.length; i++) {
+		//console.log("pos:"+markers[i].getPosition()+"rcvd:("+latlngrcvd.lat+", "+latlngrcvd.lng+") sent:("+latlngsent.lat+", "+latlngsent.lng+")");
+		//if (markers[i].getPosition() == "("+latlngrcvd.lat+", "+latlngrcvd.lng+")" || markers[i].getPosition() == "("+latlngsent.lat+", "+latlngsent.lng+")") {
+			markers[i].setMap(map);
+		//	latlngbounds.extend(markers[i].getPosition());
+		//	console.log("here");
+		//}
+	}
+	map.fitBounds(latlngbounds);
+}
+
+function markerremoveall(marker) {
 	for (var i = 0; i < markers.length; i++) {
 		if (markers[i] != marker) {
 			markers[i].setMap(null);
 		}
 	}
-	var latlngbounds = new google.maps.LatLngBounds();
-	latlngbounds.extend(marker.getPosition());
-	map.fitBounds(latlngbounds);
 }
 
 function markershowall(marker) {
