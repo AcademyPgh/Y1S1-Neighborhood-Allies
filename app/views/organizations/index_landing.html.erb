@@ -8,7 +8,12 @@
 						<div class="col-sm-3 col-xs-11 logoplace"><%= image_tag('logo.png') %>
 
 							<div class="loginDiv">
-								<a href="#loginModal" data-toggle="modal" data-target="#loginModal">Login</a>
+								<% if user_signed_in? %>
+								  <li><%= link_to 'Edit account', edit_user_registration_path %></li>
+								  <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
+								<% else %>
+									<a href="#loginModal" data-toggle="modal" data-target="#loginModal">Login</a>
+								<% end %>
 							</div>
 
 						</div>
@@ -154,9 +159,8 @@
 
 							</br>
 				      <div>
-				        <%= f.submit "Log in", class: 'btn btn-default' %>
+				        <%= f.submit "Sign in", class: 'btn btn-default' %>
 				      </div>
-
 
 <!--					</br>
 							<div>
@@ -173,10 +177,11 @@
 						<% end %>
 				<% end %>
 
+<!--
 				<% if user_signed_in? %>
 				  <li><%= link_to 'Users', user_session %></li>
 				<% end %>
-
+-->
 
 
 		  </div>
