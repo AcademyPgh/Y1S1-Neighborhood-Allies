@@ -374,11 +374,12 @@
 	  </div>
 	</div>
 
-  <% @organizations.each do |organization| %>
     <script>
+  <% @organizations.each do |organization| %>
       markerlocation('<%= organization.id %>','<%= organization.address %>', '<%= organization.name %>', '<%= organization.name %> <br/> <%= organization.email %> <br /> <%=link_to "About", organization_path(organization)%>' );
-    </script>
+    
   <% end %>
+		</script>
 
 <script>
   /* Set the width of the side navigation to 250px */
