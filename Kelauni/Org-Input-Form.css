@@ -1,0 +1,55 @@
+html,body {
+    height:100%;
+}
+
+*{margin: 0; padding: 0;}
+
+h1 {
+	
+	text-align: center;
+		
+}
+
+h4 {
+	
+	text-align: center;
+	font-style: italic; 
+	
+	
+}
+
+label{
+	
+	margin-right: 20px;
+	
+	
+}
+
+.columns {
+	
+	
+	background-color: #7CBC1C;
+	height: 100%;
+	}
+
+.form-color {
+
+	background-color: white;
+ 
+}
+
+#middle-column {
+	
+	min-height: 100%;
+	overflow: hidden;
+	background-color: white;
+	
+}
+
+
+.col-md-3 {
+	
+	left: 0px;
+	
+	
+}

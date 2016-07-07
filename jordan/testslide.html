@@ -1,0 +1,107 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+		
+		<script
+			  src="https://code.jquery.com/jquery-1.12.4.min.js"
+			  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+			  crossorigin="anonymous"></script>
+		
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		
+		<title>test slide</title>
+		
+		<style>
+						 /* The side navigation menu */
+			.sidenav {
+				height: 100%; /* 100% Full-height */
+				width: 0; /* 0 width - change this with JavaScript */
+				position: fixed; /* Stay in place */
+				z-index: 1; /* Stay on top */
+				top: 0;
+				left: 0;
+				background-color: #111; /* Black*/
+				overflow-x: hidden; /* Disable horizontal scroll */
+				padding-top: 10px; /* Place content 60px from the top */
+				transition: 0.3s; /* 0.5 second transition effect to slide in the sidenav */
+			}
+
+			/* The navigation menu links */
+			.sidenav a {
+				padding: 8px 8px 8px 32px;
+				text-decoration: none;
+				font-size: 15px;
+				color: #818181;
+				display: block;
+				transition: 0.3s
+			}
+
+			/* When you mouse over the navigation links, change their color */
+			.sidenav a:hover, .offcanvas a:focus{
+				color: #f1f1f1;
+			}
+
+			/* Position and style the close button (top right corner) */
+			.closebtn {
+				position: absolute;
+				top: 0;
+				right: 25px;
+				font-size: 15px !important;
+				margin-left: 50px;
+			}
+
+			/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+			#main {
+				transition: margin-left .3s;
+				padding: 20px;
+			}
+
+			/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+			@media screen and (max-height: 450px) {
+				.sidenav {padding-top: 12px;}
+				.sidenav a {font-size: 15px;}
+			}
+			
+			#hamburger{
+			font-size: 250%;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<div id="mySidenav" class="sidenav">
+		  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		  <a href="#">About</a>
+		  <a href="#">organization2</a>
+		  <a href="#">organization3</a>
+		  <a href="#">organization4</a>
+		</div>
+
+		<!-- Use any element to open the sidenav -->
+		<div id="hamburger">
+			<span class="glyphicon glyphicon-menu-hamburger" onclick="openNav()"></span>
+		</div>
+		<!--<span onclick="openNav()">open</span>-->
+
+		<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+		<!--<div id="main">
+		  ...
+		</div>-->
+	</body>
+</html>
+
+<script>
+	/* Set the width of the side navigation to 250px */
+function openNav() {
+    document.getElementById("mySidenav").style.width = "200px";
+}
+
+/* Set the width of the side navigation to 0 */
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+</script>
