@@ -9,6 +9,7 @@ class LogosController < ApplicationController
 
   def new
     @logo = Logo.new
+    @orgs = Organization.all
   end
 
   def create
@@ -16,6 +17,7 @@ class LogosController < ApplicationController
    
    @logo = Logo.new()
    @logo.name = params[:logo][:name]
+   @logo.organization_id = params[:logo][:organization_id]
    if params[:logo][:data]
      @logo.data = params[:logo][:data].read
      @logo.filename = params[:logo][:data].original_filename
@@ -30,7 +32,10 @@ class LogosController < ApplicationController
   end
  
   def serve
-    @logo = Logo.find(params[:id])
+    @logo = Logo.find_by(:organization_id => params[:id])
+    if @logo.nil?
+      @logo = Logo.find(1);
+    end
     send_data(@logo.data, :type => @logo.mime_type, :filename => "#{@logo.name}.jpg", :disposition => "inline")
   end
   

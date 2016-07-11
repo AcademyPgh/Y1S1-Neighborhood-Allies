@@ -3,33 +3,91 @@
 
 <div class="container col-xs-12">
 				<header>
-
-					<div class="col-xs-12 logoplace">
 						<div class="col-sm-3 col-xs-11 logoplace"><%= image_tag('logo.png') %>
 
-							<div class="loginDiv">
+							<div class="loginDiv visible-lg-block visible-md-block visible-sm-block col-sm-1">
 								<% if user_signed_in? %>
-								  <li><%= link_to 'Edit account', edit_user_registration_path %></li>
-								  <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
+								  <p><%= link_to 'Edit account', edit_user_registration_path %></p>
+								  <p><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></p>
 								<% else %>
-									<a href="#loginModal" data-toggle="modal" data-target="#loginModal">Login</a>
+									<a href="#loginModal" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in" ></span> LOGIN</a>
 								<% end %>
 							</div>
 
 						</div>
 							<div class="hamburger visible-xs-block col-xs-1">
 								<div id="mySidenav" class="sidemenu">
-								  <a href="javascript:void(0)" class="closebutton" onclick="closeNav()";>&times;</a>
-								  <br>
-								  <a href="#">About</a>
-								  <a href="#">organization2</a>
-								  <a href="#">organization3</a>
-								  <a href="#">organization4</a>
+									<a href="javascript:void(0)" class="closebutton" onclick="closeNav()";>&times;</a>
+							  	<br>
+							  	<br>
+								  <div class="panel-group" id="accordion">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+									  <p class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href="#AboutProject">
+											About 
+										</a>
+									  </p>
+									</div>
+									<div id="AboutProject" class="panel-collapse collapse">
+									  <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+									  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+									  minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+									  commodo consequat.</div>
+									</div>
 								</div>
+								<div class="panel panel-default">
+									<div class="panel-heading">
+									  <p class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href="#Organization2">
+											Organization2 
+										</a>
+									  </p>
+									</div>
+									<div id="Organization2" class="panel-collapse collapse">
+									  <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+									  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+									  minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+									  commodo consequat.</div>
+									</div>
+								</div>
+								<div class="panel panel-default">
+									<div class="panel-heading">
+									  <p class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href="#Organization3">
+											Organization3 
+										</a>
+									  </p>
+									</div>
+									<div id="Organization3" class="panel-collapse collapse">
+									  <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+									  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+									  minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+									  commodo consequat.</div>
+									</div>
+								</div>
+								<div class="panel panel-default">
+									<div class="panel-heading">
+									  <p class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href="#Organization4">
+											Organization4 
+										</a>
+									  </p>
+									</div>
+									<div id="Organization4" class="panel-collapse collapse">
+									  <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+									  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+									  minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+									  commodo consequat.</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
 								<!--<div id="hamburger">-->
 								<button type="button" class="btn btn-default" onclick="openNav()"><span class="glyphicon glyphicon-menu-hamburger"></span></button>
 							</div>
-					</div>
+				
 
 
 				</header>
@@ -48,7 +106,7 @@
 							  <label><input type="checkbox" value="" name="network">Extended Network</label>
 							</div>
 							<div>
-							  <label><input type="checkbox" value="" name="viewall">Show All Pins</label>
+							  <label><input type="checkbox" value="" onclick="markershowall()" name="viewall">Show All Pins</label>
 							</div>
 							</div>
 					</div>
@@ -123,6 +181,7 @@
 		<div class="modal-content">
 		  <div class="modal-header">
 			<span class="glyphicon glyphicon-lock"></span>
+			<p class="modal-header-login">Login</p>
 			<button type="button" class="close" data-dismiss="modal">&times;</button>
 		  </div>
 		  <div class="modal-body">
@@ -132,7 +191,6 @@
 				  <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
 				<% else %>
 
-				<h2>Login</h2>
 				    <%= form_for :user, :as => :user,
 				                         :url => session_path(:user) ,
 				                         :html => {:id => "sign_in_user"},
@@ -146,10 +204,9 @@
 							</br>
 				      <div>
 								<label for="password">Password:</label>
-				        <%= f.password_field :password, placeholder: "password" %>
+				        <%= f.password_field :password, placeholder: "password", class: 'form-control' %>
+				        </br>
 
-							</br>
-							</br>
 				      <% if true # devise_mapping.rememberable? %>
 				        <div class="remember">
 				          <%= f.check_box :remember_me %>
@@ -162,18 +219,11 @@
 				        <%= f.submit "Sign in", class: 'btn btn-default' %>
 				      </div>
 
-<!--					</br>
-							<div>
-								<%= f.submit "Sign up", class: 'btn btn-default' %>
-							</div>  -->
-
 							</br>
-				      <!-- <li><%= link_to 'Sign in', new_user_session_path %></li>  -->
 							<label>Not yet registered? </label>
-				      <%= link_to 'Sign up', new_user_registration_path %>
+							<button class="btn btn-default" onclick="showTerms()">Sign Up</button>
 
-							</br>
-				    	</br>
+
 						<% end %>
 				<% end %>
 
@@ -185,11 +235,17 @@
 
 
 		  </div>
-		  <div class="modal-footer">
-		  </div>
+		<!-- modal-footer was here -->  
 		</div>
+		
 	  </div>
+	  
 	</div>
+	<div class="modal-footer"></div>
+	</div>
+	</div>
+	</div>
+
 
 	<!-- password recovery modal-->
 	<div id="recoveryModal" class="modal fade" role="dialog">
@@ -328,27 +384,52 @@
 	  <div class="modal-dialog">
 		<div class="modal-content">
 		  <div class="modal-header">
+			<span class="glyphicon glyphicon-lock"></span>
+			<p class="modal-header-login">New User</p>
 			<button type="button" class="close" data-dismiss="modal">&times;</button>
 		  </div>
 		  <div class="modal-body">
-				<form role="form">
-							<div class="form-group">
-								<label for="email">Email address:</label>
-								<input type="email" class="form-control" id="email">
-							</div>
-							<div class="form-group">
-								<label for="name">Organization:</label>
-								<input type="name" class="form-control" id="name">
-							</div>
-							<div class="form-group">
-								<label for="pwd">Password:</label>
-								<input type="password" class="form-control" id="pwd">
-							</div>
-							<div class="form-group">
-								<label for="pwd">Confirm Password:</label>
-								<input type="password" class="form-control" id="pwd">
-							</div>
-				</form>
+					<h2>New Sign up</h2>
+					<div id="submit_comment" style="display: none;"></div>
+					
+									<% if user_signed_in? %>
+									  <li><%= link_to 'Edit account', edit_user_registration_path %></li>
+									  <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
+									<% else %>
+					
+									    <%= form_for :user, :as => :user,
+									                         :url => registration_path(:user) ,
+									                         :html => {:id => "sign_up_user"},
+									                         :format => :json,
+									                         :remote => true do |f| %>
+										  <div class="field">
+										    <%= f.label :email %><br />
+										    <%= f.email_field :email, autofocus: true %>
+										  </div>
+										
+										  </br>
+										  <div class="field">
+										    <%= f.label :password %>
+										    <% if @minimum_password_length %>
+										    <em>(<%= @minimum_password_length %> characters minimum)</em>
+										    <% end %><br />
+										    <%= f.password_field :password, autocomplete: "off" %>
+										  </div>
+										  
+										  </br>
+										  <div class="field">
+										    <%= f.label :password_confirmation %><br />
+										    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+										  </div>
+										
+										  </br>
+										  <div class="actions">
+										    <%= f.submit "Sign up" %>
+										  </div>
+					
+									<% end %>
+					
+								<% end %>
 			</div>
 		  <div class="modal-footer">
 			<button type="button" class="btn btn-default" onclick="showConfirmation();" >Continue</button>
@@ -373,10 +454,27 @@
 		</div>
 	  </div>
 	</div>
+	
+	<!-- confirm sign in modal-->
+	<div id="confirmSignInModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+		  </div>
+		<div class="modal-body">
+			<p>Sign is is complete! Thank you!</p>
+		</div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" onclick="hideLogin();">Exit Window</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
 
     <script>
   <% @organizations.each do |organization| %>
-      markerlocation('<%= organization.id %>','<%= organization.address %>', '<%= organization.name %>', '<%= organization.name %> <br/> <%= organization.email %> <br /> <%=link_to "About", organization_path(organization)%>' );
+      markerlocation('<%= organization.id %>','<%= organization.address %>', '<%= organization.name %>', '<%= organization.descrip %>'  );
     
   <% end %>
 		</script>
@@ -384,7 +482,7 @@
 <script>
   /* Set the width of the side navigation to 250px */
   function openNav() {
-    document.getElementById("mySidenav").style.width = "200px";
+    document.getElementById("mySidenav").style.width = "270px";
   }
   /* Set the width of the side navigation to 0 */
   function closeNav() {
@@ -428,6 +526,12 @@
   {
     $("#loginModal").modal("show")
     $("#confirmationModal").modal("hide")
+  }
+  
+  function hideLogin()
+  {
+    $("#confirmSignInModal").modal("hide")
+    
   }
 
   function showRecovery()
@@ -502,4 +606,14 @@
       $('#apop').hide();
     }
   }
+  
+  
+$("form#sign_in_user").bind("ajax:success", function(data) {
+  if (data.type = "ajax:success") {
+    $('#loginModal').modal('hide');
+    $('#confirmSignInModal').modal('show');
+  } else {
+    return alert('failure!');
+  }
+});
 </script>

@@ -14,8 +14,27 @@
 
 </head>
 <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+   <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="http://neighborhoodallies.com/">
+    		    <img src="http://apps.pittsburghpa.gov/mayor/NeighborhoodAllies_Logo_Web_Large6-300x95.jpg" id="logo" />
+    	    </a>
+        </div>
+          <ul class="nav navbar-nav" id="location">
+            <li><a href="http://neighborhoodallies.com/" id="about-tag"><strong>ABOUT</strong></a></li>
+      	    <li><a href="#" id="about-tag"><strong>NEWSLETTER</strong></a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" id="right-items"><span class="glyphicon glyphicon-edit" ></span> Register An Organization</a></li>
+            <li><a href="#" id="right-items"><span class="glyphicon glyphicon-log-in" ></span> LOGIN</a></li>
+          </ul>
+      </div>
+    </nav>
+ 
+
 <%= yield %>
 
 </body>

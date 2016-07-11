@@ -9,6 +9,7 @@
         <%= f.label :data %>
         <%= f.file_field :data %>
     </div>
+    <%= f.collection_select :organization_id, @orgs, :id, :name, include_blank: true %>
     <div class="actions">
         <%= f.submit "Upload" %>
     </div>

@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
 
+  get 'seed_gen/index'
+
 post 'organizations/:id/showvectors/' => 'organizations#showvectors'
 
 # this line will need to be removed
 get 'organizations/:id/showvectors/' => 'organizations#showvectors'
 resources :organizations
 get 'organizations/:id/about' => 'organizations#about'
-  devise_for :users
+  devise_for :users, :controllers => {sessions: 'sessions', registrations: 'registrations'}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 resources :logos do
