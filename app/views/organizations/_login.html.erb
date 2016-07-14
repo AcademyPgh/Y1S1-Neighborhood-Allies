@@ -1,0 +1,50 @@
+	<% if user_signed_in? %>
+				  <li><%= link_to 'Edit account', edit_user_registration_path %></li>
+				  <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
+				<% else %>
+
+				    <%= form_for :user, :as => :user,
+				                         :url => session_path(:user) ,
+				                         :html => {:id => "sign_in_user"},
+				                         :format => :json,
+				                         :remote => true do |f| %>
+				      <div class="form-group" id="loginUserPass">
+				      <div>
+								<label for="email" class="control-label">Email address:</label>
+				        <%= f.email_field :email, placeholder: 'email', class: 'form-control' %>
+				      </div>
+
+							</br>
+				      <div>
+								<label for="password" class="control-label" id="loginPassword">Password:</label>
+				        <%= f.password_field :password, placeholder: "password", class: 'form-control' %>
+				      </div>
+				      </div>
+
+				      <% if true # devise_mapping.rememberable? %>
+				        <div class="remember">
+				          <%= f.check_box :remember_me %>
+				          <%= f.label :remember_me %>
+				        <div>
+				      <% end %>
+
+							</br>
+				      <div>
+				        <%= f.submit "Sign in", class: 'btn btn-default' %>
+				      </div>
+				      
+							</br>
+							<label>Forgot your password? </label>
+  							<a href="#recoveryModal" data-toggle="modal" data-target="#recoveryModal">RECOVER PASSWORD</a>
+							<!--<button class="btn btn-default" onclick="recoverPassword()">Recover Password</button>-->
+
+							</br>
+							</br>
+
+
+						<% end %>
+							<label>Not yet registered? </label>
+  							<!--<a href="#termsModal" data-toggle="modal" data-target="#termsModal">SIGN UP</a>-->
+							<a class="btn btn-default" onClick="showTerms()">Sign Up</a>
+							</br>
+				<% end %>

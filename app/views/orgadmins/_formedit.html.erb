@@ -1,4 +1,4 @@
-<%= form_for(@organization, :html => {class: "container form-horizontal"},url: { action: 'create', controller: 'orgadmins'})  do |f| %>
+<%= form_for(@organization, :html => {class: "container form-horizontal"},url: "/orgadmins/" + @organization.id.to_s)  do |f| %>
   <%= render 'formcontrols' %>
     <div class="form-group row">
     <%= link_to 'Back', orgadmins_path, class: "btn btn-warning" %>

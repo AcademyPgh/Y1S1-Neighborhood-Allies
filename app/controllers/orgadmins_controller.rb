@@ -22,6 +22,7 @@ class OrgadminsController < ApplicationController
   def edit
     @orgs = Organization.all
     @logo = Logo.new
+    @fundingsents = FundingSent.select('"orgrcvd".name, "funding_types".fundtype, "orgsent".name').from('"funding_sents" INNER JOIN "organizations" "orgrcvd" ON "orgrcvd"."id" = "funding_sents"."organization_id_received" INNER JOIN "organizations" "orgsent" ON "orgsent"."id" = "funding_sents"."organization_id_sent" INNER JOIN "funding_types" ON "funding_types"."id" = "funding_sents"."funding_type_id"').where("funding_sents.organization_id_sent = ?", params[:id])
   end
 
   # POST /orgadmins
@@ -45,6 +46,7 @@ class OrgadminsController < ApplicationController
   def update
     respond_to do |format|
       if @organization.update(orgadmin_params)
+        puts params[:name]
         format.html { redirect_to @organization, notice: 'Organization was successfully updated.' }
         format.json { render :show, status: :ok, location: @organization }
       else
@@ -72,6 +74,6 @@ class OrgadminsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def orgadmin_params
-      params.fetch(:orgadmin, {})
+      params.fetch(:orgadmin, {}).permit(:name, :email, :address, :phone)
     end
 end

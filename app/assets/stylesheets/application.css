@@ -17,15 +17,20 @@
 
 
 .navbar-brand>img {
-	width: 200px;
-	height: 60px;
-	box-shadow: 3px 3px 2px grey;
-	padding: 15px;
+	position: ;
+	width: 280px;
+	height: 15%;
+	/*box-shadow: 3px 3px 2px grey;*/
+	padding-top: 10px
+	padding-bottom: 10px;
+	padding-left: 10px;
+	
 }
 
 .navbar-inverse {
 	background-image: initial;
-	background-color: rgb(154, 201, 59);
+	/*background-color: rgb(154, 201, 59);*/
+	background-color: #C0C0C0;
 	border: 0px;
 	height: 15%; 
 	margin: 0px;
@@ -72,7 +77,7 @@ a:hover {
 }
 
 	
-/*added by Ray to show/hide login/logout link*/
+/*added by Ray to show/hide login link*/
 #whenSignedIn {
 	display: none;
 }
