@@ -8,6 +8,9 @@ post 'organizations/:id/showvectors/' => 'organizations#showvectors'
 get 'organizations/:id/showvectors/' => 'organizations#showvectors'
 resources :organizations
 get 'organizations/:id/about' => 'organizations#about'
+
+resources :orgadmins
+
   devise_for :users, :controllers => {sessions: 'sessions', registrations: 'registrations'}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

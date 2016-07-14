@@ -16,18 +16,23 @@
  */
 
 
-.navbar-fixed-top {
-	
-	height: 13%; 	
-		
-	
+.navbar-brand>img {
+	width: 200px;
+	height: 60px;
+	box-shadow: 3px 3px 2px grey;
+	padding: 15px;
 }
 
 .navbar-inverse {
-	
-	background-color: #666565;
+	background-image: initial;
+	background-color: rgb(154, 201, 59);
+	border: 0px;
+	height: 15%; 
+	margin: 0px;
 	
 }
+
+.navbar-
 
 
 #about-tag {
@@ -64,5 +69,11 @@ a:hover {
 	color: #6CB91A;	
 	
 	
-}		
+}
+
 	
+/*added by Ray to show/hide login/logout link*/
+#whenSignedIn {
+	display: none;
+}
+

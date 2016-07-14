@@ -1,0 +1,57 @@
+<%= form_for(@organization, :html => {class: "container form-horizontal"})  do |f| %>
+
+<!-- the logo code will go here -->
+		
+			<!-- org name field/ Perhaps this can already be filled in? -->
+			<div class="form-group row">
+				<label class="control-label col-md-1" for="usr" >Name</label>
+				<div class = "col-md-8">
+				<input type="text" class="form-control" placeholder="Neighborhood Allies" value="<%= @organization.name %>">
+				</div>
+			</div>
+			
+			<!-- email -->
+			<div class="form-group row">
+				<label class="control-label col-md-1" for="email">Email</label>
+				<div class = "col-md-8">
+					<input type="email" class="form-control" placeholder="organization@email.com" value="<%= @organization.email %>">
+				</div>
+			</div>				
+			
+			<!-- phone number - don't forget to add the dashes and figure out how
+				line up the beginning-->
+			<div class="form-group row">	
+				<label class="control-label col-md-1" style="padding-right: 0px" for="phone">Phone</label>
+				<div class="col-md-4">
+				
+						<input type="tel" name="phone" class="form-control" value="<%= @organization.phone %>" size="3" maxlength="3" required="required" title="" placeholder="555-555-5555">
+
+				</div>
+			</div>
+			
+			<!-- address stuff-->
+			<div class="form-group row">
+				<label class="control-label col-md-1" for="address" >Address</label>
+				<div class = "col-md-8">
+				<textarea class="form-control" placeholder="555 Liberty Ave" value="<%= @organization.address %>"></textarea>
+				</div>
+			</div>
+
+
+  <% if @organization.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@organization.errors.count, "error") %> prohibited this organization from being saved:</h2>
+
+      <ul>
+      <% @organization.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group row">
+    <%= link_to 'Back', orgadmins_path, class: "btn btn-warning" %>
+    <%= f.submit "Submit", class:"btn btn-success pull-right" %>
+  </div>
+<% end %>

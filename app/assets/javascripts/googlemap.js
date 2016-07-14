@@ -14,9 +14,15 @@
 
 var markers = [];
 var active_markers = [];
+var levelcount;
+var marker_next_lvl = [];
+//var markerpolylinealreadycreated = [];
 var marker;
 var latlngsent;
 var latlngrcvd;
+var linepaths = [];
+var x=0;
+var y=0;
 
 
 function initialize() {
@@ -33,14 +39,11 @@ function initialize() {
 
 		new google.maps.places.Autocomplete(input, options);
 	}
-	
-
-	
 }
-
 
 //Handles marker placement, dynamic zoom, and on click functionality.
 function markerlocation(organizationid, address, organization, organizationabout) {
+	y=0;
 	$.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+address+'&organization='+organization+'&organizationabout='+organization+'&sensor=false', null, function (data) {
 		var addresslocation = data.results[0].geometry.location;
 		var latlng = new google.maps.LatLng(addresslocation.lat, addresslocation.lng);
@@ -103,22 +106,37 @@ function markerlocation(organizationid, address, organization, organizationabout
 			
 			var iwCloseBtn = iwOuter.next();
 
-	// Apply the desired effect to the close button
-	iwCloseBtn.css({
-	  // by default the close button has an opacity of 0.7
-	  'right': '25px', 'top': '25px', // button repositioning
-	   // increasing button border and new color
-	  'border-radius': '1px', // circular effect
-	  'box-shadow': '0 0 1px #000',// 3D effect to highlight the button
-  });
+				// Apply the desired effect to the close button
+			iwCloseBtn.css({
+				  // by default the close button has an opacity of 0.7
+				  'right': '25px', 'top': '25px', // button repositioning
+				   // increasing button border and new color
+				  'border-radius': '1px', // circular effect
+				  'box-shadow': '0 0 1px #000',// 3D effect to highlight the button
+			  });
 		
-	});
+		});
 
 		google.maps.event.addListener(marker, 'click', function() {
-	    marker.infowindow.open(map,marker);
+			infowindowclose();
+			
+			if (document.getElementById("viewall").checked == true){
+				document.getElementById("viewall").checked = false;
+			}
+			
+			if ($('#button4').is(':checked')) {
+    			$("#button4").click();
+    		};
+			
+	    	marker.infowindow.open(map, marker);
+	    	$(":radio[value="+marker.id+"]").attr('checked',true);
+	    	removeallpolylines();
+	    	markerremoveall(marker);
 	    	active_markers = [];
-			markerpolyline(organizationid, marker);
-			// markerremoval(marker);
+	    	linepaths = [];
+			markerpolyline(organizationid, marker, function() {
+				createsecondlevelmarkers();
+			});
 		});
 
 		var latlngbounds = new google.maps.LatLngBounds();
@@ -126,95 +144,149 @@ function markerlocation(organizationid, address, organization, organizationabout
 			latlngbounds.extend(markers[i].getPosition());
 		}
 		map.fitBounds(latlngbounds);
-
+		
 		return marker;
 	});
 }
 
-function markerpolyline(organizationid, marker) {
- 	$.post("organizations/"+organizationid+"/showvectors", function(data)
- 	{
-			$( ".result" ).html( data );
-			addpolyline(data, marker);
- 	});
- }
-
 function addpolyline(data, marker) {
-	var sendrcvds = data;
-	markerremoveall(marker);
+	var sendrcvds = data; // array of arrays that include from lat/long, to lat/long, and the funding type (should be 5 values in each line's array)
 	for (var i = 0; i < sendrcvds.length; i++) {
 		var sendrcvd = sendrcvds[i];
-		for (var j = 0; j < sendrcvd.length; j++) {
-				//function (i, j) {};
-			if (j % 2 == 0) {
-				var latitude = sendrcvd[j];
-			} else {
-				var longitude = sendrcvd[j];
+		
+		var line = {to: {lat: parseFloat(sendrcvd[0]), lng: parseFloat(sendrcvd[1])}, from: {lat: parseFloat(sendrcvd[2]), lng: parseFloat(sendrcvd[3])}, type: sendrcvd[4]};
+		
+		//for (var j = 0; j < sendrcvd.length; j++) { // why loop this? each item in this array has a specific value/meaning
+			
+			if (document.getElementById("fsupport").checked == true || document.getElementById("ksupport").checked == true) {
 				
-				var colorChoice = "";
-				if (sendrcvds[sendrcvds.length - 1] == 1){
-					colorChoice = "#FF0000";
+				/*if (j % 2 == 0) {
+					var latitude = sendrcvd[j];
 				} else {
-					colorChoice = "#00FF00";
-				}
-				
-				var addressLocationObject = {lat: parseFloat(latitude), lng: parseFloat(longitude)};
-				if ((j+1) % 4 != 0) {
-					latlngrcvd = addressLocationObject;
-				} else {
-					latlngsent = addressLocationObject;
-				}	
-				if ((j+1) % 4 == 0) {
-					var linemapping = [
-						latlngsent, latlngrcvd
-		    		];
-
-					var lineSymbol = {
-				    	path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
-					};
-
-					var linepath = new google.maps.Polyline({
-		        		path: linemapping,
-		        		geodesic: true,
-		        		strokeColor: colorChoice,
-		        		strokeOpacity: 1.0,
-		        		strokeWeight: 2,
-			  			icons: [{
-		        			icon: lineSymbol,
-		        			offset: '100%'
-		        		}]
-					});
-
-					linepath.setMap(map);
-					markershow(latlngsent, latlngrcvd);
+					var longitude = sendrcvd[j];
+				*/	
+					var colorChoice = "";
+					
+					if (line.type == 1){
+						colorChoice = "#FF0000";
+					} else {
+						colorChoice = "#00FF00";
+					}
+					
+					if ((document.getElementById("ksupport").checked == true && line.type == 1) || (document.getElementById("fsupport").checked == true && line.type == 2)) {
+						/*var addressLocationObject = {lat: parseFloat(latitude), lng: parseFloat(longitude)};
+						if ((j+1) % 4 != 0) {
+							latlngrcvd = addressLocationObject;
+						} else {
+							latlngsent = addressLocationObject;
+						}
+						*/
+						
+						//if ((j+1) % 4 == 0) {
+							var linemapping = [
+								line.from, line.to
+				    		];
+		
+							var lineSymbol = {
+						    	path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+							};
+		
+							var linepath = new google.maps.Polyline({
+				        		path: linemapping,
+				        		geodesic: true,
+				        		strokeColor: colorChoice,
+				        		strokeOpacity: 1.0,
+				        		strokeWeight: 2,
+					  			icons: [{
+				        			icon: lineSymbol,
+				        			offset: '100%'
+				        		}]
+							});
+		
+							linepath.setMap(map);
+							linepaths.push(linepath);
+							markershow(line.from, line.to);
+						//}
+					//}
 				}
 			}
-		}
+		//}
 	}
-	active_markers = duplicatesarray();
-	mapdynamiczoom();
+	
+	active_markers.push(marker);
 }
 
+function createsecondlevelmarkers() {
+	if (document.getElementById("network").checked == true) {
+		marker_next_lvl = [];
+		for (var k = 0; k < active_markers.length; k++) {
+			marker_next_lvl.push(active_markers[k]);
+		};
+		
+		for (var l = 0; l < marker_next_lvl.length; l++) {
+			markerpolyline(marker_next_lvl[l].id, marker_next_lvl[l]);
+		};
+		createthirdlevelmarkers();
+	};
+}
 
-//Handles markers displayed based on the marker selected.
-function markershow(latlngsent, latlngrcvd) {
-	
+function createthirdlevelmarkers() {
+	if (document.getElementById("network").checked == true) {
+		for (var k = 0; k < active_markers.length; k++) {
+			marker_next_lvl.push(active_markers[k]);
+		};
+		
+		for (var l = 0; l < marker_next_lvl.length; l++) {
+			markerpolyline(marker_next_lvl[l].id, marker_next_lvl[l]);
+		};
+	};
+}
+
+function infowindowclose() {
 	for (var i = 0; i < markers.length; i++) {
-		if (round(markers[i].getPosition().lat(),6) == round(latlngrcvd.lat,6) || round(markers[i].getPosition().lat(),6) == round(latlngsent.lat,6)) {
-			markers[i].setMap(map);
-			active_markers.push(markers[i]);
-		}
+		markers[i].infowindow.close();
 	}
 }
 
 function mapdynamiczoom() {
 	var latlngbounds = new google.maps.LatLngBounds();
-	console.log(active_markers.length);
 	for (var i = 0; i < active_markers.length; i++) {
 		latlngbounds.extend(active_markers[i].getPosition());
 	}
 	map.fitBounds(latlngbounds);
 }
+
+function markeridentify() {
+	if (document.getElementById("viewall").checked == true){
+		document.getElementById("viewall").checked = false;
+	}
+	
+	var ele = document.getElementsByName("orgselect");
+	
+	for(var i = 0; i < ele.length; i++) {
+    	if(ele[i].checked) {
+    		organizationid = ele[i].value
+    		
+    		for (var i = 0; i < markers.length; i++) {
+				if (markers[i].id == organizationid) {
+					markers[i].setMap(map);
+					google.maps.event.trigger(markers[i], "click", {});
+				}
+			}
+    	}
+	};
+}
+
+function markerpolyline(organizationid, marker, addsecondlevel) {
+ 	$.post("organizations/"+marker.id+"/showvectors", function(data)
+ 	{
+			//$( ".result" ).html( data );
+			addpolyline(data, marker);
+			if (addsecondlevel) 
+			{ addsecondlevel(); }
+			mapdynamiczoom();
+ 	});
+ }
 
 function markerremoveall(marker) {
 	for (var i = 0; i < markers.length; i++) {
@@ -224,28 +296,48 @@ function markerremoveall(marker) {
 	}
 }
 
-function markershowall() {
-	var latlngbounds = new google.maps.LatLngBounds();
+//Handles markers displayed based on the marker selected.
+function markershow(latlngsent, latlngrcvd) {
 	
 	for (var i = 0; i < markers.length; i++) {
-		markers[i].setMap(map);
-		latlngbounds.extend(markers[i].getPosition());
+		if ((round(markers[i].getPosition().lat(),6) == round(latlngrcvd.lat,6) || round(markers[i].getPosition().lat(),6) == round(latlngsent.lat,6))  && (round(markers[i].getPosition().lng(),6) == round(latlngrcvd.lng,6) || round(markers[i].getPosition().lng(),6) == round(latlngsent.lng,6))) {
+			markers[i].setMap(map);
+			active_markers.push(markers[i]);
+		}
 	}
+}
 
-	map.fitBounds(latlngbounds);
+function markershowall() {
+	if (viewall.checked == 1) {
+		var latlngbounds = new google.maps.LatLngBounds();
+	
+		for (var i = 0; i < markers.length; i++) {
+			markers[i].setMap(map);
+			latlngbounds.extend(markers[i].getPosition());
+		}
+
+		map.fitBounds(latlngbounds);
+	}
+}
+
+function removeallpolylines() {
+	for (var i = 0; i < linepaths.length; i++) {
+		linepaths[i].setMap(null);
+	}
+}
+
+function removeselectedradiobutton() {
+	var ele = document.getElementsByName("orgselect");
+	
+	for(var i = 0; i < ele.length; i++) {
+    	ele[i].checked = false;
+	};
+	
+	document.getElementById("fsupport").checked = false;
+	document.getElementById("ksupport").checked = false;
+	document.getElementById("network").checked = false;
 }
 
 function round(value, decimals) {
     return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
-}
-
-function duplicatesarray() {
-	var sorted_active_markers = active_markers.slice().sort();
-	var results = [];
-	for (var i = 0; i < active_markers.length - 1; i++) {
-    	if (sorted_active_markers[i + 1] == sorted_active_markers[i]) {
-        	results.push(sorted_active_markers[i]);
-    	}
-	}
-	return results
 }

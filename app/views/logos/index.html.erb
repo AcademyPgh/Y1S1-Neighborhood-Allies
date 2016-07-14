@@ -3,7 +3,7 @@
 <p>Hello World!</p>
 <%= @logos.count %>
 <% @logos.each do |logo| %>
-<p><%= logo.name %><%= image_tag serve_logo_path(logo) %></p>
+<p><%= logo.name %><img src="/logos/<%= logo.organization_id %>/serve"</p>
 <% end %>
 
 <h1></h1>

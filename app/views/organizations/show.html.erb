@@ -1,7 +1,24 @@
-<h1>Organizations#show</h1>
-<p>Find me in app/views/organizations/show.html.erb</p>
-<%= @org.name %><br/>
-<%= @org.address %> <br />
-<%= @org.phone %> <br />
-<%= @org.email %> <br />
-<%= @org.mission %> <br />
+
+		<p>Click this to learn more <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">ABOUT</a></p>
+		<div id="light" class="white_content">
+			<div>
+		
+		
+				
+				<div id = pic>Organization logo</div>
+		
+				<div id = gen>
+					
+					<p><strong><font size= "16"><%= @org.name %></font></strong></p>
+					<p><%= @org.address %></p>
+					<p><%= @org.phone %></p>
+				</div>
+		
+
+				
+		
+		
+		
+			</div>
+		</div>
+		<div id="fade" class="black_overlay"></div>

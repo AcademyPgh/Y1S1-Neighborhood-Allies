@@ -9,31 +9,50 @@
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initialize" async defer></script>
   <%= favicon_link_tag 'favicon.ico' %>
 
 </head>
 <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-   <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
           <a class="navbar-brand" href="http://neighborhoodallies.com/">
-    		    <img src="http://apps.pittsburghpa.gov/mayor/NeighborhoodAllies_Logo_Web_Large6-300x95.jpg" id="logo" />
+    		    <img src="http://apps.pittsburghpa.gov/mayor/NeighborhoodAllies_Logo_Web_Large6-300x95.jpg"/>
     	    </a>
         </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav" id="location">
             <li><a href="http://neighborhoodallies.com/" id="about-tag"><strong>ABOUT</strong></a></li>
       	    <li><a href="#" id="about-tag"><strong>NEWSLETTER</strong></a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" id="right-items"><span class="glyphicon glyphicon-edit" ></span> Register An Organization</a></li>
-            <li><a href="#" id="right-items"><span class="glyphicon glyphicon-log-in" ></span> LOGIN</a></li>
+
+								<% if !user_signed_in? %>
+  								<div id="whenSignedOut">
+  									<li><a href="#loginModal" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in" ></span> LOGIN</a></li>
+  								</div>
+  							<% else %>
+  								<div>
+  								  <li><%= link_to 'Edit account', edit_user_registration_path %></li>
+  								  <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
+  								</div>
+								<% end %>
+
+  								<div id="whenSignedIn">
+  								  <li><%= link_to 'Edit account', edit_user_registration_path %></li>
+  								  <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
+  								</div>
+
           </ul>
+        </div>
       </div>
     </nav>
- 
+
 
 <%= yield %>
 
