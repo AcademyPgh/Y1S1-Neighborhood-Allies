@@ -22,39 +22,33 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-          <a class="navbar-brand" href="https://neighborhood-allies-uugengiven.c9users.io/">
-    		    <img src="http://apps.pittsburghpa.gov/mayor/NeighborhoodAllies_Logo_Web_Large6-300x95.jpg"/>
-    	    </a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav" id="location">
-            <li><a href="http://neighborhoodallies.com/" id="about-tag"><strong>ABOUT</strong></a></li>
-      	    <li><a href="#" id="about-tag"><strong>NEWSLETTER</strong></a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-
-								<% if !user_signed_in? %>
-  								<div id="whenSignedOut">
-  									<li><a href="#loginModal" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in" ></span> LOGIN</a></li>
-  								</div>
-  							<% else %>
-  								<div>
-  								  <li><%= link_to 'Edit account', edit_user_registration_path %></li>
-  								  <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
-  								</div>
-								<% end %>
-
-  								<div id="whenSignedIn">
-  								  <li><%= link_to 'Edit account', edit_user_registration_path %></li>
-  								  <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
-  								</div>
-
-          </ul>
-        </div>
       </div>
-    </nav>
+        <a class="navbar-brand" href="https://neighborhood-allies-uugengiven.c9users.io/">
+      		 <img src="http://apps.pittsburghpa.gov/mayor/NeighborhoodAllies_Logo_Web_Large6-300x95.jpg"/>
+        </a>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav" id="location">
+          <li><a href="http://neighborhoodallies.com/" id="about-tag"><strong>ABOUT</strong></a></li>
+    	    <li><a href="#" id="about-tag"><strong>NEWSLETTER</strong></a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
 
-
+							<% if !user_signed_in? %>
+								<div id="whenSignedOut">
+									<li><span class="glyphicon glyphicon-log-in" ></span><a href="#loginModal" data-toggle="modal" data-target="#loginModal" id="login">LOGIN</a></li>
+								  <li><span class = "glyphicon glyphicon-pencil"></span><%= link_to 'REGISTER ORGANIZATION', new_organization_path %></li>
+								</div>
+							<% else %>
+								<div>
+								  <li><span class = "glyphicon glyphicon-pencil"></span><%= link_to 'Edit Organizations', orgadmins_path %></li>
+								  <li><span class="glyphicon glyphicon-log-in" ></span><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
+								</div>
+							<% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+ 
 <%= yield %>
 
 </body>

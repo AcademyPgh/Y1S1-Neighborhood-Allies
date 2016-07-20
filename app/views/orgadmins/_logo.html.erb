@@ -1,4 +1,7 @@
-<%= form_for(@logo, :html => {:multipart => true}) do |f| %>
+<%= form_for(@logo, :html => {:multipart => true, :id => "edit_logo"},
+				    :format => :json, 
+				    :url => "/logos/",
+				    :remote => true) do |f| %>
     <div class="field">
         <%= f.label :name %>
         <%= f.text_field :name %>
@@ -8,18 +11,36 @@
         <%= f.file_field :data %>
     </div>
     <%= f.collection_select :organization_id, @orgs, :id, :name, include_blank: true %>
-    <div class="actions">
-        <%= f.submit "Upload" %>
-    </div>
+
 <% end %>
+        <a onClick="uploadPhoto()" href="#" class="btn btn-primary">Upload</a>
+        
+<script>
+   function uploadPhoto(){
+       console.log("starting upload");
+       formData = new FormData()
+       formData.append('logo', $('#logo_data')[0].files[0]);
+       formData.append('organization_id', $('#logo_organization_id').val());
+       formData.append('name', $('#logo_name').val());
+       console.log(formData);
+        $.ajax({
+            url: "/logos/",
+            type: "POST",
+            processData: false,
+            contentType: false,
+            //data: {logo: {data: $("#logo_data"), organization_id: $("#logo_organization_id"), name: $("#logo_data")}},
+            data: formData,
+            success: function (data) {
+                console.log("Success!");
+                $("#edit_logo_img").attr('src', '/logos/<%= @organization.id %>/serve');
+            },
+            error: function (xhr, status, err) {
+                console.log(status, err.toString());
+            }
+            
+        })
 
+        console.log("hello there!");
+    }
+</script>
 
-<!--("form#sign_in_user").bind("ajax:error", function(data, a, b) {-->
-<!--  if (data.type = "ajax:error") {-->
-<!--    //$('#loginModal').modal('hide');-->
-<!--    //$('#failedSignInModal').modal('show');-->
-<!--    // invalid username or password-->
-<!--    $('#loginPassword').html("Password: ***");-->
-<!--    $('#loginUserPass').addClass('has-error');-->
-<!--  }-->
-<!--});-->

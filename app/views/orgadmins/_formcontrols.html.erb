@@ -9,6 +9,14 @@
 				</div>
 			</div>
 			
+			<!-- description stuff-->
+			<div class="form-group row">
+				<label class="control-label col-md-1" for="descrip" >Description</label>
+				<div class = "col-md-8">
+				<textarea class="form-control" placeholder="This is a great non-profit doing work in..." name="descrip"><%= @organization.descrip %></textarea>
+				</div>
+			</div>
+			
 			<!-- email -->
 			<div class="form-group row">
 				<label class="control-label col-md-1" for="email">Email</label>
@@ -32,7 +40,7 @@
 			<div class="form-group row">
 				<label class="control-label col-md-1" for="address" >Address</label>
 				<div class = "col-md-8">
-				<textarea class="form-control" placeholder="555 Liberty Ave" name="address" value="<%= @organization.address %>"></textarea>
+				<textarea class="form-control" placeholder="555 Liberty Ave" name="address"><%= @organization.address %></textarea>
 				</div>
 			</div>
 

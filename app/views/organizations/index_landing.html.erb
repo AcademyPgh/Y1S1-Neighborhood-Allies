@@ -259,7 +259,7 @@
     <script>
     $('document').ready(new function () {
   <% @organizations.each do |organization| %>
-      markerlocation('<%= organization.id %>','<%= organization.address %>', '<%= organization.name %>', '<%= organization.descrip %>'  );
+      markerlocation('<%= organization.id %>','<%= organization.address.gsub(/\r\n/, '') %>', '<%= organization.name %>', '<%= organization.descrip %>'  );
     
   <% end %>
     });
@@ -481,7 +481,6 @@ $("form#sign_in_user").bind("ajax:error", function(data, a, b) {
     $('#loginUserPass').addClass('has-error');
   }
 });
-
 
 $("form#sign_up_user").bind("ajax:success", function(data) {
   if (data.type = "ajax:success") {

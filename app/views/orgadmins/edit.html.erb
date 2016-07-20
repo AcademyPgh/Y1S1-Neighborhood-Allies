@@ -1,7 +1,9 @@
 <div class="col-md-8 col-md-offset-2">
     <div class="panel">
-      <img id="edit_logo_img" src="/logos/<%= @organization.id %>/serve">
+      <img id="edit_logo_img" src="/logos/<%= @organization.id %>/serve" style="padding: 15px;max-width: 200px; max-height: 200px">
     <%= render 'formedit' %>
     </div>
     <%= render 'logo' %>
+  
+    <%= render 'orgconnections' %>
 </div>

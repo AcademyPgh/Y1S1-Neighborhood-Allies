@@ -1,0 +1,63 @@
+<script>
+  var orgconnections = [];
+
+  function showorgconnections(id) {
+   	$.post("/orgadmins/"+id+"/showorgconnections", function(data)
+   	{
+  	  
+  	  orgconnections = data;
+  	  var contentstring = '';
+  	  
+  	  for (var i = 0; i < orgconnections.length; i++) {
+  	    var orgconnection = orgconnections[i];
+  	    
+	      var line = {name: orgconnection[0], fundtype: orgconnection[1]};
+	    
+	      contentstring += '<tr><td>'+line.name+'  </td><td>'+line.fundtype+'</td></tr>';
+  	  };
+  	  
+  	  document.getElementById("orgconnections").innerHTML = '<table>'+contentstring+'</table>';
+  	  
+   	});
+  }
+   
+  function addfundtype(organizationid) {
+    // $.post("/orgadmins/"+id+"/addorgconnections", function(data)
+   	// {
+   	
+   	// }
+     
+    showorgconnections(organizationid); 
+  }
+ </script>
+
+<br>
+<br>
+<h4> Company Connections</h4>
+<div id="connections">
+  
+    <p id="orgconnections" class="orgconnections">
+      <script>
+      showorgconnections(<%= @organization.id %>)
+      </script>
+    </p>
+</div>
+<div id="newconnection">
+  <select name="neworgconnectionname">
+    <option value="" selected="selected">Please select an organization to link to:</option>
+    <% @orgs.each do |organization| %>
+      <option value="<%= organization.id %>"><%= organization.name %></option>
+    <% end %>
+  </select>
+  <select name="neworgconnectionfundtype">
+    <option value="" selected="selected">Please select the finding type to link to the organization:</option>
+    <% @fundtypes.each do |fundtype| %>
+      <option value="<%= fundtype.id %>"><%= fundtype.fundtype %></option>
+    <% end %>
+  </select>
+  
+  <a onClick="addfundtype(<%= @organization.id %>);" href="#" class="btn btn-primary">Add Connection</a>
+  <br>
+  <br>
+</div>
+

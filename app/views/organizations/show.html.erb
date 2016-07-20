@@ -1,24 +1,86 @@
-
-		<p>Click this to learn more <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">ABOUT</a></p>
-		<div id="light" class="white_content">
-			<div>
-		
-		
-				
-				<div id = pic>Organization logo</div>
-		
-				<div id = gen>
-					
-					<p><strong><font size= "16"><%= @org.name %></font></strong></p>
-					<p><%= @org.address %></p>
-					<p><%= @org.phone %></p>
+<div class="col-md-8 col-md-offset-2">
+    <div class="panel">
+      <img src="/logos/<%= @organizations.id %>/serve">
+      
+			<!-- org name field/ Perhaps this can already be filled in? -->
+			<div style="padding-left:10px">
+				<label>Name</label>
+				<div style="padding-left:10px">
+				<%= @organizations.name %>
 				</div>
+			</div>
+			</br>
+			
+			<!-- description stuff-->
+			<div style="padding-left:10px">
+				<label>Description</label>
+				<div style="padding-left:10px">
+				<%= @organizations.descrip %>
+				</div>
+			</div>
+			</br>
+			
+			<!-- email -->
+			<div style="padding-left:10px">
+				<label>Email</label>
+				<div style="padding-left:10px">
+					<%= @organizations.email %>
+				</div>
+			</div>				
+			</br>
+			
+			<!-- phone number - don't forget to add the dashes and figure out how
+				line up the beginning-->
+			<div style="padding-left:10px">
+				<label>Phone</label>
+				<div style="padding-left:10px">
+					<%= @organizations.phone %>
+
+				</div>
+			</div>
+			</br>
+			
+			<!-- address stuff-->
+			<div style="padding-left:10px">
+				<label>Address</label>
+				<div style="padding-left:10px">
+					<%= @organizations.address %>
+				</div>
+			</div>
+
+	    </br>
+	    
+		<div style="padding-left:10px">
+			<%= link_to 'Back', orgadmins_path, class: 'btn btn-info' %>
+		</div>
+		
+	    </br>
+
+      </div>
+      
+</div>
+
+
+		<!--<p>Click this to learn more <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">ABOUT</a></p>-->
+		<!--<div id="light" class="white_content">-->
+		<!--	<div>-->
+		
+		
+				
+		<!--		<div id = pic>Organization logo</div>-->
+		
+		<!--		<div id = gen>-->
+					
+		<!--			<p><strong><font size= "16"><//%= @org.name %></font></strong></p>-->
+		<!--			<p><//%= @org.address %></p>-->
+		<!--			<p><//%= @org.phone %></p>-->
+		<!--		</div>-->
 		
 
 				
 		
 		
 		
-			</div>
-		</div>
-		<div id="fade" class="black_overlay"></div>
+		<!--	</div>-->
+		<!--</div>-->
+		<!--<div id="fade" class="black_overlay"></div>-->

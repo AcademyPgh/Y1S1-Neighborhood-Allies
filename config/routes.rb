@@ -3,9 +3,13 @@ Rails.application.routes.draw do
   get 'seed_gen/index'
 
 post 'organizations/:id/showvectors/' => 'organizations#showvectors'
+post 'orgadmins/:id/showorgconnections/' => 'orgadmins#showorgconnections'
+post 'orgadmins/:id/addorgconnections/' => 'orgadmins#addorgconnections'
 
 # this line will need to be removed
 get 'organizations/:id/showvectors/' => 'organizations#showvectors'
+get 'orgadmins/:id/showorgconnections/' => 'orgadmins#showorgconnections'
+get 'orgadmins/:id/addorgconnections/' => 'orgadmins#addorgconnections'
 resources :organizations
 get 'organizations/:id/about' => 'organizations#about'
 

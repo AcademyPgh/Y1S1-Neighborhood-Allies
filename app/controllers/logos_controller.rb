@@ -1,4 +1,6 @@
 class LogosController < ApplicationController
+protect_from_forgery :except => [:update, :delete, :create]
+
   def index
     @logos = Logo.all
 
@@ -16,8 +18,8 @@ class LogosController < ApplicationController
    puts "l"
    
    @logo = Logo.new()
-   @logo.name = params[:logo][:name]
-   @logo.organization_id = params[:logo][:organization_id]
+   @logo.name = params[:name]
+   @logo.organization_id = params[:organization_id]
    if params[:logo][:data]
      @logo.data = params[:logo][:data].read
      @logo.filename = params[:logo][:data].original_filename
