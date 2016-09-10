@@ -6,8 +6,8 @@ class Organization < ActiveRecord::Base
   has_one :budget
   has_one :staff_size
   has_one :org_status
-  has_many :funding_sents, :foreign_key => "organization_id_sent"
-  has_many :funding_receives, :foreign_key => "organization_id_received"
+  has_many :funding_sents, :class_name => FundingSent, :foreign_key => "organization_id_sent"
+  has_many :funding_receives, :class_name => FundingSent, :foreign_key => "organization_id_received"
 
   def as_json(option={})
     super(:only => [:name, :phone, :email, :descrip, :mission, :address,],

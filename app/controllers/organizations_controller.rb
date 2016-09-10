@@ -18,13 +18,9 @@ class OrganizationsController < ApplicationController
   end
 
   def showvectors
-    incoming_connections = Organizations.find(params[:id]).funding_receives
+    incoming_connections = Organization.find(params[:id]).funding_receives
     # incoming_connections = [] # FundingSent.select('"funding_sents".funding_type_id, "orgrcvd".latitude AS orgrcvdlat, "orgrcvd".longitude AS orgrcvdlong, "orgsent".latitude AS orgsentlat, "orgsent".longitude AS orgsentlong').from('"funding_sents" INNER JOIN "organizations" "orgrcvd" ON "orgrcvd"."id" = "funding_sents"."organization_id_received" INNER JOIN "organizations" "orgsent" ON "orgsent"."id" = "funding_sents"."organization_id_sent"').where("funding_sents.organization_id_received = ?", params[:id])
-    outgoing_connections = FundingSent
-    .select('"funding_sents".funding_type_id, "orgrcvd".latitude AS orgrcvdlat, "orgrcvd".longitude AS orgrcvdlong, "orgsent".latitude AS orgsentlat, "orgsent".longitude AS orgsentlong')
-    .from('"funding_sents" INNER JOIN "organizations" "orgrcvd" ON "orgrcvd"."id" = "funding_sents"."organization_id_received" INNER JOIN "organizations" "orgsent" ON "orgsent"."id" = "funding_sents"."organization_id_sent"')
-    .where("funding_sents.organization_id_sent = ?", params[:id])
-
+    outgoing_connections = Organization.find(params[:id]).funding_sents
     results=[]
     incoming_connections.each do |funding_received|
       #funding_received.organization_from.latitude
@@ -32,7 +28,7 @@ class OrganizationsController < ApplicationController
     end
 
     outgoing_connections.each do |funding_sent|
-      results.push([funding_sent.orgrcvdlat, funding_sent.orgrcvdlong, funding_sent.orgsentlat, funding_sent.orgsentlong, funding_sent.funding_type_id]);
+      results.push([funding_sent.organization_from.latitude, funding_sent.organization_from.longitude, funding_sent.organization_to.latitude, funding_sent.organization_to.longitude, funding_sent.funding_type_id]);
     end
 
     render :json => results
