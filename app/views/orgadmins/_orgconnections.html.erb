@@ -6,7 +6,7 @@
    	{
   	  
   	  orgconnections = data;
-  	  var contentstring = '';
+  	  var contentstring = '<thead><tr><th>Organization</th><th>Funding Type</th></tr></thead>';
   	  
   	  for (var i = 0; i < orgconnections.length; i++) {
   	    var orgconnection = orgconnections[i];
@@ -16,48 +16,72 @@
 	      contentstring += '<tr><td>'+line.name+'  </td><td>'+line.fundtype+'</td></tr>';
   	  };
   	  
-  	  document.getElementById("orgconnections").innerHTML = '<table>'+contentstring+'</table>';
+  	  document.getElementById("orgconnections").innerHTML = '<table class="table table-hover">'+contentstring+'</table>';
   	  
    	});
   }
    
   function addfundtype(organizationid) {
-    // $.post("/orgadmins/"+id+"/addorgconnections", function(data)
-   	// {
-   	
-   	// }
-     
+    sentto = $("#neworgconnectionname").val();
+    fund_type = $("#neworgconnectionfundtype").val();
+    if (sentto != null && fund_type != null){
+      $.ajax({
+        method: "POST",
+        url: "/orgadmins/"+organizationid+"/addorgconnections",
+        data: {id: organizationid, sentto_id: sentto, fund_type: fund_type },
+        })
+        .success(function(data)
+     	  {
+     	      showorgconnections(organizationid);
+     	  });
+    }
+    
     showorgconnections(organizationid); 
   }
+  
+  showorgconnections(<%= @organization.id %>); 
  </script>
 
-<br>
-<br>
-<h4> Company Connections</h4>
-<div id="connections">
-  
-    <p id="orgconnections" class="orgconnections">
-      <script>
-      showorgconnections(<%= @organization.id %>)
-      </script>
-    </p>
-</div>
-<div id="newconnection">
-  <select name="neworgconnectionname">
-    <option value="" selected="selected">Please select an organization to link to:</option>
-    <% @orgs.each do |organization| %>
-      <option value="<%= organization.id %>"><%= organization.name %></option>
-    <% end %>
-  </select>
-  <select name="neworgconnectionfundtype">
-    <option value="" selected="selected">Please select the finding type to link to the organization:</option>
-    <% @fundtypes.each do |fundtype| %>
-      <option value="<%= fundtype.id %>"><%= fundtype.fundtype %></option>
-    <% end %>
-  </select>
-  
-  <a onClick="addfundtype(<%= @organization.id %>);" href="#" class="btn btn-primary">Add Connection</a>
-  <br>
-  <br>
+<div class="container form-horizontal">
+
+			<!-- Connections-->
+			<div class="form-group row">
+				<label class="control-label col-md-1" for="connections" >Connections</label>
+				<div class = "col-md-8">
+			  	<div id="connections">
+            <p id="orgconnections" class="orgconnections">
+            </p>
+          </div>
+				</div>
+			</div>
+
+      <div class="form-group row">
+          <label class="control-label col-md-1" for="neworgconnectionname" >Connecting Organization</label>
+          <div class="col-md-8">
+                <select name="neworgconnectionname" id="neworgconnectionname">
+                  <option value="" selected="selected">Please select an organization to link to:</option>
+                  <% @orgs.each do |organization| %>
+                    <option value="<%= organization.id %>"><%= organization.name %></option>
+                  <% end %>
+                </select>
+          </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="control-label col-md-1" for="neworgconnectionfundtype" >Funding Type</label>
+        <div class="col-md-8">
+          <select name="neworgconnectionfundtype" id="neworgconnectionfundtype">
+            <option value="" selected="selected">Please select the finding type to link to the organization:</option>
+            <% @fundtypes.each do |fundtype| %>
+              <option value="<%= fundtype.id %>"><%= fundtype.fundtype %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <a onClick="addfundtype(<%= @organization.id %>);" href="#" class="btn btn-primary btn-md">Add Connection</a>
+      </div>
 </div>
 

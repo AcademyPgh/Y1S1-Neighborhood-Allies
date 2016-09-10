@@ -68,6 +68,7 @@ class OrgadminsController < ApplicationController
     end
   end
   
+  # POST /orgadmins/1/showorgconnections
   def showorgconnections
     @fundingsents = FundingSent.select('"orgrcvd".name, "funding_types".fundtype').from('"funding_sents" INNER JOIN "organizations" "orgrcvd" ON "orgrcvd"."id" = "funding_sents"."organization_id_received" INNER JOIN "organizations" "orgsent" ON "orgsent"."id" = "funding_sents"."organization_id_sent" INNER JOIN "funding_types" ON "funding_types"."id" = "funding_sents"."funding_type_id"').where("funding_sents.organization_id_sent = ?", params[:id])
     
@@ -79,6 +80,26 @@ class OrgadminsController < ApplicationController
 
     render :json => results
   end
+  
+  # POST /orgadmins/1/addconnection
+  def addorgconnections
+    org_to_id = params[:sendto_id]
+    fund_type = params[:fund_type]
+    
+    @fundingsent = FundingSent.new
+    @fundingsent.organization_id_sent = params[:id]
+    @fundingsent.organization_id_received = params[:sentto_id]
+    @fundingsent.funding_type_id = params[:fund_type]
+    
+    if @fundingsent.save
+      puts "funding save successful"
+      render :json => {status: "success"}
+    else
+      puts "funding save failed"
+      render(:status => 500)
+    end
+    
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -88,6 +109,6 @@ class OrgadminsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def orgadmin_params
-      params.permit(:name, :email, :address, :phone, :id, :descrip)
+      params.permit(:name, :email, :address, :phone, :id, :descrip, :latitude, :longitude)
     end
 end

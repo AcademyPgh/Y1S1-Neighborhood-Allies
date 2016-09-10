@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'seed_gen/index'
+get 'seed_gen/index'
 
 post 'organizations/:id/showvectors/' => 'organizations#showvectors'
 post 'orgadmins/:id/showorgconnections/' => 'orgadmins#showorgconnections'
