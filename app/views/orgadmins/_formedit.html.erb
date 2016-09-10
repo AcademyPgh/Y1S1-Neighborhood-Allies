@@ -1,0 +1,7 @@
+<%= form_for(@organization, :html => {class: "container form-horizontal"},url: "/orgadmins/" + @organization.id.to_s)  do |f| %>
+  <%= render 'formcontrols' %>
+    <div class="form-group row col-md-9">
+    <%= link_to 'Back', orgadmins_path, class: "btn btn-warning" %>
+    <%= f.submit "Submit", class:"btn btn-success pull-right" %>
+  </div>
+<% end %>

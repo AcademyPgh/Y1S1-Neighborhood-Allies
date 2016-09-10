@@ -12,4 +12,101 @@
  *
  *= require_tree .
  *= require_self
+ *= organizations
  */
+
+a:hover {
+	text-decoration: none;
+}
+
+.navbar-brand>img {
+	position: relative;
+	width: 320px;
+	height: 100px;
+	box-shadow: 3px 3px 2px black;
+	margin: -7px 0 0 20px;
+	
+}
+
+.navbar-inverse {
+	background-image: initial;
+	/*background-color: rgb(154, 201, 59);*/
+	background-color: #C0C0C0;
+	border: 0px;
+	height: 15%; 
+	margin: 0px;
+	
+}
+
+#about-tag {
+    color: white;
+	font-family: Arial,serif;
+	font-size: 175%;
+	
+}
+
+
+#about-tag:hover {
+	
+	background-color: rgb(154, 201, 59);
+	font-family: Arial,serif;
+	font-size: 200% ;
+}
+
+#location {
+	position: relative;
+	margin-top: 50px;
+	margin-left: 20px;
+}
+
+
+#right-items {
+	
+	color: white;
+	
+}
+
+
+#logo {
+	
+	height: 4em;
+	width: 100%;
+}
+
+.bar {
+	
+	position: absolute;
+	height: 20%;
+	width: 100%;
+	background-color: gray;
+	
+}
+
+
+.navbar-right {
+	
+	font-size: 100%;
+	margin-right: 10px;
+	margin-top: 10px;
+}
+
+li {
+	
+	display: inline;
+}
+
+#whenSignedIn {
+	display: none;
+}
+
+.glyphicon {
+	
+	margin-right: 5px;
+	font-size: large;
+}
+
+#login {
+	
+	margin-right: 14px;
+	
+}

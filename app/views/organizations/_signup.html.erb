@@ -1,0 +1,41 @@
+					<h2>New User Registration</h2>
+					<div id="submit_comment" style="display: none;"></div>
+					
+									<% if user_signed_in? %>
+									  <li><%= link_to 'Edit account', edit_user_registration_path %></li>
+									  <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
+									<% else %>
+					
+									    <%= form_for :user, :as => :user,
+									                         :url => registration_path(:user) ,
+									                         :html => {:id => "sign_up_user"},
+									                         :format => :json,
+									                         :remote => true do |f| %>
+										  <div class="field">
+										    <%= f.label :email %><br />
+										    <%= f.email_field :email, autofocus: true %>
+										  </div>
+										
+										  </br>
+										  <div class="field">
+										    <%= f.label :password %>
+										    <% if @minimum_password_length %>
+										    <em>(<%= @minimum_password_length %> characters minimum)</em>
+										    <% end %><br />
+										    <%= f.password_field :password, autocomplete: "off" %>
+										  </div>
+										  
+										  </br>
+										  <div class="field">
+										    <%= f.label :password_confirmation %><br />
+										    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+										  </div>
+										
+										  </br>
+										  <div class="actions">
+										    <%= f.submit "Sign up" %>
+										  </div>
+					
+									<% end %>
+					
+								<% end %>

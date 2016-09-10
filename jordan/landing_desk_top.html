@@ -1,0 +1,521 @@
+<html>
+	
+	<head>
+	
+		<meta charset="UTF-8">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+		
+		<link rel="stylesheet" href="stylesheet.css">
+		<link href='https://fonts.googleapis.com/css?family=Hind:400,600' rel='stylesheet' type='text/css'>
+		
+		<script
+			  src="https://code.jquery.com/jquery-1.12.4.min.js"
+			  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+			  crossorigin="anonymous"></script>
+		
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		
+		<script type="text/javascript" src="googlemap.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initialize"
+            async defer>
+		</script>
+		
+		<title>Neighborhood Allies Mapping Project</title>
+		
+	</head>
+
+
+<body>
+	
+	<div class="container col-xs-12">
+				<header>
+					<div class="col-xs-12 logoplace">
+						<div class="col-sm-3 col-xs-11 logoplace"><img src="logo.png">
+							
+							<div class="loginDiv">
+								<a href="#loginModal" data-toggle="modal" data-target="#loginModal">Login</a>
+							</div>
+							
+						</div>
+							<div class="hamburger visible-xs-block col-xs-1">
+								<div id="mySidenav" class="sidemenu">
+								  <a href="javascript:void(0)" class="closebutton" onclick="closeNav()";>&times;</a>
+								  <br>
+								  <a href="#">About</a>
+								  <a href="#">organization2</a>
+								  <a href="#">organization3</a>
+								  <a href="#">organization4</a>
+								</div>
+								<!--<div id="hamburger">-->
+								<button type="button" class="btn btn-default" onclick="openNav()"><span class="glyphicon glyphicon-menu-hamburger"></span></button>
+							</div>
+					</div>
+								
+							
+				</header>
+				
+				<div class="actions visible-lg-block visible-md-block visible-sm-block col-sm-3">	
+					
+					<div class="checkbox key">
+							<div class="selections">
+							<div>
+							  <label><input type="checkbox" value="" name="fsupport">Finanical Support</label>
+							</div>  
+							<div>
+							  <label><input type="checkbox" value="" name="ksupport">In Kind Support</label>
+							</div>
+							<div>
+							  <label><input type="checkbox" value="" name="network">Extended Network</label>
+							</div>
+							<div>
+							  <label><input type="checkbox" value="" name="viewall">Show All Pins</label>
+							</div> 
+							</div>
+					</div>
+					
+					<div class="radio orglist">
+						<div class="organizations">
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 1</label>
+								</div>  
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 2</label>
+								</div>
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 3</label>
+								</div>
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 4</label>
+								</div> 
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 5</label>
+								</div> 
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 6</label>
+								</div> 
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 7</label>
+								</div> 
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 1</label>
+								</div>  
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 2</label>
+								</div>
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 3</label>
+								</div>
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 4</label>
+								</div> 
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 5</label>
+								</div> 
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 6</label>
+								</div> 
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 7</label>
+								</div> 
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 1</label>
+								</div>  
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 2</label>
+								</div>
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 2</label>
+								</div>
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 3</label>
+								</div>
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 4</label>
+								</div> 
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 5</label>
+								</div> 
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 6</label>
+								</div> 
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 7</label>
+								</div> 
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 1</label>
+								</div>  
+								<div>
+								  <label><input type="radio" value="" name="orgselect">org name 2</label>
+								</div>
+								
+						</div>
+					
+					</div>		
+				</div>
+				
+				
+			
+				<div class="map col-sm-9 col-xs-12">
+					<div class="maptoolbar visible-xs-block">
+						<div class="btn-group-lg buttons" data-toggle="buttons">
+							<label class="btn btn-default active financial" data-toggle="modal" data-target="#financialmodal" > 
+								<input type="checkbox" autocomplete="off"  ><span class="glyphicon glyphicon-usd" style="width:20px;height:20px; color: black;"></span></button>
+							</label>
+							<label class="btn btn-default active kind" data-toggle="modal" data-target="#inkindmodal"> 	
+								<input type="checkbox" autocomplete="off" ><img src="kind.png" style="width:20px;height:20px;"></button>
+							</label>	
+							<label class="btn btn-default active network" data-toggle="modal" data-target="#networkmodal">
+								<input type="checkbox" autocomplete="off" ><img src="network.png" style="width:20px;height:20px;"></button>
+							</label>
+							<label class="btn btn-default active all" data-toggle="modal" data-target="#allmodal">					
+								<input type="checkbox" autocomplete="off" ><img src="all.png" style="width:20px;height:20px;"></button>
+							</label>	
+						</div>
+					</div>
+					
+						<div id="financialmodal" class="modal fade " role="dialog" >
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<p>showing all financial contributions<button type="button" class="close" data-dismiss="modal" >&times;</button></p>
+								</div>
+							</div>
+						</div>
+						<div id="inkindmodal" class="modal fade " role="dialog">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<p>showing all in kind contributions<button type="button" class="close" data-dismiss="modal" >&times;</button></p>
+								</div>
+							</div>
+						</div>
+						<div id="networkmodal" class="modal fade " role="dialog">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<p>showing organizations extended network<button type="button" class="close" data-dismiss="modal" >&times;</button></p>
+								</div>
+							</div>
+						</div>
+						<div id="allmodal" class="modal fade " role="dialog">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<p>showing all organizations available<button type="button" class="close" data-dismiss="modal" >&times;</button></p>
+								</div>
+							</div>
+						</div>
+						
+						
+					<div id="map" >
+					</div>
+				</div>
+				
+				<!--<footer></footer>-->
+			</div>
+
+		
+	
+	
+	
+	
+	
+	
+	
+	
+		
+		<!-- add jquery here -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	
+	<!-- login modal-->
+	<div id="loginModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<span class="glyphicon glyphicon-lock"></span>
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+		  </div>
+		  <div class="modal-body">
+			<role="form"> 
+				<div class="form-group">
+					<label for="email">Email address:</label>
+					<input type="email" class="form-control" id="email">
+				  </div>
+				  <div class="form-group">
+					<label for="pwd">Password:</label>
+					<input type="password" class="form-control" id="pwd">
+				  </div>
+				  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#termsModal">Login</button>
+			</form>
+			<div class="forgot">
+				<br>
+				<p>
+					<a href="#" onclick="showRecovery();">Forgot your password?</a>
+				</p>
+			</div>
+			<p class="new">
+				<br>
+				 <button type="button" class="btn btn-default" onclick="showTerms();">Sign Up</button>
+			</p>
+		  </div>
+		  <div class="modal-footer">
+		  </div>
+		</div>
+	  </div>
+	</div>
+	
+	<!-- password recovery modal-->
+	<div id="recoveryModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+		  </div>
+		  <div class="modal-body">
+			<role="form"> 
+				<div class="form-group">
+					<label for="email">Enter your account email address:</label>
+					<input type="email" class="form-control" id="email">
+				 </div>
+				  <button type="button" class="btn btn-default" onclick="showRecoveryConfirmation();">Send</button>
+			</form>
+
+		  </div>
+		  <div class="modal-footer">
+		  </div>
+		</div>
+	  </div>
+	</div>
+	
+	<!-- password recovery confirmation modal-->
+	<div id="recoveryConfirmModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+		  </div>
+		<div class="modal-body">
+			<p>An email with your password has been sent.</p>
+		</div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" onclick="backToLoginFromRecov();">Back to Login</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	
+		<!-- terms and conditions modal-->
+	<div id="termsModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+		  </div>
+		  <div class="modal-body">
+			<p>
+															Terms of Use
+								<br>
+								<br>
+								Acceptance of the Terms and Conditions
+								<br>
+								<br>
+								This Terms of Use Agreement (this "Agreement"), states the terms and conditions under which you may use this web site (the "Site").  Please read this Agreement carefully.  This Site contains various information relating to the Neighborhood Allies ("Neighborhood Allies" or "We") in the form of text, graphics, news, reports, and other materials (tangible or intangible) ("Content").  By accessing, browsing and/or using this Site you acknowledge that you have read, understood and agree to be legally bound by this Agreement.  If you do not accept this Agreement (and therefore do not agree to by bound by this Agreement), do not use this Site. We reserve the right to amend this Agreement at any time by posting the amended terms on our Site.
+								<br>
+								<br>
+								Restrictions on Use of Materials
+								<br>
+								<br>
+								You acknowledge that this Site contains Content that is protected by copyrights, trademarks, service marks, trade secrets, patents, or other proprietary rights, and that these rights are valid and protected in all forms, media, and technologies existing now and hereinafter developed. You also acknowledge that the Content is and shall remain the property of Neighborhood Allies or any other party (each a "Contributor") who has been involved in the preparation or publication of the Content.  You shall at no time assert any claims of ownership over any content by reason of your use of or any right to use this Site and shall not grant or create or suffer to exist any lien or other security interest arising therefrom.  You agree to comply with all copyright and trademark laws and you shall not encumber any interest in, or assert any rights to, the Content.  You may not modify, transmit, participate in the sale or transfer of, or create derivative works based on any Content, in whole or in part.  You may print copies of the Content, provided that these copies are made only for personal, non-commercial use and that you maintain any notices contained in the Content, or maintained by the Contributor, such as all copyright notices, trademark legends, or other proprietary rights notices. You shall not store electronically any significant portion of any Content. Neighborhood Allies authorizes you to view and use the Content on this Site solely for your personal, noncommercial use. The use of the Content on any other site, including by linking or framing, or in any networked computer environment for any purpose is prohibited without Neighborhood Allies' prior written approval. 
+								For permission to use content from this website or from a newsletter authored and distributed by Neighborhood Allies, request written permission and provide full attribution. Permission should be requested by contacting Rick Cohen. Attribution for website content should be given as follows: "Reprinted with permission from the Neighborhood Allies." Attribution for newsletter content should be given as follows: "This article reprinted with permission from Nonprofit Knowledge (or Advocacy) Matters, a publication of the Neighborhood Allies."
+								<br>
+								<br>
+								DISCLAIMER OF WARRANTY
+								<br>
+								<br>
+								THE CONTENT PROVIDED ON THIS WEBSITE IS PROVIDED AS A SERVICE TO MEMBERS OF THE PUBLIC. INFORMATION PRESENTED ON THIS WEBSITE IS PROVIDED FOR INFORMATIONAL PURPOSES ONLY.  NO INFORMATION PRESENTED ON THIS WEBSITE CONSTITUTES LEGAL ADVICE, NOR DOES IT CREATE AN ATTORNEY-CLIENT RELATIONSHIP BETWEEN THE Neighborhood Allies AND ANY OTHER PARTY. 
+								YOU ACKNOWLEDGE AND AGREE THAT THIS SITE AND THE CONTENT THEREIN ARE PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS.  NONE OF Neighborhood Allies, ANY OF ITS MEMBERS, AFFILIATES OR THEIR RESPECTIVE OFFICERS, DIRECTORS, EMPLOYEES OR AGENTS (COLLECTIVELY THE "Neighborhood Allies PARTIES") GUARANTEES THE ACCURACY, COMPLETENESS, OR USEFULNESS OF ANY OF THE CONTENT. 
+								NONE OF Neighborhood Allies PARTIES WARRANTS THAT THIS SITE WILL BE UNINTERRUPTED OR ERROR FREE OR THAT THIS SITE, ITS SERVER OR ANY FILES AVAILABLE FOR DOWNLOADING THROUGH THIS SITES ARE FREE OF COMPUTER VIRUSES OR OTHER HARMFUL ELEMENTS.  YOU EXPRESSLY AGREE THAT THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THIS SITE AND THE ACCURACY OR COMPLETENESS OF THE CONTENT IS ASSUMED SOLELY BY YOU. 
+								NONE OF Neighborhood Allies PARTIES MAKES ANY, AND HEREBY SPECIFICALLY DISCLAIMS ANY, REPRESENTATIONS, ENDORSEMENTS, GUARANTEES, OR WARRANTIES, EXPRESS OR IMPLIED, REGARDING THIS SITE OR ANY CONTENT, INCLUDING WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT OF THIRD-PARTY RIGHTS.  WITHOUT LIMITING THE GENERALITY OF THE FOREGOING, ALL OF Neighborhood Allies PARTIES DISCLAIM ANY WARRANTIES WITH RESPECT TO ANY RESULTS THAT MAY BE OBTAINED FROM THE USE OF THIS SITE.
+								<br>
+								<br>
+								LIMITATION OF LIABILITY
+								<br>
+								<br>
+								UNDER NO CIRCUMSTANCES WILL ANY OF Neighborhood Allies PARTIES BE LIABLE FOR ANY LOSS OR DAMAGE CAUSED BY YOUR RELIANCE ON INFORMATION OBTAINED THROUGH THE CONTENT ON THE WEB SITE.  IT IS YOUR RESPONSIBILITY TO EVALUATE THE ACCURACY, COMPLETENESS, OR USEFULNESS OF ANY INFORMATION OR ANY CONTENT AVAILABLE THROUGH THE WEB SITE.
+								IN NO EVENT SHALL ANY OF Neighborhood Allies PARTIES BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF OR RELATING TO THE CONTENT, SERVICE, OR THIS AGREEMENT, WHETHER BASED ON WARRANTY, CONTRACT, TORT, OR ANY OTHER LEGAL THEORY.
+								BECAUSE SOME JURISDICTIONS  DO NOT ALLOW THE EXCLUSION OR LIMITATION OF LIABILITY FOR NEGLIGENCE, CONSEQUENTIAL OR INCIDENTAL DAMAGES, IN SUCH JURISDICTIONS Neighborhood Allies  PARTIES' LIABILITY IS LIMITED TO THE GREATEST EXTENT PERMITTED BY LAW.
+								YOUR SOLE AND EXCLUSIVE REMEDY FOR DISSATISFACTION WITH THIS SITE IS TO STOP USING THIS SITE.
+								<br>
+								<br>
+								Links to Other Sites
+								<br>
+								<br>
+								As a convenience to you, this Site may periodically provide links to third party websites through links available on this Site including websites of entities that are affiliated with the Neighborhood Allies ("Third-Party Sites") where we feel it is appropriate. Lists of links are not complete lists of relevant and/or useful internet resources.  Our decision to link to a Third-Party Site is not an endorsement of the content in that linked Third Party Site. WE ARE NOT RESPONSIBLE FOR THE CONTENT OF ANY THIRD PARTY WEB SITE, NOR DO WE MAKE ANY WARRANTIES OR REPRESENTATIONS, EXPRESS OR IMPLIED, REGARDING THE CONTENT (OR THE ACCURACY, CURRENTNESS, OR COMPLETENESS OF SUCH CONTENT) ON ANY THIRD PARTY WEB SITES, AND Neighborhood Allies SHALL HAVE NO LIABILITY OF ANY NATURE WHATSOEVER IN RELATION TO ANY OF THE FOREGOING.  You should take precautions when downloading files from all Sites to protect your computer from viruses and other destructive programs.  If you decide to access linked Third-Party Sites, you do so at your own risk. You should direct any concerns to the Third-Party Sites' administrator or webmaster. 
+								<br>
+								<br>
+								No Framing Allowed 
+								<br>
+								<br>
+								Elements of this Site are protected by trade dress, trademark, unfair competition, and other state and federal laws and may not be copied or imitated in whole or in part by any means, including but not limited to, the use of framing or mirrors.  None of the Content for our Site may be retransmitted without the express written consent of Neighborhood Allies.
+								<br>
+								<br>
+								Copyright Complaints
+								<br>
+								<br>
+								The designated agent to receive notification of claimed infringement under the Digital Millennium Copyright Act is Jennifer Chandler, Vice President and Director of Network Support & Knowledge Sharing, Neighborhood Allies, 225 Ross Street, Ste. 202 Pittsburgh, PA 15219. 
+								Use of Personally Identifiable Information
+								Neighborhood Allies’ practices and policies with respect to the collection and use of personally identifiable information is governed according to Neighborhood Allies’ Privacy Policy.
+								<br>
+								<br>
+								Termination
+								<br>
+								<br>
+								Neighborhood Allies reserves the right, in its sole discretion, to restrict, suspend, or terminate this Agreement and your access to all or any part of our Site or the Content, at any time and for any reason without prior notice or liability. Neighborhood Allies reserves the right to change, suspend, or discontinue all or any part of this Site or the content at any time without prior notice or liability.
+								<br>
+								<br>
+								User Must Comply with Applicable Laws
+								<br>
+								<br>
+								This Site is based in Washington, D.C.  Neighborhood Allies makes no claims concerning whether the Content may be downloaded or are appropriate for use outside of the United States.  If you access this Site from outside of the United States, you are solely responsible for ensuring compliance with the laws of your specific jurisdiction. 
+								<br>
+								<br>
+								Miscellaneous 
+								<br>
+								<br>
+								In the event that any portion of the Agreement is held to be invalid or unenforceable, the invalid or unenforceable portion shall be construed in accordance with the applicable law as nearly as possible to reflect the original intentions of the parties, and the remainder of the Agreement shall remain in full force and effect.  The paragraph headings herein are provided only for reference and shall have no effect on the construction or interpretation of the Agreement. Neighborhood Allies' failure to enforce your strict performance of any provision of this Agreement will not constitute a waiver of its right to subsequently enforce such provision or any other provision of this Agreement.  Neither the course of conduct between parties nor trade practice shall act to modify any provision of the Agreement. The Agreement shall be governed by and construed in accordance with the laws of the State of Washington, D.C., except with regard to its conflicts of law rules.  Any action relating to the Content, Site or this Agreement must be brought in the federal or state courts located in Washington, D.C., and you hereby irrevocably consent to the jurisdiction of such courts.  Any cause of action you may have with respect to the Content, Site or this Agreement must be commenced within one (1) year after the claim or cause of action arose, or be barred. This Agreement contains the entire agreement of the parties for this Site and supersedes all existing agreements and all other oral, written or other communication between the parties concerning its subject matter. You agree to use the Content and Site only for lawful purposes. You are prohibited from any use of the Content or Site that would constitute an illegal offense, give rise to liability or otherwise violate any applicable local, state, national or international law or regulation. 
+							  </p>
+							
+		  </div>
+		  <div class="modal-footer">
+				<div class="termscheckbox">
+								<label><input type="checkbox" id = "readAndAgree" value="">I accept</label>
+				</div>
+				<button type="button" id = "agreeContinue" class="btn btn-default" onclick="showNewUser();" disabled>Continue</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	
+	<!-- new user email and password entry modal-->
+	<div id="newUserModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+		  </div>
+		  <div class="modal-body">
+				<form role="form"> 
+							<div class="form-group">
+								<label for="email">Email address:</label>
+								<input type="email" class="form-control" id="email">
+							</div>
+							<div class="form-group">
+								<label for="name">Organization:</label>
+								<input type="name" class="form-control" id="name">
+							</div>
+							<div class="form-group">
+								<label for="pwd">Password:</label>
+								<input type="password" class="form-control" id="pwd">
+							</div>
+							<div class="form-group">
+								<label for="pwd">Confirm Password:</label>
+								<input type="password" class="form-control" id="pwd">
+							</div>
+				</form>
+			</div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" onclick="showConfirmation();" >Continue</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	
+	<!-- confirmation modal-->
+	<div id="confirmationModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+		  </div>
+		<div class="modal-body">
+			<p>Sign up is complete! Thank you!</p>
+		</div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" onclick="backToLogin();">Back to Login</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	
+</body>
+</html>
+
+<script>
+
+	/* Set the width of the side navigation to 250px */
+	function openNav() {
+		document.getElementById("mySidenav").style.width = "200px";
+	}
+
+/* Set the width of the side navigation to 0 */
+	function closeNav() {
+		document.getElementById("mySidenav").style.width = "0";
+	}
+		
+	<!--this function disables continue button on terms and conditions page until agree check box is checked"-->
+	$('#readAndAgree').change( function () 
+	{
+		if (this.checked) 
+		{
+			$('#agreeContinue').prop("disabled",false);
+		} 
+		else 
+		{
+			$('#agreeContinue').prop("disabled",true);
+		}
+	}); 
+  
+  
+	function showTerms() 
+	{
+		$("#termsModal").modal("show")
+		$("#loginModal").modal("hide") 
+	}
+	
+	function showNewUser() 
+	{
+		$("#newUserModal").modal("show")
+		$("#termsModal").modal("hide") 
+	}
+	
+	function showConfirmation() 
+	{
+		$("#confirmationModal").modal("show")
+		$("#newUserModal").modal("hide") 
+	}
+	
+	function backToLogin() 
+	{
+		$("#loginModal").modal("show")
+		$("#confirmationModal").modal("hide") 
+	}
+	
+	function showRecovery() 
+	{
+		$("#recoveryModal").modal("show")
+		$("#loginModal").modal("hide") 
+	}
+	
+	function showRecoveryConfirmation() 
+	{
+		$("#recoveryConfirmModal").modal("show")
+		$("#recoveryModal").modal("hide") 
+	}
+	
+	function backToLoginFromRecov() 
+	{
+		$("#loginModal").modal("show")
+		$("#recoveryConfirmModal").modal("hide") 
+	}
+</script>

@@ -1,0 +1,13 @@
+<div class="col-md-8 col-md-offset-2">
+    <div class="panel">
+      <img id="edit_logo_img" src="/logos/<%= @organization.id %>/serve" style="padding: 15px;max-width: 200px; max-height: 200px"> 
+<button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#logomodal">
+  Update Logo
+</button>
+    <%= render 'formedit' %>
+    <%= render 'logo' %>
+  
+    <%= render 'orgconnections' %>
+    </div>
+
+</div>

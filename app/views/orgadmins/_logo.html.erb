@@ -1,0 +1,59 @@
+
+<div class="modal fade" id="logomodal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Change Logo</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for(@logo, :html => {:multipart => true, :id => "edit_logo"},
+        				    :format => :json, 
+        				    :url => "/logos/",
+        				    :remote => true) do |f| %>
+            <div class="field">
+                <%= f.label 'Upload an Image' %>
+                <%= f.file_field :data %>
+            </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onClick="uploadPhoto()">Upload</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<script>
+   function uploadPhoto(){
+       console.log("starting upload");
+       formData = new FormData()
+       formData.append('logo', $('#logo_data')[0].files[0]);
+       formData.append('organization_id', <%= @organization.id %>);
+       formData.append('name', 'logo');
+       console.log(formData);
+        $.ajax({
+            url: "/logos/",
+            type: "POST",
+            processData: false,
+            contentType: false,
+            //data: {logo: {data: $("#logo_data"), organization_id: $("#logo_organization_id"), name: $("#logo_data")}},
+            data: formData,
+            success: function (data) {
+                console.log("Success!");
+                $("#edit_logo_img").attr('src', '/logos/<%= @organization.id %>/serve?t='  + new Date().getTime());
+                $('#logomodal').modal('hide');
+            },
+            error: function (xhr, status, err) {
+                $('#logoerror').html('Error uploading your logo. Please try again.');
+                console.log(status, err.toString());
+            }
+            
+        })
+
+        console.log("hello there!");
+    }
+</script>
+

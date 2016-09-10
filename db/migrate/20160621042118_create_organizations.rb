@@ -7,8 +7,9 @@ class CreateOrganizations < ActiveRecord::Migration
       t.string :descrip
       t.text :mission
       t.text :address
+      t.references :funder
       t.references :logo, index: true, foreign_key: true
-      t.references :paos, index: true, foreign_key: true
+      t.references :p_ao_s, index: true, foreign_key: true
       t.references :budget, index: true, foreign_key: true
       t.references :staffsize, index: true, foreign_key: true
       t.references :org_status, index: true, foreign_key:true

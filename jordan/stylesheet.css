@@ -1,0 +1,280 @@
+body
+{	min-height:100%;
+	height:100%;
+	background-color: grey;
+}
+
+html
+{
+	height: 100%;
+}
+
+header
+{
+	height: 15%;
+	width: 100%;
+	background-color: rgb(154, 201, 59);
+	/*border: solid black 1px;*/
+	
+}
+
+/*footer
+{
+	height: 10%;
+	background-color: rgb(154, 201, 59);
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	border: solid black 1px;
+	
+}*/
+
+
+.loginDiv{
+	height: 15%;
+	width: 10%;
+	display: inline-block;
+}
+
+.container
+{
+	
+	height: 100%;
+	background-color: yellow;
+	padding-left:0px;
+	padding-right:0px;
+}
+
+.actions
+{
+	background-color: #fff;
+	height: 85%;
+	/*border: solid black 1px;*/
+	padding: 0px;
+	
+}
+
+.map
+{
+	background-color: #fff;
+	height: 85%;
+	/*border: solid black 1px;*/
+	padding: 0px;
+	
+}
+
+.logoplace
+{
+	height: 100%;
+	padding: 0px;
+	background-color: rgb(154, 201, 59);
+	width: 90%;
+}
+
+img{
+	max-width: 100%;
+	max-height: 100%;
+    height: auto;
+}
+.hamburger{
+	
+	height: 100%;
+	padding: 0px;
+	width: 10%;
+	
+
+}
+
+.glyphicon-menu-hamburger{
+	
+	font-size: 200%;
+	float: right;
+	overflow: auto;
+	
+}
+
+
+.key
+{
+	height: 30%;
+	border: solid #f2f3f4;
+	margin: 0px !important;
+	background-color: #fff;
+	
+}
+
+.selections
+{
+	position: absolute;
+	top: 20px;
+	left: 15%;
+}
+
+.organizations
+{
+	position: absolute;
+	top: 20px;
+	left: 15%;
+}
+.orglist
+{
+	height: 70%;
+	
+	margin: 0px !important;
+	overflow-y: scroll;
+	
+	
+}
+
+#map{
+	height: 100%;
+	
+	
+}
+
+@media screen and (max-width: 768px) {
+	#map{
+		height: 89%;
+		
+	}	
+}	
+	
+.maptoolbar
+{
+	background-color: rgb(154, 201, 59);
+	height: 11%;
+	width: 100%;
+	display: inline-block;
+}
+
+
+/*styling for slide out mobile menu follows*/
+.sidemenu {
+height: 100%;
+width: 0;
+position: fixed;
+z-index: 1; 
+top: 0;
+right: 0;
+background-color: #eee;
+overflow-x: hidden; 
+padding-top: 10px;
+transition: 0.3s;
+}
+
+/*menu links */
+.sidemenu a {
+	padding: 8px 8px 8px 32px;
+	text-decoration: none;
+	font-size: 15px;
+	color:  #7f7f7f ;
+	display: block;
+	transition: 0.3s
+}
+
+/* nav link colors for slide out menu */
+.sidemenu a:hover, .offcanvas a:focus{
+	color: #b8b8b8;
+}
+
+
+.closebutton {
+	position: absolute;
+	top: 0;
+	right: 1%;
+	font-size: 18px !important;
+	margin-right: 5px;
+	transition: 0.3s
+}
+
+
+
+/* changes padding and font size when screen size smaller than certain size*/
+@media screen and (max-height: 450px) {
+	.sidemenu {padding-top: 12px;}
+	.sidemenu a {font-size: 15px;}
+}
+
+#hamburger{
+font-size: 250%;
+float right;
+height: 20px;
+}
+
+.buttons
+{	
+	width:100%;
+	text-align: center;
+	margin: 0 auto;
+	position: absolute;
+	top: 2px;
+	
+}
+
+/*following is styling for modals*/
+.termscheckbox{
+			float: left;
+		}
+		
+		.forgot{
+			width: 100%;
+			text-align: center;
+		}
+		
+		a:hover {
+			color: hotpink;
+		}
+	
+		.new{
+			width: 100%;
+			text-align: center;
+		}
+		
+		.modal-header{
+		background-color: rgb(154, 201, 59);
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+		}
+		
+		.modal-footer{
+		background-color: rgb(154, 201, 59);
+		border-bottom-left-radius: 5px;
+		border-bottom-right-radius: 5px;
+		}
+		
+		.modal-dialog{
+		overflow-y: initial !important
+		}
+		.modal-body{
+		height: 370px;
+		overflow-y: auto;
+		border-radius: 5px;
+		}
+
+.kind, .kind:hover, .kind:active {
+    background: #cda6dd;
+	width: 20%;
+}	
+
+.financial, .financial:hover, .financial:active
+{
+    background: #0c7d8b;
+	width: 20%;
+}	
+
+.network, .network:hover, .network:active
+{
+    background: #f2f3f4;
+	width: 20%;
+}	
+
+.all, .all:hover, .all:active
+{
+    background: #ff6600;
+	width: 20%;
+}	
+
+.modal-backdrop
+{
+	opacity: 0 !important;
+}

@@ -1,0 +1,107 @@
+<script>
+  var orgconnections = [];
+
+  function showorgconnections(id) {
+   	$.post("/orgadmins/"+id+"/showorgconnections", function(data)
+   	{
+  	  
+  	  orgconnections = data;
+  	  var contentstring = '<thead><tr><th>Direction</th><th>Organization</th><th>Funding Type</th><th>Amount</td></tr></thead>';
+  	  
+  	  for (var i = 0; i < orgconnections.length; i++) {
+  	    var orgconnection = orgconnections[i];
+  	    var amount = '$' + orgconnection[3].toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+  	    
+	      var line = {name: orgconnection[0], fundtype: orgconnection[1], direction: orgconnection[2], amount: amount};
+	    
+	      contentstring += '<tr><td>'+line.direction+'  </td><td>'+line.name+'</td><td>' + line.fundtype + '</td><td>' + line.amount + '</td></tr>';
+  	  };
+  	  
+  	  document.getElementById("orgconnections").innerHTML = '<table class="table table-hover">'+contentstring+'</table>';
+  	  
+   	});
+  }
+   
+  function addfundtype(organizationid) {
+    sentto = $("#neworgconnectionname").val();
+    fund_type = $("#neworgconnectionfundtype").val();
+    send_receive = $("#sendreceive").val();
+    amount = $("#amount").val();
+    
+    if (sentto != null && fund_type != null){
+      $.ajax({
+        method: "POST",
+        url: "/orgadmins/"+organizationid+"/addorgconnections",
+        data: {id: organizationid, sentto_id: sentto, fund_type: fund_type, send_receive: send_receive, amount: amount},
+        })
+        .success(function(data)
+     	  {
+     	      showorgconnections(organizationid);
+     	  });
+    }
+    
+    showorgconnections(organizationid); 
+  }
+  
+  showorgconnections(<%= @organization.id %>); 
+ </script>
+
+<div class="container form-horizontal">
+
+			<!-- Connections-->
+			<div class="form-group row">
+				<div class = "col-md-9">
+			  	<div id="connections">
+            <p id="orgconnections" class="orgconnections">
+            </p>
+          </div>
+				</div>
+			</div>
+
+      <div class="form-group row">
+          <label class="control-label col-md-1" for="neworgconnectionname" >Connecting Organization</label>
+          <div class="col-md-8">
+                <select name="neworgconnectionname" id="neworgconnectionname">
+                  <option value="" selected="selected">Please select an organization to link to:</option>
+                  <% @orgs.each do |organization| %>
+                    <option value="<%= organization.id %>"><%= organization.name %></option>
+                  <% end %>
+                </select>
+          </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="control-label col-md-1" for="neworgconnectionfundtype" >Funding Type</label>
+        <div class="col-md-8">
+          <select name="neworgconnectionfundtype" id="neworgconnectionfundtype">
+            <option value="" selected="selected">Please select the finding type to link to the organization:</option>
+            <% @fundtypes.each do |fundtype| %>
+              <option value="<%= fundtype.id %>"><%= fundtype.fundtype %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+      
+      <div class="form-group row">
+        <label class="control-label col-md-1" for="sendreceive" >Send/Receive</label>
+        <div class="col-md-8">
+          <select name="sendreceive" id="sendreceive">
+            <option value="1" selected="selected">Send</option>
+            <option vlaue="2">Receive</option>
+          </select>
+        </div>
+      </div>
+      
+			<div class="form-group row">
+				<label class="control-label col-md-1" for="amount" >Amount</label>
+				<div class = "col-md-8">
+				<input type="text" class="form-control" placeholder="50000" name="amount" id="amount">
+				</div>
+			</div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <a onClick="addfundtype(<%= @organization.id %>);" href="#" class="btn btn-primary btn-md">Add Connection</a>
+      </div>
+</div>
+

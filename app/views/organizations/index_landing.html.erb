@@ -1,0 +1,495 @@
+<link href='https://fonts.googleapis.com/css?family=Hind:400,600' rel='stylesheet' type='text/css'>
+
+<script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initialize" async defer></script>
+
+<div class="container-body col-xs-12 content-body">
+
+				<div class="actions visible-lg-block visible-md-block visible-sm-block col-sm-3">
+
+					<div class="checkbox key">
+							<div class="selections">
+							<div>
+							  <label><input type="checkbox" value="" onclick="markeridentify()" name="fsupport" id="fsupport">Finanical Support</label>
+							</div>
+							<div>
+							  <label><input type="checkbox" value="" onclick="markeridentify()" name="ksupport" id="ksupport">In Kind Support</label>
+							</div>
+							<div>
+							  <label><input type="checkbox" value="" onclick="markeridentify()" name="network" id="network">Extended Network</label>
+							</div>
+							<div>
+							  <label><input type="checkbox" value="" onclick="infowindowclose();removeallpolylines();markershowall();removeselectedradiobutton();" name="viewall" id="viewall">Show All Pins</label>
+							</div>
+							</div>
+					</div>
+
+					<div class="radio orglist">
+						<div class="organizations">
+								<div>
+                  <% @organizations.each do |organization| %>
+                    <label><input type="radio" onclick="markeridentify();" value="<%= organization.id %>" name="orgselect"><%= organization.name %></label><br />
+                    <!-- <% organization.funding_sents.each do |org| %>
+                      <%= org.organization_id_sent %>  <%= org.organization_id_received %> <br />
+                    <% end %> -->
+                  <% end %>
+								</div>
+						</div>
+					</div>
+				</div>
+
+
+
+				<div class="map col-sm-9 col-xs-12">
+					<div class="maptoolbar visible-xs-block">
+						<div class="btn-group-lg buttons" data-toggle="buttons" >
+							<label class="btn btn-default financial"  >
+								<input type="checkbox" autocomplete="off" id="button1" onchange="popupfinancial()" ><span class="glyphicon glyphicon-usd" style="width:20px;height:20px; color: black;"></span></button>
+							</label>
+							<label class="btn btn-default kind" >
+								<input type="checkbox" autocomplete="off" id="button2" onchange="popupkind()"><%= image_tag('kind.png', :style=>'width:20px;height:20px;') %></button>
+							</label>
+							<label class="btn btn-default network" >
+								<input type="checkbox" autocomplete="off" id="button3" onchange="popupnetwork()"><%= image_tag('network.png', :style=>'width:20px;height:20px;') %></button>
+							</label>
+							<label class="btn btn-default all" >
+								<input type="checkbox" autocomplete="off" id="button4" onchange="popupall()"><%= image_tag('all.png', :style=>'width:20px;height:20px;') %></button>
+							</label>
+						</div>
+					</div>
+
+
+
+						<div class="alert alert-warning alert-dismissible" id="fpop" role="alert">
+						  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						  Showing all financial contrubutions connections
+						</div>
+
+						<div class="alert alert-warning alert-dismissible" id="kpop" role="alert">
+						  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						  Showing all in kind contrubutions connections
+						</div>
+
+						<div class="alert alert-warning alert-dismissible" id="npop" role="alert">
+						  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						  Showing all extended network connections
+						</div>
+
+						<div class="alert alert-warning alert-dismissible" id="apop" role="alert">
+						  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						  Showing all organizations available for search
+						</div>
+
+
+					<div id="map">
+					</div>
+				</div>
+
+				<!--<footer></footer>-->
+			</div>
+
+	<!-- login modal-->
+	<div id="loginModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<span class="glyphicon glyphicon-lock"></span>
+			<p class="modal-header-login">Login</p>
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+		  </div>
+		  <div class="modal-body">
+
+			<%= render 'login' %>
+
+
+		  </div>
+		<!-- modal-footer was here -->  
+		</div>
+		
+	  </div>
+	  
+	
+	<div class="modal-footer"></div>
+	</div>
+	</div>
+	</div>
+
+
+	<!-- password recovery modal-->
+	<div id="recoveryModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<span class="glyphicon glyphicon-lock"></span>
+			<p class="modal-header-login"><b>Password Recovery</b></p>
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+		  </div>
+		  <div class="modal-body">
+			<role="form">
+				<div class="form-group">
+					<label for="email">Enter your account email address:</label>
+					<input type="email" class="form-control" id="email">
+				 </div>
+				  <button type="button" class="btn btn-default" onclick="showRecoveryConfirmation();">Send</button>
+			</form>
+
+		  </div>
+		  <div class="modal-footer">
+		  </div>
+		</div>
+	  </div>
+	</div>
+
+	<!-- password recovery confirmation modal-->
+	<div id="recoveryConfirmModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<span class="glyphicon glyphicon-lock"></span>
+			<p class="modal-header-login"><b>Password Recovery</b></p>
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+		  </div>
+		<div class="modal-body">
+			<p>An email with your password has been sent.</p>
+		</div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" onclick="backToLoginFromRecov();">Back to Login</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+
+		<!-- terms and conditions modal-->
+	<div id="termsModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<span class="glyphicon glyphicon-lock"></span>
+			<p class="modal-header-login">New User Registration</p>
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+		  </div>
+		  <div class="modal-body">
+			  <%= render 'tos' %>
+		  </div>
+		  <div class="modal-footer">
+				<div class="termscheckbox">
+								<label><input type="checkbox" id = "readAndAgree" value="">I accept</label>
+				</div>
+				<button type="button" id = "agreeContinue" class="btn btn-default" onclick="showNewUser();" disabled>Continue</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+
+	<!-- new user email and password entry modal-->
+	<div id="newUserModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<span class="glyphicon glyphicon-lock"></span>
+			<p class="modal-header-login">New User Registration</p>
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+		  </div>
+		  <div class="modal-body">
+				<%= render 'signup' %>
+			</div>
+		  <div class="modal-footer">
+			<!--<button type="button" class="btn btn-default" onclick="showConfirmation();" >Continue</button>-->
+		  </div>
+		</div>
+	  </div>
+	</div>
+
+	<!-- confirmation modal-->
+	<div id="confirmationModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<span class="glyphicon glyphicon-lock"></span>
+			<p class="modal-header-login">New User Registration</p>
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+		  </div>
+		<div class="modal-body">
+			<p>Sign up is complete! </br>Please click the button below to sign in.</p>
+		</div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" onclick="backToLogin();">Back to Login</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	
+	<!-- confirm sign in modal-->
+	<div id="confirmSignInModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<p class="modal-header-login">Login Successful</p>
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+		  </div>
+		<div class="modal-body">
+			<p>You have successfully signed in! Thank you!</p>
+		</div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" onclick="hideLogin();">Exit Window</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+
+	
+	<!-- failed sign in modal-->
+	<div id="failedSignInModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<p class="modal-header-login">Login Failed</p>
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+		  </div>
+		<div class="modal-body">
+			<p>Sign in failed! Please check your email and password and try again.</p>
+		</div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" onclick="backToLoginFromFail();">Return to Login</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+
+
+    <script>
+    $('document').ready(new function () {
+  <% @organizations.each do |organization| %>
+      markerlocation('<%= organization.id %>','<%= organization.address.gsub(/\r\n/, '') %>', '<%= organization.name %>', '<%= organization.descrip %>'  );
+    
+  <% end %>
+    });
+		</script>
+
+<script>
+  /* Set the width of the side navigation to 250px */
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "270px";
+  }
+  /* Set the width of the side navigation to 0 */
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+
+  //<!--this function disables continue button on terms and conditions page until agree check box is checked"-->
+
+  $('#readAndAgree').change( function ()
+  {
+    if (this.checked)
+    {
+      $('#agreeContinue').prop("disabled",false);
+    }
+    else
+    {
+      $('#agreeContinue').prop("disabled",true);
+    }
+  });
+
+	//Setting the default values on the page.
+	document.getElementById("viewall").checked = true;
+  $("#button4").click();
+	
+	function hideModals()
+	{
+		$("#recovermyModal").modal("hide");
+		$("#loginModal").modal("hide");
+		$("#termsModal").modal("hide");
+		$("#confirmSignInModal").modal("hide");
+		$("#failedSignInModal").modal("hide");
+		$("#recoveryConfirmModal").modal("hide");
+	}
+
+  function recoverPassword()
+  {
+    $("#recoveryModal").modal("show");
+    $("#loginModal").modal("hide");
+  }
+
+  function showTerms()
+  {
+    $("#termsModal").modal("show");
+    $("#loginModal").modal("hide");
+  }
+
+  function showNewUser()
+  {
+    $("#newUserModal").modal("show");
+    $("#termsModal").modal("hide");
+  }
+
+  function showConfirmation()
+  {
+  	url = "/orgadmins"
+  	window.location.href = url;
+    //$("#confirmationModal").modal("show");
+    //$("#newUserModal").modal("hide");
+  }
+
+  function backToLogin()
+  {
+    $("#loginModal").modal("show");
+    $("#confirmationModal").modal("hide");
+  }
+  
+  function hideLogin()
+  {
+    $("#confirmSignInModal").modal("hide");
+    
+  }
+
+  function showRecovery()
+  {
+    $("#recoveryModal").modal("show");
+    $("#loginModal").modal("hide");
+  }
+
+  function showRecoveryConfirmation()
+  {
+    $("#recoveryConfirmModal").modal("show");
+    $("#recoveryModal").modal("hide");
+  }
+
+  function backToLoginFromRecov()
+  {
+    $("#loginModal").modal("show");
+    $("#recoveryConfirmModal").modal("hide");
+  }
+
+  function backToLoginFromFail()
+  {
+    $("#loginModal").modal("show");
+    $("#failedSignInModal").modal("hide");
+  }
+
+  $('#fpop').hide();
+  function popupfinancial (){
+    if ($('#button1').is(':checked'))
+    {
+      $('#fpop').show();
+      $('#apop').hide();
+      
+      if ($('#button4').is(':checked')) {
+    		$("#button4").click();
+    	};
+    	
+      document.getElementById("fsupport").checked = true;
+    }
+    else
+    {
+      $('#fpop').hide();
+      document.getElementById("fsupport").checked = false;
+    }
+    
+    markeridentify();
+  }
+
+  $('#kpop').hide();
+  function popupkind (){
+    if ($('#button2').is(':checked'))
+    {
+      $('#kpop').show();
+      $('#apop').hide();
+      
+      if ($('#button4').is(':checked')) {
+    		$("#button4").click();
+    	};
+      
+      document.getElementById("ksupport").checked = true;
+    }
+    else
+    {
+      $('#kpop').hide();
+      document.getElementById("ksupport").checked = false;
+    }
+    
+    markeridentify();
+  }
+
+  $('#npop').hide();
+  function popupnetwork (){
+    if ($('#button3').is(':checked'))
+    {
+      $('#npop').show();
+      $('#apop').hide();
+    	
+    	if ($('#button4').is(':checked')) {
+    		$("#button4").click();
+    	};
+    	
+      document.getElementById("network").checked = true;
+    }
+    else
+    {
+      $('#npop').hide();
+      document.getElementById("network").checked = false;
+    }
+    
+    markeridentify();
+  }
+
+  $('#apop').hide();
+  function popupall (){
+    if ($('#button4').is(':checked'))
+    {
+      $('#apop').show();
+      
+      if ($('#button1').is(':checked')) {
+    		$("#button1").click();
+    	};
+    	
+    	if ($('#button2').is(':checked')) {
+    		$("#button2").click();
+    	};
+    	
+    	if ($('#button3').is(':checked')) {
+    		$("#button3").click();
+    	};
+      
+      document.getElementById("viewall").checked = true;
+      infowindowclose();
+  		removeallpolylines();
+  		markershowall();
+  		removeselectedradiobutton();
+    }
+    else
+    {
+      $('#apop').hide();
+      document.getElementById("viewall").checked = false;
+    }
+  }
+  
+$("form#sign_in_user").bind("ajax:success", function(data, a, b) {
+  if (data.type = "ajax:success") {
+    //$('#loginModal').modal('hide');
+    //$('#confirmSignInModal').modal('show');
+    //$('#whenSignedIn').show();
+    //$('#whenSignedOut').hide();
+    window.location.href = "/orgadmins"
+  }
+});
+
+$("form#sign_in_user").bind("ajax:error", function(data, a, b) {
+  if (data.type = "ajax:error") {
+    //$('#loginModal').modal('hide');
+    //$('#failedSignInModal').modal('show');
+    // invalid username or password
+    $('#loginPassword').html("Password: ***");
+    $('#loginUserPass').addClass('has-error');
+  }
+});
+
+$("form#sign_up_user").bind("ajax:success", function(data) {
+  if (data.type = "ajax:success") {
+    $('#newUserModal').modal('hide');
+    $('#confirmationModal').modal('show');
+  } else {
+    return alert('failure!');
+  }
+});
+
+
+</script>
