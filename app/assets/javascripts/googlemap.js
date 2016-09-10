@@ -154,7 +154,7 @@ function addpolyline(data, marker) {
 	for (var i = 0; i < sendrcvds.length; i++) {
 		var sendrcvd = sendrcvds[i];
 		
-		var line = {to: {lat: parseFloat(sendrcvd[0]), lng: parseFloat(sendrcvd[1])}, from: {lat: parseFloat(sendrcvd[2]), lng: parseFloat(sendrcvd[3])}, type: sendrcvd[4]};
+		var line = {to: {lat: parseFloat(sendrcvd[0]), lng: parseFloat(sendrcvd[1])}, from: {lat: parseFloat(sendrcvd[2]), lng: parseFloat(sendrcvd[3])}, type: sendrcvd[4], amount: sendrcvd[5]};
 		
 		//for (var j = 0; j < sendrcvd.length; j++) { // why loop this? each item in this array has a specific value/meaning
 			
@@ -181,7 +181,23 @@ function addpolyline(data, marker) {
 							latlngsent = addressLocationObject;
 						}
 						*/
-						
+						var weight = 1
+						if (line.amount < 50000)
+						{
+							weight = 2;
+						}
+						else if (line.amount < 100000)
+						{
+							weight = 3;
+						}
+						else if (line.amount < 250000)
+						{
+							weight = 4;
+						}
+						else
+						{
+							weight = 5;
+						}
 						//if ((j+1) % 4 == 0) {
 							var linemapping = [
 								line.from, line.to
@@ -196,7 +212,7 @@ function addpolyline(data, marker) {
 				        		geodesic: true,
 				        		strokeColor: colorChoice,
 				        		strokeOpacity: 1.0,
-				        		strokeWeight: 2,
+				        		strokeWeight: weight,
 					  			icons: [{
 				        			icon: lineSymbol,
 				        			offset: '100%'

@@ -24,11 +24,11 @@ class OrganizationsController < ApplicationController
     results=[]
     incoming_connections.each do |funding_received|
       #funding_received.organization_from.latitude
-      results.push([funding_received.organization_from.latitude, funding_received.organization_from.longitude, funding_received.organization_to.latitude, funding_received.organization_to.longitude, funding_received.funding_type_id]);
+      results.push([funding_received.organization_from.latitude, funding_received.organization_from.longitude, funding_received.organization_to.latitude, funding_received.organization_to.longitude, funding_received.funding_type_id, funding_received.amount]);
     end
 
     outgoing_connections.each do |funding_sent|
-      results.push([funding_sent.organization_from.latitude, funding_sent.organization_from.longitude, funding_sent.organization_to.latitude, funding_sent.organization_to.longitude, funding_sent.funding_type_id]);
+      results.push([funding_sent.organization_from.latitude, funding_sent.organization_from.longitude, funding_sent.organization_to.latitude, funding_sent.organization_to.longitude, funding_sent.funding_type_id, funding_sent.amount]);
     end
 
     render :json => results

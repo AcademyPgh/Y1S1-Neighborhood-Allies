@@ -70,12 +70,18 @@ class OrgadminsController < ApplicationController
   
   # POST /orgadmins/1/showorgconnections
   def showorgconnections
-    @fundingsents = FundingSent.select('"orgrcvd".name, "funding_types".fundtype').from('"funding_sents" INNER JOIN "organizations" "orgrcvd" ON "orgrcvd"."id" = "funding_sents"."organization_id_received" INNER JOIN "organizations" "orgsent" ON "orgsent"."id" = "funding_sents"."organization_id_sent" INNER JOIN "funding_types" ON "funding_types"."id" = "funding_sents"."funding_type_id"').where("funding_sents.organization_id_sent = ?", params[:id])
+    #@fundingsents = FundingSent.select('"orgrcvd".name, "funding_types".fundtype').from('"funding_sents" INNER JOIN "organizations" "orgrcvd" ON "orgrcvd"."id" = "funding_sents"."organization_id_received" INNER JOIN "organizations" "orgsent" ON "orgsent"."id" = "funding_sents"."organization_id_sent" INNER JOIN "funding_types" ON "funding_types"."id" = "funding_sents"."funding_type_id"').where("funding_sents.organization_id_sent = ?", params[:id])
     
     results = []
+    sents = Organization.find(params[:id]).funding_sents
+    froms = Organization.find(params[:id]).funding_receives
     
-    @fundingsents.each do |funding_sent|
-      results.push([funding_sent.name, funding_sent.fundtype]);
+    sents.each do |funding_sent|
+      results.push([funding_sent.organization_to.name, FundingType.find(funding_sent.funding_type_id).fundtype, 'Send', funding_sent.amount])
+    end
+
+    froms.each do |funding_from|
+      results.push([funding_from.organization_from.name, FundingType.find(funding_from.funding_type_id).fundtype, 'Receive', funding_from.amount])
     end
 
     render :json => results
@@ -83,13 +89,21 @@ class OrgadminsController < ApplicationController
   
   # POST /orgadmins/1/addconnection
   def addorgconnections
-    org_to_id = params[:sendto_id]
+    
+    if params[:send_receive] == 1
+      org_from_id = params[:id]
+      org_to_id = params[:sentto_id]
+    else
+      org_from_id = params[:sentto_id]
+      org_to_id = params[:id]
+    end
     fund_type = params[:fund_type]
     
     @fundingsent = FundingSent.new
-    @fundingsent.organization_id_sent = params[:id]
-    @fundingsent.organization_id_received = params[:sentto_id]
+    @fundingsent.organization_id_sent = org_from_id
+    @fundingsent.organization_id_received = org_to_id
     @fundingsent.funding_type_id = params[:fund_type]
+    @fundingsent.amount = params[:amount]
     
     if @fundingsent.save
       puts "funding save successful"
